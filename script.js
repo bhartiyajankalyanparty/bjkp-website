@@ -7,9 +7,9 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 // Image Slider
 const images = [
-  "image/banner1.jpg",
-  "image/banner2.jpg",
-  "image/banner3.jpg"
+  "image/banner1.png",
+  "image/banner2.png",
+  "image/banner3.png"
 ];
 
 let current = 0;
