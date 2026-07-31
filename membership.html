@@ -117,6 +117,62 @@ const memberId="BJKP"+String(snapshot.size+1).padStart(4,"0");
 
 await addDoc(collection(db,"members"),{
 
+const photoInput = document.getElementById("photo");
+
+let photo = "";
+
+if (photoInput.files.length > 0) {
+
+  const reader = new FileReader();
+
+  reader.onload = function(e){
+
+    photo = e.target.result;
+
+    localStorage.setItem("member", JSON.stringify({
+
+      memberId,
+
+      name,
+
+      mobile,
+
+      email,
+
+      address,
+
+      photo
+
+    }));
+
+    window.location.href = "idcard.html";
+
+  };
+
+  reader.readAsDataURL(photoInput.files[0]);
+
+}else{
+
+  localStorage.setItem("member", JSON.stringify({
+
+    memberId,
+
+    name,
+
+    mobile,
+
+    email,
+
+    address,
+
+    photo:"image/president.jpg"
+
+  }));
+
+  window.location.href="idcard.html";
+
+}
+
 memberId,
 
 name,
