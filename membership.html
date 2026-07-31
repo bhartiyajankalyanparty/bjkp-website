@@ -111,10 +111,15 @@ date:new Date()
 
 alert("सदस्यता सफलतापूर्वक दर्ज हो गई");
 
-document.getElementById("name").value="";
-document.getElementById("mobile").value="";
-document.getElementById("email").value="";
-document.getElementById("address").value="";
+localStorage.setItem("member", JSON.stringify({
+    memberId,
+    name,
+    mobile,
+    email,
+    address
+}));
+
+window.location.href = "idcard.html";
 
 }catch(e){
 
