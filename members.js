@@ -48,6 +48,8 @@ function showMembers(data) {
 
       <h3>${m.name}</h3>
 
+<p><b>🆔 Member ID:</b> ${m.memberId}</p>
+
       <p>📱 ${m.mobile}</p>
 
       <p>📧 ${m.email}</p>
