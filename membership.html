@@ -100,7 +100,7 @@ return;
 }
 
 try{
-
+const memberId = "BJKP" + Date.now();
 await addDoc(collection(db,"members"),{
 name,
 mobile,
