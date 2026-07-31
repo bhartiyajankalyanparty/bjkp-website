@@ -6,6 +6,11 @@ import {
   addDoc
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
+import {
+  getAuth,
+  signOut
+} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
+
 const firebaseConfig = {
   apiKey: "AIzaSyBGa257kKYT4zJcUSyeu7aITZ0Y3D6AYk0",
   authDomain: "bhartiya-jan-kalyan-party-org.firebaseapp.com",
@@ -17,6 +22,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const auth = getAuth(app);
 
 // Dashboard
 async function loadDashboard() {
@@ -77,24 +83,47 @@ document.getElementById("addNewsBtn").addEventListener("click", async () => {
 });
 
 // Notice Add
-document.getElementById("addNoticeBtn").addEventListener("click", async () => {
+const noticeBtn = document.getElementById("addNoticeBtn");
 
-  const title = document.getElementById("noticeTitle").value.trim();
-  const date = document.getElementById("noticeDate").value.trim();
+if (noticeBtn) {
 
-  if (!title || !date) {
-    alert("कृपया सूचना और तारीख भरें");
-    return;
-  }
+  noticeBtn.addEventListener("click", async () => {
 
-  await addDoc(collection(db, "notice"), {
-    title,
-    date
+    const title = document.getElementById("noticeTitle").value.trim();
+    const date = document.getElementById("noticeDate").value.trim();
+
+    if (!title || !date) {
+      alert("कृपया सूचना और तारीख भरें");
+      return;
+    }
+
+    await addDoc(collection(db, "notice"), {
+      title,
+      date
+    });
+
+    alert("सूचना सफलतापूर्वक जोड़ दी गई");
+
+    document.getElementById("noticeTitle").value = "";
+    document.getElementById("noticeDate").value = "";
+
   });
 
-  alert("सूचना सफलतापूर्वक जोड़ दी गई");
+}
 
-  document.getElementById("noticeTitle").value = "";
-  document.getElementById("noticeDate").value = "";
+// Logout
+const logoutBtn = document.getElementById("logoutBtn");
 
-});
+if (logoutBtn) {
+
+  logoutBtn.addEventListener("click", async () => {
+
+    await signOut(auth);
+
+    alert("Logout सफल हुआ");
+
+    window.location.href = "login.html";
+
+  });
+
+}
