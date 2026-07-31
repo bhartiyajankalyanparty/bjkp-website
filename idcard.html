@@ -2,29 +2,25 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BJKP Member ID Card</title>
 
 <style>
 
 body{
 margin:0;
-background:#ececec;
+padding:20px;
+background:#e8e8e8;
 font-family:Arial,sans-serif;
 }
 
 .card{
 
-width:340px;
-
-margin:30px auto;
-
-background:white;
-
+width:350px;
+margin:auto;
+background:#fff;
 border-radius:15px;
-
 overflow:hidden;
-
 box-shadow:0 0 15px rgba(0,0,0,.3);
 
 }
@@ -32,11 +28,8 @@ box-shadow:0 0 15px rgba(0,0,0,.3);
 .header{
 
 background:#0b7a2a;
-
 color:white;
-
 text-align:center;
-
 padding:15px;
 
 }
@@ -44,27 +37,18 @@ padding:15px;
 .logo{
 
 width:70px;
-
 height:70px;
-
-margin-bottom:8px;
 
 }
 
 .photo{
 
 width:120px;
-
 height:120px;
-
 border-radius:50%;
-
 border:4px solid orange;
-
 display:block;
-
 margin:15px auto;
-
 object-fit:cover;
 
 }
@@ -72,9 +56,7 @@ object-fit:cover;
 .info{
 
 padding:15px;
-
 font-size:16px;
-
 line-height:1.8;
 
 }
@@ -85,39 +67,52 @@ color:#0b7a2a;
 
 }
 
+#qr{
+
+width:90px;
+height:90px;
+display:block;
+margin:15px auto;
+
+}
+
 .footer{
 
 background:#ff9800;
-
 color:white;
-
 text-align:center;
-
-padding:10px;
-
+padding:12px;
 font-weight:bold;
 
 }
 
-.print{
+.printBtn{
 
 display:block;
-
 margin:20px auto;
-
 padding:12px 25px;
-
 background:#0b7a2a;
-
 color:white;
-
 border:none;
-
-border-radius:6px;
-
+border-radius:8px;
+cursor:pointer;
 font-size:16px;
 
-cursor:pointer;
+}
+
+@media print{
+
+.printBtn{
+
+display:none;
+
+}
+
+body{
+
+background:white;
+
+}
 
 }
 
@@ -135,7 +130,7 @@ cursor:pointer;
 
 <h2>भारतीय जन कल्याण पार्टी</h2>
 
-<p>Official Member ID Card</p>
+<p>Official Member Identity Card</p>
 
 </div>
 
@@ -149,21 +144,33 @@ cursor:pointer;
 
 <p><b>मोबाइल :</b> <span id="mobile"></span></p>
 
+<p><b>ईमेल :</b> <span id="email"></span></p>
+
 <p><b>पता :</b> <span id="address"></span></p>
 
-<p><b>Status :</b> Active ✅</p>
+<p><b>Status :</b> <span style="color:green;">Active ✅</span></p>
 
 </div>
+
+<img id="qr">
 
 <div class="footer">
 
-Bhartiya Jan Kalyan Party
+भारतीय जन कल्याण पार्टी
+
+<br>
+
+राष्ट्रीय अध्यक्ष
+
+<br>
+
+अजीत कुमार चौधरी
 
 </div>
 
 </div>
 
-<button class="print" onclick="window.print()">
+<button class="printBtn" onclick="window.print()">
 
 🖨 Print ID Card
 
@@ -171,17 +178,30 @@ Bhartiya Jan Kalyan Party
 
 <script>
 
-const m=JSON.parse(localStorage.getItem("member"));
+const m = JSON.parse(localStorage.getItem("member"));
 
-document.getElementById("photo").src=m.photo;
+if(m){
 
-document.getElementById("name").innerText=m.name;
+document.getElementById("photo").src = m.photo || "image/president.jpg";
 
-document.getElementById("memberId").innerText=m.memberId;
+document.getElementById("name").innerText = m.name;
 
-document.getElementById("mobile").innerText=m.mobile;
+document.getElementById("memberId").innerText = m.memberId;
 
-document.getElementById("address").innerText=m.address;
+document.getElementById("mobile").innerText = m.mobile;
+
+document.getElementById("email").innerText = m.email || "-";
+
+document.getElementById("address").innerText = m.address;
+
+document.getElementById("qr").src =
+"https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + m.memberId;
+
+}else{
+
+alert("कोई सदस्य डेटा उपलब्ध नहीं है।");
+
+}
 
 </script>
 
