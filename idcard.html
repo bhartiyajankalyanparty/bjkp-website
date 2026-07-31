@@ -3,44 +3,118 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>सदस्य पहचान पत्र</title>
-<link rel="stylesheet" href="style.css">
+<title>BJKP Member ID Card</title>
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#f2f2f2;
+display:flex;
+justify-content:center;
+padding:20px;
+}
+
+.card{
+width:350px;
+background:white;
+border:3px solid #ff6600;
+border-radius:15px;
+box-shadow:0 0 10px rgba(0,0,0,.3);
+overflow:hidden;
+}
+
+.header{
+background:#ff6600;
+color:white;
+text-align:center;
+padding:15px;
+}
+
+.logo{
+width:90px;
+height:90px;
+border-radius:50%;
+margin-top:10px;
+}
+
+.content{
+padding:20px;
+}
+
+.content p{
+font-size:16px;
+margin:10px 0;
+}
+
+.btn{
+text-align:center;
+padding:20px;
+}
+
+button{
+padding:12px 25px;
+background:#008000;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-size:16px;
+}
+</style>
+
 </head>
 
 <body>
 
-<nav style="background:#0b7a2a;padding:12px;text-align:center;">
-<a href="index.html" style="color:white;margin:10px;text-decoration:none;">🏠 Home</a>
-<a href="about.html" style="color:white;margin:10px;text-decoration:none;">📖 About</a>
-<a href="membership.html" style="color:white;margin:10px;text-decoration:none;">📝 Membership</a>
-<a href="gallery.html" style="color:white;margin:10px;text-decoration:none;">🖼 Gallery</a>
-<a href="contact.html" style="color:white;margin:10px;text-decoration:none;">📞 Contact</a>
-<a href="news.html" style="color:white;margin:10px;text-decoration:none;">📰 News</a>
-</nav>
+<div class="card">
 
-<div style="max-width:380px;margin:30px auto;border:2px solid #0b7a2a;border-radius:12px;padding:20px;text-align:center;background:#fff;">
+<div class="header">
 
-<h2 style="color:#0b7a2a;">भारतीय जन कल्याण पार्टी</h2>
+<img src="image/logo.png" class="logo">
 
-<img src="image/president.jpg"
-style="width:100px;height:100px;border-radius:50%;border:3px solid orange;">
+<h2>भारतीय जन कल्याण पार्टी</h2>
 
-<h3 id="memberName">सदस्य का नाम</h3>
-
-<p><b>सदस्य संख्या:</b> <span id="memberId">BJKP0001</span></p>
-
-<p><b>मोबाइल:</b> <span id="memberMobile">9876543210</span></p>
-
-<p><b>पद:</b> सदस्य</p>
-
-<p><b>वैधता:</b> आजीवन</p>
-
-<button onclick="window.print()"
-style="padding:10px 20px;background:#0b7a2a;color:#fff;border:none;border-radius:6px;cursor:pointer;">
-🖨️ ID Card Print
-</button>
+<p>MEMBERSHIP ID CARD</p>
 
 </div>
+
+<div class="content">
+
+<p><b>🆔 Member ID:</b> <span id="memberId"></span></p>
+
+<p><b>👤 नाम:</b> <span id="name"></span></p>
+
+<p><b>📱 मोबाइल:</b> <span id="mobile"></span></p>
+
+<p><b>📍 पता:</b> <span id="address"></span></p>
+
+</div>
+
+<div class="btn">
+
+<button onclick="window.print()">🖨️ Print ID Card</button>
+
+</div>
+
+</div>
+
+<script>
+
+const data = JSON.parse(localStorage.getItem("member"));
+
+if(data){
+
+document.getElementById("memberId").innerText=data.memberId;
+
+document.getElementById("name").innerText=data.name;
+
+document.getElementById("mobile").innerText=data.mobile;
+
+document.getElementById("address").innerText=data.address;
+
+}
+
+</script>
 
 </body>
 </html>
