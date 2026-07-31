@@ -65,3 +65,61 @@ text-align:center;
 padding:15px;
 margin-top:40px;
 }
+
+/* ===== Image Slider ===== */
+.slider{
+    max-width:1000px;
+    margin:20px auto;
+    overflow:hidden;
+    border-radius:12px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+
+.slider img{
+    width:100%;
+    display:block;
+    transition:0.5s;
+}
+
+/* ===== Member Counter ===== */
+.counter-box{
+    background:#fff;
+    width:300px;
+    margin:20px auto;
+    padding:15px;
+    border-radius:12px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.15);
+    text-align:center;
+}
+
+.counter-box h3{
+    margin:0;
+    color:#0b7a2a;
+}
+
+.counter-box h1{
+    margin:10px 0 0;
+    font-size:42px;
+    color:#ff6600;
+}
+
+/* ===== Mobile Responsive ===== */
+@media(max-width:768px){
+
+nav a{
+display:block;
+padding:12px;
+}
+
+.hero h2{
+font-size:26px;
+}
+
+.hero p{
+font-size:16px;
+}
+
+button{
+width:90%;
+}
+}
