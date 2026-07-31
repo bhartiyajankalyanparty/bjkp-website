@@ -4,14 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Admin Panel</title>
+
 <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
+<button id="logoutBtn" style="float:right;background:red;color:white;padding:10px 20px;border:none;border-radius:5px;margin:15px;cursor:pointer;">
+🚪 Logout
+</button>
+
 <h1 style="text-align:center;">भारतीय जन कल्याण पार्टी</h1>
 <h2 style="text-align:center;">Admin Panel</h2>
-  <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:15px;margin:20px;">
+
+<div style="display:flex;flex-wrap:wrap;justify-content:center;gap:15px;margin:20px;">
 
 <div style="background:#0b7a2a;color:white;padding:20px;border-radius:10px;width:180px;text-align:center;">
 <h2 id="totalMembers">0</h2>
@@ -28,25 +35,61 @@
 <p>आज जुड़े सदस्य</p>
 </div>
 
-  </div>
+</div>
 
 <div id="memberList" style="max-width:800px;margin:auto;"></div>
 
-<h2>नई खबर जोड़ें</h2>
+<hr>
 
-<h2>📢 नई सूचना जोड़ें</h2>
+<h2 style="text-align:center;">📰 नई खबर जोड़ें</h2>
 
-<input type="text" id="noticeTitle" placeholder="सूचना का शीर्षक">
+<div style="max-width:700px;margin:auto;">
 
-<input type="text" id="noticeDate" placeholder="तारीख (जैसे 31 जुलाई 2026)">
+<input type="text"
+id="newsTitle"
+placeholder="समाचार का शीर्षक"
+style="width:100%;padding:12px;margin:10px 0;">
 
-<button id="addNoticeBtn">सूचना जोड़ें</button>
+<textarea
+id="newsDescription"
+placeholder="समाचार का विवरण"
+style="width:100%;padding:12px;height:120px;margin:10px 0;"></textarea>
 
-<input type="text" id="newsTitle" placeholder="समाचार का शीर्षक">
+<button
+id="addNewsBtn"
+style="width:100%;padding:12px;background:#ff9800;color:white;border:none;border-radius:6px;">
+समाचार जोड़ें
+</button>
 
-<textarea id="newsDescription" placeholder="समाचार का विवरण"></textarea>
+</div>
 
-<button id="addNewsBtn">समाचार जोड़ें</button>
+<hr>
+
+<h2 style="text-align:center;">📢 नई सूचना जोड़ें</h2>
+
+<div style="max-width:700px;margin:auto;">
+
+<input
+type="text"
+id="noticeTitle"
+placeholder="सूचना का शीर्षक"
+style="width:100%;padding:12px;margin:10px 0;">
+
+<input
+type="text"
+id="noticeDate"
+placeholder="तारीख (जैसे 31 जुलाई 2026)"
+style="width:100%;padding:12px;margin:10px 0;">
+
+<button
+id="addNoticeBtn"
+style="width:100%;padding:12px;background:#0b7a2a;color:white;border:none;border-radius:6px;">
+सूचना जोड़ें
+</button>
+
+</div>
+
+<br><br>
 
 <script type="module" src="admin.js"></script>
 
