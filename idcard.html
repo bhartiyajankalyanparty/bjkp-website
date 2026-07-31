@@ -2,64 +2,69 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BJKP Member ID Card</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Member ID Card</title>
 
 <style>
+
 body{
-font-family:Arial,sans-serif;
 background:#f2f2f2;
-display:flex;
-justify-content:center;
-padding:20px;
+font-family:Arial;
 }
 
 .card{
+
 width:350px;
+
+margin:30px auto;
+
 background:white;
-border:3px solid #ff6600;
+
+border:3px solid #0b7a2a;
+
 border-radius:15px;
-box-shadow:0 0 10px rgba(0,0,0,.3);
-overflow:hidden;
-}
 
-.header{
-background:#ff6600;
-color:white;
+padding:20px;
+
 text-align:center;
-padding:15px;
+
 }
 
-.logo{
-width:90px;
-height:90px;
+img{
+
+width:120px;
+
+height:120px;
+
 border-radius:50%;
-margin-top:10px;
+
+border:3px solid orange;
+
+object-fit:cover;
+
 }
 
-.content{
-padding:20px;
-}
-
-.content p{
-font-size:16px;
-margin:10px 0;
-}
-
-.btn{
-text-align:center;
-padding:20px;
+h2{
+color:#0b7a2a;
+margin:10px;
 }
 
 button{
-padding:12px 25px;
-background:#008000;
+
+margin-top:20px;
+
+padding:10px 20px;
+
+background:#0b7a2a;
+
 color:white;
+
 border:none;
-border-radius:8px;
-cursor:pointer;
-font-size:16px;
+
+border-radius:6px;
+
 }
+
 </style>
 
 </head>
@@ -68,51 +73,39 @@ font-size:16px;
 
 <div class="card">
 
-<div class="header">
-
-<img src="image/logo.png" class="logo">
-
 <h2>भारतीय जन कल्याण पार्टी</h2>
 
-<p>MEMBERSHIP ID CARD</p>
+<img id="photo">
 
-</div>
+<h3 id="name"></h3>
 
-<div class="content">
+<p id="memberId"></p>
 
-<p><b>🆔 Member ID:</b> <span id="memberId"></span></p>
+<p id="mobile"></p>
 
-<p><b>👤 नाम:</b> <span id="name"></span></p>
+<p id="address"></p>
 
-<p><b>📱 मोबाइल:</b> <span id="mobile"></span></p>
+<button onclick="window.print()">
 
-<p><b>📍 पता:</b> <span id="address"></span></p>
+🖨 Print ID Card
 
-</div>
-
-<div class="btn">
-
-<button onclick="window.print()">🖨️ Print ID Card</button>
-
-</div>
+</button>
 
 </div>
 
 <script>
 
-const data = JSON.parse(localStorage.getItem("member"));
+const member=JSON.parse(localStorage.getItem("member"));
 
-if(data){
+document.getElementById("photo").src=member.photo;
 
-document.getElementById("memberId").innerText=data.memberId;
+document.getElementById("name").innerText=member.name;
 
-document.getElementById("name").innerText=data.name;
+document.getElementById("memberId").innerText="ID : "+member.memberId;
 
-document.getElementById("mobile").innerText=data.mobile;
+document.getElementById("mobile").innerText=member.mobile;
 
-document.getElementById("address").innerText=data.address;
-
-}
+document.getElementById("address").innerText=member.address;
 
 </script>
 
