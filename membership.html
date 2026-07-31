@@ -16,6 +16,7 @@ padding:20px;
 border-radius:10px;
 box-shadow:0 0 10px rgba(0,0,0,.2);
 }
+
 input,textarea{
 width:100%;
 padding:12px;
@@ -24,22 +25,25 @@ border:1px solid #ccc;
 border-radius:5px;
 box-sizing:border-box;
 }
+
 button{
 width:100%;
 padding:14px;
 background:#ff6600;
-color:#fff;
+color:white;
 border:none;
 border-radius:5px;
 font-size:18px;
 cursor:pointer;
 }
+
 button:hover{
 background:#e65c00;
 }
 </style>
 
 </head>
+
 <body>
 
 <header>
@@ -57,9 +61,6 @@ background:#e65c00;
 
 <input type="email" id="email" placeholder="ईमेल">
 
-<label>अपनी फोटो चुनें</label>
-<input type="file" id="photo" accept="image/*">
-
 <textarea id="address" placeholder="पूरा पता"></textarea>
 
 <button id="submitBtn">सदस्यता भेजें</button>
@@ -69,19 +70,21 @@ background:#e65c00;
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+
 import {
 getFirestore,
 collection,
-addDoc
+addDoc,
+getDocs
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBGa257kKYT4zJcUSyeu7aITZ0Y3D6AYk0",
-  authDomain: "bhartiya-jan-kalyan-party-org.firebaseapp.com",
-  projectId: "bhartiya-jan-kalyan-party-org",
-  storageBucket: "bhartiya-jan-kalyan-party-org.firebasestorage.app",
-  messagingSenderId: "715864126578",
-  appId: "1:715864126578:web:9f9901e4c2a119b225beeb"
+apiKey: "AIzaSyBGa257kKYT4zJcUSyeu7aITZ0Y3D6AYk0",
+authDomain: "bhartiya-jan-kalyan-party-org.firebaseapp.com",
+projectId: "bhartiya-jan-kalyan-party-org",
+storageBucket: "bhartiya-jan-kalyan-party-org.firebasestorage.app",
+messagingSenderId: "715864126578",
+appId: "1:715864126578:web:9f9901e4c2a119b225beeb"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -89,10 +92,10 @@ const db = getFirestore(app);
 
 document.getElementById("submitBtn").addEventListener("click", async()=>{
 
-const name=document.getElementById("name").value;
-const mobile=document.getElementById("mobile").value;
-const email=document.getElementById("email").value;
-const address=document.getElementById("address").value;
+const name=document.getElementById("name").value.trim();
+const mobile=document.getElementById("mobile").value.trim();
+const email=document.getElementById("email").value.trim();
+const address=document.getElementById("address").value.trim();
 
 if(name==""||mobile==""){
 alert("नाम और मोबाइल नंबर भरें");
@@ -100,28 +103,41 @@ return;
 }
 
 try{
-const memberId = "BJKP" + Date.now();
+
+const snapshot=await getDocs(collection(db,"members"));
+
+const memberId="BJKP"+String(snapshot.size+1).padStart(4,"0");
+
 await addDoc(collection(db,"members"),{
+
+memberId,
+
 name,
+
 mobile,
+
 email,
+
 address,
+
+status:"Active",
+
+joinDate:new Date().toLocaleDateString("hi-IN"),
+
 date:new Date()
+
 });
 
-alert("सदस्यता सफलतापूर्वक दर्ज हो गई");
+alert("✅ सदस्यता सफल!\n\nMember ID: "+memberId);
 
-localStorage.setItem("member", JSON.stringify({
-    memberId,
-    name,
-    mobile,
-    email,
-    address
-}));
-
-window.location.href = "idcard.html";
+document.getElementById("name").value="";
+document.getElementById("mobile").value="";
+document.getElementById("email").value="";
+document.getElementById("address").value="";
 
 }catch(e){
+
+console.log(e);
 
 alert("डेटा सेव नहीं हुआ");
 
