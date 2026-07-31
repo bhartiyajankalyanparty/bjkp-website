@@ -103,114 +103,61 @@ return;
 
 try{
 
-const snapshot=await getDocs(collection(db,"members"));
+try {
 
-const memberId="BJKP"+String(snapshot.size+1).padStart(4,"0");
+  const snapshot = await getDocs(collection(db, "members"));
+  const memberId = "BJKP" + String(snapshot.size + 1).padStart(4, "0");
 
-const photoInput=document.getElementById("photo");
+  const photoInput = document.getElementById("photo");
 
-let photo="";
+  async function saveMember(photo) {
 
-if(photoInput.files.length>0){
+    await addDoc(collection(db, "members"), {
+      memberId: memberId,
+      name: name,
+      mobile: mobile,
+      email: email,
+      address: address,
+      status: "Active",
+      joinDate: new Date().toLocaleDateString("hi-IN"),
+      date: new Date()
+    });
 
-const reader=new FileReader();
+    localStorage.setItem("member", JSON.stringify({
+      memberId,
+      name,
+      mobile,
+      email,
+      address,
+      photo
+    }));
 
-reader.onload=async function(e){
+    alert("✅ सदस्यता सफल!\n\nMember ID : " + memberId);
 
-photo=e.target.result;
-await addDoc(collection(db,"members"),{
+    window.location.href = "idcard.html";
+  }
 
-memberId:memberId,
+  if (photoInput.files.length > 0) {
 
-name:name,
+    const reader = new FileReader();
 
-mobile:mobile,
+    reader.onload = async function (e) {
+      await saveMember(e.target.result);
+    };
 
-email:email,
+    reader.readAsDataURL(photoInput.files[0]);
 
-address:address,
+  } else {
 
-status:"Active",
+    await saveMember("image/president.jpg");
 
-joinDate:new Date().toLocaleDateString("hi-IN"),
+  }
 
-date:new Date()
+} catch (error) {
 
-});
+  console.log(error);
+  alert("डेटा सेव नहीं हुआ");
 
-localStorage.setItem("member",JSON.stringify({
-
-memberId,
-
-name,
-
-mobile,
-
-email,
-
-address,
-
-photo
-
-}));
-
-alert("✅ सदस्यता सफल!\n\nMember ID : "+memberId);
-
-window.location.href="idcard.html";
-
-};
-
-reader.readAsDataURL(photoInput.files[0]);
-
-}else{
-
-await addDoc(collection(db,"members"),{
-
-memberId:memberId,
-
-name:name,
-
-mobile:mobile,
-
-email:email,
-
-address:address,
-
-status:"Active",
-
-joinDate:new Date().toLocaleDateString("hi-IN"),
-
-date:new Date()
-
-});
-
-localStorage.setItem("member",JSON.stringify({
-
-memberId,
-
-name,
-
-mobile,
-
-email,
-
-address,
-
-photo:"image/president.jpg"
-
-}));
-
-alert("✅ सदस्यता सफल!\n\nMember ID : "+memberId);
-
-window.location.href="idcard.html";
-
-}
-
-}catch(error){
-
-console.log(error);
-
-alert("डेटा सेव नहीं हुआ");
 
 }
 
