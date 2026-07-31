@@ -1,9 +1,12 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+
 import {
   getFirestore,
   collection,
   getDocs,
-  addDoc
+  addDoc,
+  deleteDoc,
+  doc
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
 import {
@@ -24,7 +27,8 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
-// Dashboard
+let members = [];
+
 async function loadDashboard() {
 
   const memberSnapshot = await getDocs(collection(db, "members"));
@@ -34,96 +38,179 @@ async function loadDashboard() {
   document.getElementById("totalNews").innerText = newsSnapshot.size;
   document.getElementById("todayMembers").innerText = memberSnapshot.size;
 
-  let html = "<h2>सदस्यों की सूची</h2>";
+  members = [];
 
-  memberSnapshot.forEach((doc) => {
-
-    const d = doc.data();
-
-    html += `
-    <div style="border:1px solid #ccc;padding:12px;margin:10px;border-radius:8px;">
-      <h3>${d.name}</h3>
-      <p><b>Member ID:</b> ${d.memberId || "-"}</p>
-      <p><b>मोबाइल:</b> ${d.mobile}</p>
-      <p><b>ईमेल:</b> ${d.email}</p>
-      <p><b>पता:</b> ${d.address}</p>
-    </div>
-    `;
+  memberSnapshot.forEach((d) => {
+    members.push({
+      id: d.id,
+      ...d.data()
+    });
   });
 
-  document.getElementById("memberList").innerHTML = html;
+  showMembers(members);
+}
+
+function showMembers(data){
+
+let html="<h2>सदस्यों की सूची</h2>";
+
+data.forEach((m)=>{
+
+html+=`
+
+<div style="border:1px solid #ccc;padding:15px;margin:10px;border-radius:8px;">
+
+<h3>${m.name}</h3>
+
+<p><b>Member ID:</b> ${m.memberId || "-"}</p>
+
+<p><b>मोबाइल:</b> ${m.mobile}</p>
+
+<p><b>ईमेल:</b> ${m.email}</p>
+
+<p><b>पता:</b> ${m.address}</p>
+
+<button onclick="deleteMember('${m.id}')"
+style="background:red;color:white;border:none;padding:8px 15px;border-radius:5px;">
+🗑 Delete
+</button>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("memberList").innerHTML=html;
+
+}
+
+window.deleteMember=async function(id){
+
+if(confirm("क्या सदस्य हटाना चाहते हैं?")){
+
+await deleteDoc(doc(db,"members",id));
+
+alert("सदस्य हटा दिया गया");
+
+loadDashboard();
+
+}
+
+}
+
+const search=document.getElementById("searchMember");
+
+if(search){
+
+search.addEventListener("keyup",function(){
+
+const value=this.value.toLowerCase();
+
+const result=members.filter(m=>
+
+(m.name||"").toLowerCase().includes(value) ||
+
+(m.mobile||"").includes(value)
+
+);
+
+showMembers(result);
+
+});
+
 }
 
 loadDashboard();
 
-// News Add
-document.getElementById("addNewsBtn").addEventListener("click", async () => {
+const newsBtn=document.getElementById("addNewsBtn");
 
-  const title = document.getElementById("newsTitle").value.trim();
-  const description = document.getElementById("newsDescription").value.trim();
+if(newsBtn){
 
-  if (!title || !description) {
-    alert("कृपया सभी जानकारी भरें");
-    return;
-  }
+newsBtn.addEventListener("click",async()=>{
 
-  await addDoc(collection(db, "news"), {
-    title,
-    description,
-    date: new Date()
-  });
+const title=document.getElementById("newsTitle").value.trim();
 
-  alert("समाचार सफलतापूर्वक जोड़ दिया गया");
+const description=document.getElementById("newsDescription").value.trim();
 
-  document.getElementById("newsTitle").value = "";
-  document.getElementById("newsDescription").value = "";
+if(!title||!description){
 
-  loadDashboard();
+alert("पूरी जानकारी भरें");
 
-});
-
-// Notice Add
-const noticeBtn = document.getElementById("addNoticeBtn");
-
-if (noticeBtn) {
-
-  noticeBtn.addEventListener("click", async () => {
-
-    const title = document.getElementById("noticeTitle").value.trim();
-    const date = document.getElementById("noticeDate").value.trim();
-
-    if (!title || !date) {
-      alert("कृपया सूचना और तारीख भरें");
-      return;
-    }
-
-    await addDoc(collection(db, "notice"), {
-      title,
-      date
-    });
-
-    alert("सूचना सफलतापूर्वक जोड़ दी गई");
-
-    document.getElementById("noticeTitle").value = "";
-    document.getElementById("noticeDate").value = "";
-
-  });
+return;
 
 }
 
-// Logout
-const logoutBtn = document.getElementById("logoutBtn");
+await addDoc(collection(db,"news"),{
 
-if (logoutBtn) {
+title,
 
-  logoutBtn.addEventListener("click", async () => {
+description,
 
-    await signOut(auth);
+date:new Date()
 
-    alert("Logout सफल हुआ");
+});
 
-    window.location.href = "login.html";
+alert("समाचार जोड़ दिया गया");
 
-  });
+document.getElementById("newsTitle").value="";
+
+document.getElementById("newsDescription").value="";
+
+loadDashboard();
+
+});
+
+}
+
+const noticeBtn=document.getElementById("addNoticeBtn");
+
+if(noticeBtn){
+
+noticeBtn.addEventListener("click",async()=>{
+
+const title=document.getElementById("noticeTitle").value.trim();
+
+const date=document.getElementById("noticeDate").value.trim();
+
+if(!title||!date){
+
+alert("सूचना और तारीख भरें");
+
+return;
+
+}
+
+await addDoc(collection(db,"notice"),{
+
+title,
+
+date
+
+});
+
+alert("सूचना जोड़ दी गई");
+
+document.getElementById("noticeTitle").value="";
+
+document.getElementById("noticeDate").value="";
+
+});
+
+}
+
+const logoutBtn=document.getElementById("logoutBtn");
+
+if(logoutBtn){
+
+logoutBtn.addEventListener("click",async()=>{
+
+await signOut(auth);
+
+alert("Logout सफल हुआ");
+
+window.location.href="login.html";
+
+});
 
 }
