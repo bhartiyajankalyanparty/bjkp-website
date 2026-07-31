@@ -18,7 +18,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// Dashboard + Members
+// Dashboard
 async function loadDashboard() {
 
   const memberSnapshot = await getDocs(collection(db, "members"));
@@ -35,14 +35,14 @@ async function loadDashboard() {
     const d = doc.data();
 
     html += `
-      <div style="border:1px solid #ccc;padding:12px;margin:10px;border-radius:8px;">
-        <h3>${d.name}</h3>
-        <p><b>मोबाइल:</b> ${d.mobile}</p>
-        <p><b>ईमेल:</b> ${d.email}</p>
-        <p><b>पता:</b> ${d.address}</p>
-      </div>
+    <div style="border:1px solid #ccc;padding:12px;margin:10px;border-radius:8px;">
+      <h3>${d.name}</h3>
+      <p><b>Member ID:</b> ${d.memberId || "-"}</p>
+      <p><b>मोबाइल:</b> ${d.mobile}</p>
+      <p><b>ईमेल:</b> ${d.email}</p>
+      <p><b>पता:</b> ${d.address}</p>
+    </div>
     `;
-
   });
 
   document.getElementById("memberList").innerHTML = html;
@@ -62,8 +62,8 @@ document.getElementById("addNewsBtn").addEventListener("click", async () => {
   }
 
   await addDoc(collection(db, "news"), {
-    title: title,
-    description: description,
+    title,
+    description,
     date: new Date()
   });
 
@@ -73,5 +73,28 @@ document.getElementById("addNewsBtn").addEventListener("click", async () => {
   document.getElementById("newsDescription").value = "";
 
   loadDashboard();
+
+});
+
+// Notice Add
+document.getElementById("addNoticeBtn").addEventListener("click", async () => {
+
+  const title = document.getElementById("noticeTitle").value.trim();
+  const date = document.getElementById("noticeDate").value.trim();
+
+  if (!title || !date) {
+    alert("कृपया सूचना और तारीख भरें");
+    return;
+  }
+
+  await addDoc(collection(db, "notice"), {
+    title,
+    date
+  });
+
+  alert("सूचना सफलतापूर्वक जोड़ दी गई");
+
+  document.getElementById("noticeTitle").value = "";
+  document.getElementById("noticeDate").value = "";
 
 });
