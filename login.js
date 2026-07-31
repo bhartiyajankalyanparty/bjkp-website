@@ -1,7 +1,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
 import {
   getAuth,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
+  onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
 
 const firebaseConfig = {
@@ -16,19 +17,36 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-document.getElementById("loginBtn").addEventListener("click", () => {
+// यदि पहले से Login है तो सीधे Admin Panel खोल दो
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    window.location.href = "admin.html";
+  }
+});
 
-  const email = document.getElementById("email").value;
+document.getElementById("loginBtn").addEventListener("click", async () => {
+
+  const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value;
 
-  signInWithEmailAndPassword(auth, email, password)
-    .then(() => {
-      alert("Login सफल हुआ");
-      window.location.href = "admin.html";
-    })
-    .catch((error) => {
-      alert("गलत Email या Password");
-      console.log(error);
-    });
+  if (!email || !password) {
+    alert("ईमेल और पासवर्ड भरें");
+    return;
+  }
+
+  try {
+
+    await signInWithEmailAndPassword(auth, email, password);
+
+    alert("Login सफल हुआ");
+
+    window.location.href = "admin.html";
+
+  } catch (error) {
+
+    alert("गलत Email या Password");
+    console.log(error);
+
+  }
 
 });
