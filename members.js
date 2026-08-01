@@ -56,6 +56,17 @@ function showMembers(data) {
 
       <p>📍 ${m.address}</p>
 
+<button onclick="editMember('${m.id}')"
+style="background:#ff9800;color:white;border:none;padding:8px 15px;border-radius:5px;margin-right:8px;">
+✏️ Edit
+</button>
+
+<a href="idcard.html?id=${m.memberId}" target="_blank">
+<button style="background:#0b7a2a;color:white;border:none;padding:8px 15px;border-radius:5px;margin-right:8px;">
+🪪 ID Card
+</button>
+</a>
+
       <button onclick="deleteMember('${m.id}')">
       🗑 Delete
       </button>
@@ -97,3 +108,22 @@ document.getElementById("search").addEventListener("keyup",function(){
 });
 
 loadMembers();
+window.editMember = function(id){
+
+const m = members.find(x => x.id === id);
+
+if(!m) return;
+
+document.getElementById("editId").value = m.id;
+document.getElementById("editName").value = m.name || "";
+document.getElementById("editMobile").value = m.mobile || "";
+document.getElementById("editEmail").value = m.email || "";
+document.getElementById("editAddress").value = m.address || "";
+document.getElementById("editStatus").value = m.status || "Active";
+
+window.scrollTo({
+  top:0,
+  behavior:"smooth"
+});
+
+};
