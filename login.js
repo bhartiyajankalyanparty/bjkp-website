@@ -50,3 +50,45 @@ document.getElementById("loginBtn").addEventListener("click", async () => {
   }
 
 });
+
+const updateBtn = document.getElementById("updateMemberBtn");
+
+if(updateBtn){
+
+updateBtn.addEventListener("click", async ()=>{
+
+  const id = document.getElementById("editId").value;
+
+  if(!id){
+    alert("पहले किसी सदस्य को Edit करें");
+    return;
+  }
+
+  await updateDoc(doc(db,"members",id),{
+
+    name: document.getElementById("editName").value.trim(),
+
+    mobile: document.getElementById("editMobile").value.trim(),
+
+    email: document.getElementById("editEmail").value.trim(),
+
+    address: document.getElementById("editAddress").value.trim(),
+
+    status: document.getElementById("editStatus").value
+
+  });
+
+  alert("✅ सदस्य सफलतापूर्वक अपडेट हो गया");
+
+  document.getElementById("editId").value="";
+  document.getElementById("editName").value="";
+  document.getElementById("editMobile").value="";
+  document.getElementById("editEmail").value="";
+  document.getElementById("editAddress").value="";
+  document.getElementById("editStatus").value="Active";
+
+  loadDashboard();
+
+});
+
+}
