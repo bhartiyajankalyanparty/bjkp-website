@@ -19,6 +19,8 @@ const db = getFirestore(app);
 
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
+alert("URL = " + window.location.href);
+alert("ID = " + id);
 
 console.log("Member ID =", id);
 
