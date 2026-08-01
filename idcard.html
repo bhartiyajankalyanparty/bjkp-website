@@ -224,7 +224,72 @@ background:white;
 
 </div>
 
-<script type="module" src="idcard.js"></script>
+<script>
+
+if (m) {
+
+  document.getElementById("photo").src =
+    m.photo || "image/president.jpg";
+
+  document.getElementById("name").innerText =
+    m.name || "-";
+
+  document.getElementById("memberId").innerText =
+    m.memberId || "-";
+
+  document.getElementById("mobile").innerText =
+    m.mobile || "-";
+
+  document.getElementById("email").innerText =
+    m.email || "-";
+
+  document.getElementById("address").innerText =
+    m.address || "-";
+
+  document.getElementById("joinDate").innerText =
+    m.joinDate || new Date().toLocaleDateString("hi-IN");
+
+  document.getElementById("qr").src =
+  "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=" +
+  encodeURIComponent(m.memberId);
+
+} else {
+
+  alert("Member Data नहीं मिला।");
+
+}
+
+function downloadPDF(){
+
+const element=document.getElementById("card");
+
+html2pdf().set({
+
+margin:0.3,
+
+filename:
+(m?.memberId || "BJKP_ID") + ".pdf",
+
+image:{
+type:"jpeg",
+quality:1
+},
+
+html2canvas:{
+scale:2
+},
+
+jsPDF:{
+unit:"in",
+format:"a4",
+orientation:"portrait"
+}
+
+}).from(element).save();
+
+}
+
+</script>
 
 </body>
 </html>
