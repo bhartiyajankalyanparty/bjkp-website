@@ -106,7 +106,9 @@ placeholder="नाम या मोबाइल नंबर लिखें">
 
 </div>
 
-<div class="section">
+<!-- ✏️ सदस्य संपादित करें -->
+
+<div class="card">
 
 <h2>✏️ सदस्य संपादित करें</h2>
 
@@ -131,9 +133,17 @@ placeholder="ईमेल">
 id="editAddress"
 placeholder="पूरा पता"></textarea>
 
+<select id="editStatus">
+
+<option value="Active">✅ Active</option>
+
+<option value="Inactive">❌ Inactive</option>
+
+</select>
+
 <button
 id="updateMemberBtn"
-style="background:#0b7a2a;color:white;width:100%;">
+style="background:#0b7a2a;color:white;">
 💾 सदस्य अपडेट करें
 </button>
 
