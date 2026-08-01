@@ -75,6 +75,19 @@ style="background:red;color:white;border:none;padding:8px 15px;border-radius:5px
 🗑 Delete
 </button>
 
+<br><br>
+
+<a href="idcard.html?id=${m.memberId}" target="_blank">
+<button style="background:#0b7a2a;color:white;border:none;padding:8px 15px;border-radius:5px;">
+👁 View ID
+</button>
+</a>
+
+<button onclick="window.open('idcard.html?id=${m.memberId}','_blank')"
+style="background:#1565c0;color:white;border:none;padding:8px 15px;border-radius:5px;margin-left:8px;">
+🖨 Print ID
+</button>
+
 </div>
 
 `;
