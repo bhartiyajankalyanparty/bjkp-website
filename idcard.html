@@ -2,9 +2,7 @@
 <html lang="hi">
 
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>BJKP Member ID Card</title>
@@ -26,11 +24,8 @@
 <img src="image/logo.png" class="logo">
 
 <div>
-
 <h2>भारतीय जन कल्याण पार्टी</h2>
-
 <p>Official Member Identity Card</p>
-
 </div>
 
 </div>
@@ -40,9 +35,7 @@
 </div>
 
 <div class="photo-box">
-
-<img id="photo" src="image/president.jpg">
-
+<img id="photo" src="image/president.jpg" alt="Member Photo">
 </div>
 
 <div class="member-info">
@@ -58,60 +51,40 @@
 <p><b>पता :</b> <span id="address"></span></p>
 
 <p><b>स्थिति :</b>
-
-<span id="status" style="color:green;">
-
-✅ Active
-
-</span>
-
+<span id="status" style="color:green;">✅ Active</span>
 </p>
 
 <p><b>Join Date :</b>
-
 <span id="joinDate"></span>
-
 </p>
+
+</div>
 
 <div class="qr-section">
 
-<img id="qr" src="">
+<img id="qr" src="" alt="QR Code">
 
-<p>
-
-Scan to Verify
-
-</p>
+<p>Scan to Verify</p>
 
 </div>
 
 <div class="signature">
 
 <div>
-
 <p>__________________</p>
-
 <b>राष्ट्रीय अध्यक्ष</b>
-
 </div>
 
 <div>
-
 <p>__________________</p>
-
 <b>सदस्य हस्ताक्षर</b>
-
 </div>
 
 </div>
 
 <div class="card-footer">
 
-<p>
-
-"जनता का विश्वास • राष्ट्र का विकास"
-
-</p>
+<p>"जनता का विश्वास • राष्ट्र का विकास"</p>
 
 </div>
 
@@ -120,15 +93,11 @@ Scan to Verify
 <div class="card-buttons">
 
 <button onclick="window.print()">
-
 🖨 Print
-
 </button>
 
 <button onclick="downloadPDF()">
-
 📄 Download PDF
-
 </button>
 
 </div>
@@ -148,33 +117,21 @@ html2pdf().set({
 margin:0.3,
 
 filename:
-
-document.getElementById("memberId").innerText +
-
-"_BJKP_ID.pdf",
+(document.getElementById("memberId").innerText || "BJKP_ID") + ".pdf",
 
 image:{
-
 type:"jpeg",
-
 quality:1
-
 },
 
 html2canvas:{
-
 scale:2
-
 },
 
 jsPDF:{
-
 unit:"in",
-
 format:"a4",
-
 orientation:"portrait"
-
 }
 
 }).from(element).save();
