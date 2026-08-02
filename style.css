@@ -123,3 +123,69 @@ button{
 width:90%;
 }
 }
+
+.donate-section{
+padding:60px 20px;
+background:#f4f8ff;
+}
+
+.donate-box{
+max-width:650px;
+margin:auto;
+background:#fff;
+padding:30px;
+border-radius:15px;
+text-align:center;
+box-shadow:0 8px 25px rgba(0,0,0,.15);
+}
+
+.donate-box h2{
+color:#0b7a2a;
+margin-bottom:15px;
+}
+
+.donate-box p{
+font-size:16px;
+line-height:1.7;
+}
+
+.donate-qr{
+width:220px;
+margin:20px auto;
+display:block;
+border-radius:10px;
+border:4px solid #eee;
+}
+
+.upi-box{
+display:inline-block;
+padding:10px 20px;
+background:#f1f1f1;
+border-radius:8px;
+font-weight:bold;
+margin:15px 0;
+word-break:break-all;
+}
+
+.donate-btn{
+display:inline-block;
+margin-top:15px;
+padding:14px 30px;
+background:#ff9800;
+color:#fff;
+text-decoration:none;
+border-radius:8px;
+font-size:18px;
+font-weight:bold;
+transition:.3s;
+}
+
+.donate-btn:hover{
+background:#e68900;
+}
+
+.note{
+margin-top:20px;
+color:#555;
+font-size:14px;
+}
