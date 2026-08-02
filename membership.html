@@ -1,58 +1,23 @@
 <!DOCTYPE html>
 <html lang="hi">
+
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ऑनलाइन सदस्यता</title>
+<title>ऑनलाइन सदस्यता | भारतीय जन कल्याण पार्टी</title>
 
 <link rel="stylesheet" href="style.css">
 
-<style>
-
-.container{
-max-width:500px;
-margin:30px auto;
-background:#fff;
-padding:20px;
-border-radius:10px;
-box-shadow:0 0 10px rgba(0,0,0,.2);
-}
-
-input,textarea{
-width:100%;
-padding:12px;
-margin:10px 0;
-border:1px solid #ccc;
-border-radius:5px;
-box-sizing:border-box;
-}
-
-button{
-width:100%;
-padding:14px;
-background:#ff6600;
-color:#fff;
-border:none;
-border-radius:5px;
-font-size:18px;
-cursor:pointer;
-}
-
-button:hover{
-background:#e65c00;
-}
-
-</style>
-
 </head>
-
 
 <body>
 
+<header class="member-header">
 
-<header>
+<img src="image/logo.png" class="member-logo">
 
 <h1>भारतीय जन कल्याण पार्टी</h1>
 
@@ -60,252 +25,163 @@ background:#e65c00;
 
 </header>
 
+<div class="member-container">
 
+<h2>👥 सदस्य बनें</h2>
 
-<div class="container">
+<p>
 
+कृपया नीचे दी गई जानकारी सही-सही भरें।
 
-<h2>सदस्य बनें</h2>
+</p>
 
+<form id="memberForm">
 
-<input type="text" id="name" placeholder="पूरा नाम">
+<input
+type="text"
+id="name"
+placeholder="पूरा नाम"
+required>
 
+<input
+type="tel"
+id="mobile"
+placeholder="मोबाइल नंबर"
+required>
 
-<input type="tel" id="mobile" placeholder="मोबाइल नंबर">
+<input
+type="email"
+id="email"
+placeholder="ईमेल">
 
-
-<input type="email" id="email" placeholder="ईमेल">
-
+<textarea
+id="address"
+placeholder="पूरा पता"></textarea>
 
 <label>📷 पासपोर्ट साइज फोटो</label>
 
-<input type="file" id="photo" accept="image/*">
+<input
+type="file"
+id="photo"
+accept="image/*">
 
+<select id="gender">
 
-<textarea id="address" placeholder="पूरा पता"></textarea>
+<option value="">लिंग चुनें</option>
 
+<option value="पुरुष">पुरुष</option>
 
+<option value="महिला">महिला</option>
 
-<button id="submitBtn">
-सदस्यता भेजें
+<option value="अन्य">अन्य</option>
+
+</select>
+
+<input
+type="date"
+id="dob">
+
+<input
+type="text"
+id="occupation"
+placeholder="व्यवसाय">
+
+<input
+type="text"
+id="district"
+placeholder="जिला">
+
+<input
+type="text"
+id="state"
+placeholder="राज्य">
+
+<button
+type="button"
+id="submitBtn">
+
+✅ सदस्यता भेजें
+
 </button>
 
+<div class="declaration">
+
+<label>
+
+<input
+type="checkbox"
+id="agree"
+required>
+
+मैं घोषणा करता/करती हूँ कि मेरे द्वारा दी गई सभी जानकारी सही है तथा मैं भारतीय जन कल्याण पार्टी के नियमों का पालन करूँगा/करूँगी।
+
+</label>
 
 </div>
 
+<div class="form-buttons">
 
+<button
+type="reset"
+class="resetBtn">
 
+🔄 रीसेट
 
-<script type="module">
+</button>
 
+<button
+type="button"
+id="submitBtn"
+class="submitBtn">
 
-import { initializeApp } 
-from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+🚀 सदस्यता भेजें
 
+</button>
 
-import {
+</div>
 
-getFirestore,
-collection,
-addDoc,
-getDocs
+</form>
 
-}
+</div>
 
-from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+<script type="module" src="membership.js"></script>
 
+<footer class="member-footer">
 
+<img
+src="image/logo.png"
+class="footer-logo"
+alt="BJKP Logo">
 
+<h3>भारतीय जन कल्याण पार्टी</h3>
 
+<p>
 
-const firebaseConfig={
+राष्ट्रहित • जनहित • विकास
 
-apiKey:"AIzaSyBGa257kKYT4zJcUSyeu7aITZ0Y3D6AYk0",
+</p>
 
-authDomain:"bhartiya-jan-kalyan-party-org.firebaseapp.com",
+<div class="footer-links">
 
-projectId:"bhartiya-jan-kalyan-party-org",
+<a href="index.html">🏠 होम</a>
 
-storageBucket:"bhartiya-jan-kalyan-party-org.firebasestorage.app",
+<a href="verify.html">🪪 सत्यापन</a>
 
-messagingSenderId:"715864126578",
+<a href="contact.html">📞 संपर्क</a>
 
-appId:"1:715864126578:web:9f9901e4c2a119b225beeb"
+</div>
 
-};
+<p class="copyright">
 
+© 2026 भारतीय जन कल्याण पार्टी
 
+<br>
 
+All Rights Reserved
 
-const app=initializeApp(firebaseConfig);
+</p>
 
-const db=getFirestore(app);
-
-
-
-
-
-document.getElementById("submitBtn").addEventListener("click",async()=>{
-
-
-const name=document.getElementById("name").value.trim();
-
-const mobile=document.getElementById("mobile").value.trim();
-
-const email=document.getElementById("email").value.trim();
-
-const address=document.getElementById("address").value.trim();
-
-const photoInput=document.getElementById("photo");
-
-
-
-
-if(name=="" || mobile==""){
-
-alert("नाम और मोबाइल नंबर भरें");
-
-return;
-
-}
-
-
-
-
-try{
-
-
-const snapshot=await getDocs(collection(db,"members"));
-
-
-const memberId="BJKP"+String(snapshot.size+1).padStart(4,"0");
-
-
-
-let photo="image/president.jpg";
-
-
-
-if(photoInput.files.length>0){
-
-
-const reader=new FileReader();
-
-
-reader.onload=async function(e){
-
-
-await saveMember(e.target.result);
-
-
-};
-
-
-reader.readAsDataURL(photoInput.files[0]);
-
-
-}
-
-else{
-
-
-await saveMember(photo);
-
-
-}
-
-
-
-
-async function saveMember(photo){
-
-
-await addDoc(collection(db,"members"),{
-
-
-memberId:memberId,
-
-name:name,
-
-mobile:mobile,
-
-email:email,
-
-address:address,
-
-photo:photo,
-
-status:"Active",
-
-joinDate:new Date().toLocaleDateString("hi-IN"),
-
-date:new Date()
-
-
-});
-
-
-
-localStorage.setItem("member",JSON.stringify({
-
-
-memberId,
-
-name,
-
-mobile,
-
-email,
-
-address,
-
-photo
-
-
-}));
-
-
-
-
-alert("✅ सदस्यता सफल!\n\nMember ID : "+memberId);
-
-
-
-alert("Redirect: idcard.html?id=" + memberId);
-window.location.href = "idcard.html?id=" + memberId;
-
-
-
-}
-
-
-
-}
-
-catch(error){
-
-
-console.log(error);
-
-
-alert("डेटा सेव नहीं हुआ");
-
-
-}
-
-
-
-});
-
-
-
-window.onerror = function(msg){
-  alert("Error: " + msg);
-};
-
-console.log("Membership JS Loaded");
-</script>
-
+</footer>
 
 </body>
 
