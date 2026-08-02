@@ -1,27 +1,27 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
 
 import {
-  getFirestore,
-  collection,
-  getDocs,
-  addDoc,
-  deleteDoc,
-  updateDoc,
-  doc
+getFirestore,
+collection,
+getDocs,
+addDoc,
+updateDoc,
+deleteDoc,
+doc
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
 import {
-  getAuth,
-  signOut
+getAuth,
+signOut
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBGa257kKYT4zJcUSyeu7aITZ0Y3D6AYk0",
-  authDomain: "bhartiya-jan-kalyan-party-org.firebaseapp.com",
-  projectId: "bhartiya-jan-kalyan-party-org",
-  storageBucket: "bhartiya-jan-kalyan-party-org.firebasestorage.app",
-  messagingSenderId: "715864126578",
-  appId: "1:715864126578:web:9f9901e4c2a119b225beeb"
+apiKey:"AIzaSyBGa257kKYT4zJcUSyeu7aITZ0Y3D6AYk0",
+authDomain:"bhartiya-jan-kalyan-party-org.firebaseapp.com",
+projectId:"bhartiya-jan-kalyan-party-org",
+storageBucket:"bhartiya-jan-kalyan-party-org.firebasestorage.app",
+messagingSenderId:"715864126578",
+appId:"1:715864126578:web:9f9901e4c2a119b225beeb"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -30,64 +30,82 @@ const auth = getAuth(app);
 
 let members = [];
 
-async function loadDashboard() {
+// Dashboard Load
 
-  const memberSnapshot = await getDocs(collection(db, "members"));
-  const newsSnapshot = await getDocs(collection(db, "news"));
+async function loadDashboard(){
 
-  document.getElementById("totalMembers").innerText = memberSnapshot.size;
-  document.getElementById("totalNews").innerText = newsSnapshot.size;
-  document.getElementById("todayMembers").innerText = memberSnapshot.size;
+const memberSnapshot = await getDocs(collection(db,"members"));
+const newsSnapshot = await getDocs(collection(db,"news"));
 
-  members = [];
+members = [];
 
-  memberSnapshot.forEach((d) => {
-    members.push({
-      id: d.id,
-      ...d.data()
-    });
-  });
+let active = 0;
 
-  showMembers(members);
+memberSnapshot.forEach((d)=>{
+
+const m = {
+id:d.id,
+...d.data()
+};
+
+members.push(m);
+
+if(m.status==="Active"){
+active++;
 }
+
+});
+
+document.getElementById("totalMembers").innerText = members.length;
+document.getElementById("activeMembers").innerText = active;
+document.getElementById("todayMembers").innerText = members.length;
+document.getElementById("totalNews").innerText = newsSnapshot.size;
+
+showMembers(members);
+
+}
+
+loadDashboard();
+// ===== Member List =====
 
 function showMembers(data){
 
-let html="<h2>सदस्यों की सूची</h2>";
+let html = "";
 
 data.forEach((m)=>{
 
-html+=`
+html += `
 
-<div style="border:1px solid #ccc;padding:15px;margin:10px;border-radius:8px;">
+<div class="member-card">
 
 <h3>${m.name}</h3>
 
-<p><b>Member ID:</b> ${m.memberId || "-"}</p>
+<p><b>Member ID:</b> ${m.memberId}</p>
 
 <p><b>मोबाइल:</b> ${m.mobile}</p>
 
-<p><b>ईमेल:</b> ${m.email}</p>
+<p><b>ईमेल:</b> ${m.email || "-"}</p>
 
-<p><b>पता:</b> ${m.address}</p>
+<p><b>Status:</b> ${m.status || "Active"}</p>
 
-<button onclick="deleteMember('${m.id}')"
-style="background:red;color:white;border:none;padding:8px 15px;border-radius:5px;">
+<div class="action-buttons">
+
+<button class="edit-btn"
+onclick="editMember('${m.id}')">
+✏️ Edit
+</button>
+
+<button class="id-btn"
+onclick="window.open('idcard.html?id=${m.memberId}','_blank')">
+🪪 View ID
+</button>
+
+<button class="delete-btn"
+onclick="deleteMember('${m.id}')">
 🗑 Delete
 </button>
 
-<br><br>
-
-<a href="idcard.html?id=${m.memberId}" target="_blank">
-<button style="background:#0b7a2a;color:white;border:none;padding:8px 15px;border-radius:5px;">
-👁 View ID
-</button>
-</a>
-
-<button onclick="window.open('idcard.html?id=${m.memberId}','_blank')"
-style="background:#1565c0;color:white;border:none;padding:8px 15px;border-radius:5px;margin-left:8px;">
-🖨 Print ID
-</button>
+</div>
 
 </div>
 
@@ -95,37 +113,25 @@ style="background:#1565c0;color:white;border:none;padding:8px 15px;border-radius
 
 });
 
-document.getElementById("memberList").innerHTML=html;
+document.getElementById("memberList").innerHTML = html;
 
 }
 
-window.deleteMember=async function(id){
+// ===== Search =====
 
-if(confirm("क्या सदस्य हटाना चाहते हैं?")){
+const search = document.getElementById("searchMember");
 
-await deleteDoc(doc(db,"members",id));
+search.addEventListener("keyup", function(){
 
-alert("सदस्य हटा दिया गया");
+const value = this.value.toLowerCase();
 
-loadDashboard();
+const result = members.filter(m =>
 
-}
+(m.name || "").toLowerCase().includes(value) ||
 
-}
+(m.mobile || "").includes(value) ||
 
-const search=document.getElementById("searchMember");
-
-if(search){
-
-search.addEventListener("keyup",function(){
-
-const value=this.value.toLowerCase();
-
-const result=members.filter(m=>
-
-(m.name||"").toLowerCase().includes(value) ||
-
-(m.mobile||"").includes(value)
+(m.memberId || "").toLowerCase().includes(value)
 
 );
 
@@ -133,42 +139,106 @@ showMembers(result);
 
 });
 
-}
+// ===== Edit =====
 
-loadDashboard();
+window.editMember = function(id){
 
-const newsBtn=document.getElementById("addNewsBtn");
+const m = members.find(x => x.id === id);
 
-if(newsBtn){
+if(!m) return;
 
-newsBtn.addEventListener("click",async()=>{
+document.getElementById("editId").value = m.id;
+document.getElementById("editName").value = m.name || "";
+document.getElementById("editMobile").value = m.mobile || "";
+document.getElementById("editEmail").value = m.email || "";
+document.getElementById("editAddress").value = m.address || "";
+document.getElementById("editStatus").value = m.status || "Active";
 
-const title=document.getElementById("newsTitle").value.trim();
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
 
-const description=document.getElementById("newsDescription").value.trim();
+};
 
-if(!title||!description){
+// ===== Update Member =====
 
-alert("पूरी जानकारी भरें");
+const updateBtn = document.getElementById("updateMemberBtn");
 
+if(updateBtn){
+
+updateBtn.addEventListener("click", async ()=>{
+
+const id = document.getElementById("editId").value;
+
+if(!id){
+alert("पहले किसी सदस्य को Edit करें");
 return;
-
 }
 
-await addDoc(collection(db,"news"),{
+await updateDoc(doc(db,"members",id),{
 
-title,
+name: document.getElementById("editName").value.trim(),
 
-description,
+mobile: document.getElementById("editMobile").value.trim(),
 
-date:new Date()
+email: document.getElementById("editEmail").value.trim(),
+
+address: document.getElementById("editAddress").value.trim(),
+
+status: document.getElementById("editStatus").value
 
 });
 
-alert("समाचार जोड़ दिया गया");
+alert("✅ Member Updated Successfully");
+
+loadDashboard();
+
+});
+
+}
+
+// ===== Delete Member =====
+
+window.deleteMember = async function(id){
+
+if(confirm("क्या आप सदस्य हटाना चाहते हैं?")){
+
+await deleteDoc(doc(db,"members",id));
+
+alert("✅ Member Deleted");
+
+loadDashboard();
+
+}
+
+}
+
+// ===== Add News =====
+
+const newsBtn = document.getElementById("addNewsBtn");
+
+if(newsBtn){
+
+newsBtn.addEventListener("click", async ()=>{
+
+const title = document.getElementById("newsTitle").value.trim();
+const description = document.getElementById("newsDescription").value.trim();
+
+if(!title || !description){
+alert("समाचार पूरा भरें");
+return;
+}
+
+await addDoc(collection(db,"news"),{
+title,
+description,
+date:new Date()
+});
+
+alert("✅ News Added");
 
 document.getElementById("newsTitle").value="";
-
 document.getElementById("newsDescription").value="";
 
 loadDashboard();
@@ -177,51 +247,45 @@ loadDashboard();
 
 }
 
-const noticeBtn=document.getElementById("addNoticeBtn");
+// ===== Add Notice =====
+
+const noticeBtn = document.getElementById("addNoticeBtn");
 
 if(noticeBtn){
 
-noticeBtn.addEventListener("click",async()=>{
+noticeBtn.addEventListener("click", async ()=>{
 
-const title=document.getElementById("noticeTitle").value.trim();
+const title = document.getElementById("noticeTitle").value.trim();
+const date = document.getElementById("noticeDate").value;
 
-const date=document.getElementById("noticeDate").value.trim();
-
-if(!title||!date){
-
-alert("सूचना और तारीख भरें");
-
+if(!title || !date){
+alert("सूचना पूरी भरें");
 return;
-
 }
 
 await addDoc(collection(db,"notice"),{
-
 title,
-
 date
-
 });
 
-alert("सूचना जोड़ दी गई");
+alert("✅ Notice Added");
 
 document.getElementById("noticeTitle").value="";
-
 document.getElementById("noticeDate").value="";
 
 });
 
 }
 
-const logoutBtn=document.getElementById("logoutBtn");
+// ===== Logout =====
+
+const logoutBtn = document.getElementById("logoutBtn");
 
 if(logoutBtn){
 
-logoutBtn.addEventListener("click",async()=>{
+logoutBtn.addEventListener("click", async ()=>{
 
 await signOut(auth);
-
-alert("Logout सफल हुआ");
 
 window.location.href="login.html";
 
