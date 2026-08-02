@@ -3,212 +3,162 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin Panel</title>
 
-<link rel="stylesheet" href="style.css">
+<title>BJKP Admin Panel V2</title>
 
-<style>
-body{
-font-family:Arial,sans-serif;
-background:#f5f5f5;
-margin:0;
-padding:20px;
-}
-
-.container{
-max-width:1000px;
-margin:auto;
-}
-
-.card-box{
-display:flex;
-flex-wrap:wrap;
-gap:15px;
-justify-content:center;
-margin-bottom:20px;
-}
-
-.card{
-width:180px;
-padding:20px;
-border-radius:10px;
-color:white;
-text-align:center;
-}
-
-input,textarea{
-width:100%;
-padding:12px;
-margin:8px 0;
-border:1px solid #ccc;
-border-radius:6px;
-box-sizing:border-box;
-}
-
-select{
-width:100%;
-padding:12px;
-margin:8px 0;
-border:1px solid #ccc;
-border-radius:6px;
-box-sizing:border-box;
-}
-
-button{
-padding:12px;
-border:none;
-border-radius:6px;
-cursor:pointer;
-font-size:16px;
-}
-
-.section{
-background:white;
-padding:20px;
-margin-top:20px;
-border-radius:10px;
-box-shadow:0 2px 8px rgba(0,0,0,.15);
-}
-
-</style>
+<link rel="stylesheet" href="admin.css">
 
 </head>
 
 <body>
 
-<div class="container">
+<div class="sidebar">
 
-<button id="logoutBtn" style="float:right;background:red;color:white;">
-🚪 Logout
-</button>
+<div class="logo">
 
-<h1 style="text-align:center;">भारतीय जन कल्याण पार्टी</h1>
+<img src="image/logo.png" alt="Logo">
 
-<h2 style="text-align:center;">Admin Dashboard</h2>
+<h2>BJKP Admin</h2>
 
-<div class="card-box">
+</div>
 
-<div class="card" style="background:#0b7a2a;">
+<ul>
+
+<li class="active">🏠 Dashboard</li>
+
+<li>👥 Members</li>
+
+<li>📰 News</li>
+
+<li>📢 Notice</li>
+
+<li>🪪 Verify</li>
+
+<li>⚙️ Settings</li>
+
+<li id="logoutBtn">🚪 Logout</li>
+
+</ul>
+
+</div>
+
+<div class="main">
+
+<header>
+
+<h1>भारतीय जन कल्याण पार्टी</h1>
+
+<p>Admin Dashboard V2</p>
+
+</header>
+
+<div class="dashboard">
+
+<div class="card green">
+
 <h2 id="totalMembers">0</h2>
-<p>कुल सदस्य</p>
+
+<p>Total Members</p>
+
 </div>
 
-<div class="card" style="background:#ff9800;">
+<div class="card blue">
+
+<h2 id="activeMembers">0</h2>
+
+<p>Active Members</p>
+
+</div>
+
+<div class="card orange">
+
 <h2 id="totalNews">0</h2>
-<p>कुल समाचार</p>
+
+<p>Total News</p>
+
 </div>
 
-<div class="card" style="background:#2196f3;">
+<div class="card red">
+
 <h2 id="todayMembers">0</h2>
-<p>आज जुड़े सदस्य</p>
-</div>
+
+<p>Today's Join</p>
 
 </div>
 
-<div class="section">
+</div>
 
-<h2>🔍 सदस्य खोजें</h2>
+<section class="panel">
+
+<h2>🔍 Member Search</h2>
 
 <input
 type="text"
 id="searchMember"
-placeholder="नाम या मोबाइल नंबर लिखें">
+placeholder="नाम, मोबाइल या Member ID खोजें">
 
-</div>
+</section>
 
-<!-- ✏️ सदस्य संपादित करें -->
+<section class="panel">
 
-<div class="section">
-
-<h2>✏️ सदस्य संपादित करें</h2>
-
-<input type="hidden" id="editId">
-
-<input
-type="text"
-id="editName"
-placeholder="पूरा नाम">
-
-<input
-type="text"
-id="editMobile"
-placeholder="मोबाइल नंबर">
-
-<input
-type="email"
-id="editEmail"
-placeholder="ईमेल">
-
-<textarea
-id="editAddress"
-placeholder="पूरा पता"></textarea>
-
-<select id="editStatus">
-
-<option value="Active">✅ Active</option>
-
-<option value="Inactive">❌ Inactive</option>
-
-</select>
-
-<button
-id="updateMemberBtn"
-style="background:#0b7a2a;color:white;">
-💾 सदस्य अपडेट करें
-</button>
-
-</div>
-
-<div class="section">
-
-<h2>👥 सदस्यों की सूची</h2>
+<h2>👥 Member List</h2>
 
 <div id="memberList"></div>
 
-</div>
+</section>
 
-<div class="section">
+<section class="panel">
 
-<h2>📰 नई खबर जोड़ें</h2>
+<h2>✏️ Edit Member</h2>
 
-<input
-type="text"
-id="newsTitle"
-placeholder="समाचार का शीर्षक">
+<input type="hidden" id="editId">
 
-<textarea
-id="newsDescription"
-placeholder="समाचार का विवरण"></textarea>
+<input type="text" id="editName" placeholder="पूरा नाम">
 
-<button
-id="addNewsBtn"
-style="background:#ff9800;color:white;width:100%;">
-समाचार जोड़ें
+<input type="text" id="editMobile" placeholder="मोबाइल नंबर">
+
+<input type="email" id="editEmail" placeholder="ईमेल">
+
+<textarea id="editAddress" placeholder="पूरा पता"></textarea>
+
+<select id="editStatus">
+<option value="Active">✅ Active</option>
+<option value="Inactive">❌ Inactive</option>
+</select>
+
+<button id="updateMemberBtn" class="btn green">
+💾 Update Member
 </button>
 
-</div>
+</section>
 
-<div class="section">
+<section class="panel">
 
-<h2>📢 नई सूचना जोड़ें</h2>
+<h2>📰 Add News</h2>
 
-<input
-type="text"
-id="noticeTitle"
-placeholder="सूचना का शीर्षक">
+<input type="text" id="newsTitle" placeholder="समाचार का शीर्षक">
 
-<input
-type="text"
-id="noticeDate"
-placeholder="तारीख">
+<textarea id="newsDescription" placeholder="समाचार का विवरण"></textarea>
 
-<button
-id="addNoticeBtn"
-style="background:#0b7a2a;color:white;width:100%;">
-सूचना जोड़ें
+<button id="addNewsBtn" class="btn orange">
+📰 Add News
 </button>
 
-</div>
+</section>
+
+<section class="panel">
+
+<h2>📢 Add Notice</h2>
+
+<input type="text" id="noticeTitle" placeholder="सूचना">
+
+<input type="date" id="noticeDate">
+
+<button id="addNoticeBtn" class="btn blue">
+📢 Add Notice
+</button>
+
+</section>
 
 </div>
 
