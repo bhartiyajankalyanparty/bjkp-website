@@ -26,17 +26,17 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 const params = new URLSearchParams(window.location.search);
-
 const memberId = params.get("id");
 
 loadMember(memberId);
 
 async function loadMember(id){
 
+try{
+
 if(!id){
 
 alert("Member ID नहीं मिला");
-
 return;
 
 }
@@ -65,11 +65,15 @@ alert("Member नहीं मिला");
 
 }
 
+}catch(error){
+
+console.error(error);
+
+alert("डेटा लोड नहीं हो सका।");
+
 }
 
-// =========================
-// Show Member Details
-// =========================
+}
 
 function showMember(m){
 
@@ -105,7 +109,24 @@ m.status === "Inactive"
 ? "red"
 : "green";
 
-// QR Code
+const badge =
+document.getElementById("verifyBadge");
+
+if(badge){
+
+if(m.status === "Inactive"){
+
+badge.innerHTML="❌ INACTIVE";
+badge.style.background="#d32f2f";
+
+}else{
+
+badge.innerHTML="✅ VERIFIED";
+badge.style.background="#0b7a2a";
+
+}
+
+}
 
 document.getElementById("qr").src =
 "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=" +
@@ -117,41 +138,11 @@ m.memberId
 
 }
 
-// =========================
-// Verification Badge
-// =========================
-
-const badge = document.getElementById("verifyBadge");
-
-if(badge){
-
-if(m.status === "Active"){
-
-badge.innerHTML = "✅ VERIFIED";
-badge.style.background = "#0b7a2a";
-
-}else{
-
-badge.innerHTML = "❌ INACTIVE";
-badge.style.background = "#d32f2f";
-
-}
-
-}
-
-// =========================
-// Ready
-// =========================
-
 document.addEventListener("DOMContentLoaded",()=>{
 
 console.log("✅ ID Card Loaded");
 
 });
-
-// =========================
-// Error Handling
-// =========================
 
 window.onerror=function(msg,url,line){
 
@@ -160,4 +151,3 @@ console.log("Error :",msg);
 return false;
 
 };
-
