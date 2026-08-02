@@ -1,168 +1,31 @@
 <!DOCTYPE html>
 <html lang="hi">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>BJKP Member ID Card</title>
 
+<link rel="stylesheet" href="idcard.css">
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
-}
-
-body{
-background:#ececec;
-padding:20px;
-}
-
-.card{
-
-width:350px;
-margin:auto;
-background:white;
-border-radius:15px;
-overflow:hidden;
-box-shadow:0 0 15px rgba(0,0,0,.3);
-
-}
-
-.header{
-
-background:#0b7a2a;
-color:white;
-text-align:center;
-padding:15px;
-
-}
-
-.logo{
-
-width:70px;
-height:70px;
-margin-bottom:8px;
-
-}
-
-.header h2{
-
-margin-top:5px;
-font-size:22px;
-
-}
-
-.header p{
-
-font-size:14px;
-
-}
-
-.photo{
-
-width:120px;
-height:120px;
-border-radius:50%;
-border:4px solid orange;
-display:block;
-margin:18px auto;
-object-fit:cover;
-
-}
-
-.info{
-
-padding:18px;
-line-height:1.9;
-font-size:16px;
-
-}
-
-.info b{
-
-color:#0b7a2a;
-
-}
-
-#qr{
-
-width:90px;
-height:90px;
-display:block;
-margin:10px auto;
-
-}
-
-.footer{
-
-background:#ff9800;
-color:white;
-text-align:center;
-padding:12px;
-font-weight:bold;
-line-height:1.6;
-
-}
-
-.buttons{
-
-width:350px;
-margin:20px auto;
-display:flex;
-gap:10px;
-
-}
-
-.buttons button{
-
-flex:1;
-padding:12px;
-border:none;
-border-radius:8px;
-font-size:16px;
-cursor:pointer;
-color:white;
-
-}
-
-.print{
-
-background:#0b7a2a;
-
-}
-
-.pdf{
-
-background:#1565c0;
-
-}
-
-@media print{
-
-.buttons{
-display:none;
-}
-
-body{
-background:white;
-}
-
-}
-</style>
 
 </head>
 
 <body>
 
-<div class="card" id="card">
+<div class="id-container">
 
-<div class="header">
+<div class="id-card" id="card">
+
+<div class="card-header">
 
 <img src="image/logo.png" class="logo">
+
+<div>
 
 <h2>भारतीय जन कल्याण पार्टी</h2>
 
@@ -170,11 +33,17 @@ background:white;
 
 </div>
 
-<img id="photo" class="photo">
+</div>
 
-<div class="info">
+<div class="photo-box">
 
-<p><b>नाम :</b> <span id="name"></span></p>
+<img id="photo" src="image/president.jpg">
+
+</div>
+
+<div class="member-info">
+
+<h3 id="name">नाम</h3>
 
 <p><b>Member ID :</b> <span id="memberId"></span></p>
 
@@ -184,47 +53,132 @@ background:white;
 
 <p><b>पता :</b> <span id="address"></span></p>
 
-<p><b>Status :</b> <span style="color:green;">✅ Active</span></p>
+<p><b>स्थिति :</b>
 
-<p><b>Join Date :</b> <span id="joinDate"></span></p>
+<span id="status" style="color:green;">
+
+✅ Active
+
+</span>
+
+</p>
+
+<p><b>Join Date :</b>
+
+<span id="joinDate"></span>
+
+</p>
+
+<div class="qr-section">
+
+<img id="qr" src="">
+
+<p>
+
+Scan to Verify
+
+</p>
 
 </div>
 
-<img id="qr">
+<div class="signature">
 
-<div class="footer">
+<div>
 
-भारतीय जन कल्याण पार्टी
+<p>__________________</p>
 
-<br>
+<b>राष्ट्रीय अध्यक्ष</b>
 
-राष्ट्रीय अध्यक्ष
+</div>
 
-<br>
+<div>
 
-अजीत कुमार चौधरी
+<p>__________________</p>
+
+<b>सदस्य हस्ताक्षर</b>
 
 </div>
 
 </div>
 
-<div class="buttons">
+<div class="card-footer">
 
-<button class="print" onclick="window.print()">
+<p>
+
+"जनता का विश्वास • राष्ट्र का विकास"
+
+</p>
+
+</div>
+
+</div>
+
+<div class="card-buttons">
+
+<button onclick="window.print()">
 
 🖨 Print
 
 </button>
 
-<button class="pdf" onclick="downloadPDF()">
+<button onclick="downloadPDF()">
 
-📥 PDF
+📄 Download PDF
 
 </button>
 
 </div>
 
+</div>
+
 <script type="module" src="idcard.js"></script>
 
+<script>
+
+function downloadPDF(){
+
+const element=document.getElementById("card");
+
+html2pdf().set({
+
+margin:0.3,
+
+filename:
+
+document.getElementById("memberId").innerText +
+
+"_BJKP_ID.pdf",
+
+image:{
+
+type:"jpeg",
+
+quality:1
+
+},
+
+html2canvas:{
+
+scale:2
+
+},
+
+jsPDF:{
+
+unit:"in",
+
+format:"a4",
+
+orientation:"portrait"
+
+}
+
+}).from(element).save();
+
+}
+
+</script>
+
 </body>
+
 </html>
