@@ -1,5 +1,4 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
-
 import {
 getFirestore,
 collection,
@@ -7,126 +6,107 @@ getDocs
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
 const firebaseConfig = {
-
 apiKey:"AIzaSyBGa257kKYT4zJcUSyeu7aITZ0Y3D6AYk0",
-
 authDomain:"bhartiya-jan-kalyan-party-org.firebaseapp.com",
-
 projectId:"bhartiya-jan-kalyan-party-org",
-
 storageBucket:"bhartiya-jan-kalyan-party-org.firebasestorage.app",
-
 messagingSenderId:"715864126578",
-
 appId:"1:715864126578:web:9f9901e4c2a119b225beeb"
-
 };
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// Website Start
+/* ===========================
+   Website Start
+=========================== */
 
 loadWebsite();
 
 async function loadWebsite(){
 
+try{
+
 await loadMembers();
-
 await loadNews();
-
 await loadNotice();
+
+}catch(error){
+
+console.error("Website Error :",error);
 
 }
 
-// =========================
-// Member Counter
-// =========================
+}
+
+/* ===========================
+   Member Counter
+=========================== */
 
 async function loadMembers(){
 
-const snapshot = await getDocs(collection(db,"members"));
+const memberBox=document.getElementById("memberCount");
 
-const total = snapshot.size;
+if(!memberBox) return;
 
-const memberBox = document.getElementById("memberCount");
+const snapshot=await getDocs(collection(db,"members"));
 
-if(memberBox){
-
-animateCounter(memberBox,total);
+animateCounter(memberBox,snapshot.size);
 
 }
-
-}
-
-// Counter Animation
 
 function animateCounter(element,target){
 
-let count = 0;
+let count=0;
 
-const speed = Math.max(1,Math.ceil(target/50));
+const timer=setInterval(()=>{
 
-const timer = setInterval(()=>{
+count++;
 
-count += speed;
+element.innerText=count;
 
-if(count >= target){
-
-count = target;
+if(count>=target){
 
 clearInterval(timer);
 
 }
 
-element.innerText = count;
-
 },20);
 
 }
 
-// =========================
-// Latest News
-// =========================
+/* ===========================
+   Latest News
+=========================== */
 
 async function loadNews(){
 
-const snapshot = await getDocs(collection(db,"news"));
+const snapshot=await getDocs(collection(db,"news"));
 
-const newsCount =
-document.getElementById("newsCount");
-
-const newsContainer =
-document.getElementById("newsContainer");
+const newsCount=document.getElementById("newsCount");
+const newsContainer=document.getElementById("newsContainer");
 
 if(newsCount){
 
-newsCount.innerText = snapshot.size;
+newsCount.innerText=snapshot.size;
 
 }
 
 if(!newsContainer) return;
 
-newsContainer.innerHTML = "";
+newsContainer.innerHTML="";
 
 snapshot.forEach((doc)=>{
 
-const news = doc.data();
+const news=doc.data();
 
-const date = news.date?.seconds
-? new Date(news.date.seconds*1000)
-.toLocaleDateString("hi-IN")
-: "";
-
-newsContainer.innerHTML += `
+newsContainer.innerHTML+=`
 
 <div class="news-card">
 
-<h3>${news.title || "समाचार"}</h3>
+<h3>${news.title||"समाचार"}</h3>
 
-<p>${news.description || ""}</p>
-
-<small>📅 ${date}</small>
+<p>${news.description||""}</p>
 
 </div>
 
@@ -136,41 +116,31 @@ newsContainer.innerHTML += `
 
 }
 
-// =========================
-// Notice Board
-// =========================
+/* ===========================
+   Notice
+=========================== */
 
 async function loadNotice(){
 
-const snapshot = await getDocs(collection(db,"notice"));
+const snapshot=await getDocs(collection(db,"notice"));
 
-const noticeCount =
-document.getElementById("noticeCount");
-
-const noticeContainer =
-document.getElementById("noticeContainer");
-
-if(noticeCount){
-
-noticeCount.innerText = snapshot.size;
-
-}
+const noticeContainer=document.getElementById("noticeContainer");
 
 if(!noticeContainer) return;
 
-noticeContainer.innerHTML = "";
+noticeContainer.innerHTML="";
 
 snapshot.forEach((doc)=>{
 
-const notice = doc.data();
+const notice=doc.data();
 
-noticeContainer.innerHTML += `
+noticeContainer.innerHTML+=`
 
 <div class="news-card">
 
-<h3>📢 ${notice.title || "सूचना"}</h3>
+<h3>📢 ${notice.title||"सूचना"}</h3>
 
-<p>📅 ${notice.date || ""}</p>
+<p>${notice.date||""}</p>
 
 </div>
 
@@ -180,55 +150,58 @@ noticeContainer.innerHTML += `
 
 }
 
-// =========================
-// Auto Refresh
-// =========================
+/* ===========================
+   Hero Banner Slider
+=========================== */
+
+const hero=document.querySelector(".hero-banner");
+
+if(hero){
+
+const banners=[
+"image/banner1.png",
+"image/banner2.png",
+"image/banner3.png"
+];
+
+let index=0;
 
 setInterval(()=>{
 
-loadWebsite();
+index++;
 
-},60000);
+if(index>=banners.length){
 
-// =========================
-// Loading Message
-// =========================
+index=0;
 
-console.log("✅ BJKP Website Loaded Successfully");
+}
 
-// =========================
-// Error Handling
-// =========================
+hero.src=banners[index];
 
-window.addEventListener("error",(e)=>{
+},4000);
 
-console.log("Error :",e.message);
+}
 
-});
+/* ===========================
+   Auto Refresh
+=========================== */
 
-// =========================
-// Online / Offline Status
-// =========================
+setInterval(loadWebsite,60000);
+
+/* ===========================
+   Ready
+=========================== */
+
+console.log("✅ BJKP Website Loaded");
 
 window.addEventListener("online",()=>{
 
-console.log("🟢 Internet Connected");
+console.log("🟢 Online");
 
 });
 
 window.addEventListener("offline",()=>{
 
-console.log("🔴 Internet Disconnected");
+console.log("🔴 Offline");
 
 });
-
-// =========================
-// Page Ready
-// =========================
-
-document.addEventListener("DOMContentLoaded",()=>{
-
-console.log("🚀 Home Page Ready");
-
-});
-
