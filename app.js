@@ -176,6 +176,33 @@ noticeContainer.innerHTML+=`
 
 }
 
+/* ===========================
+   Hero Banner Slider
+=========================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+const hero = document.querySelector(".hero-banner");
+
+if(!hero) return;
+
+const banners = [
+"image/banner1.png",
+"image/banner2.png",
+"image/banner3.png"
+];
+
+let index = 0;
+
+setInterval(() => {
+
+index = (index + 1) % banners.length;
+
+hero.src = banners[index];
+
+}, 3000);
+
+});
 
 /* ===========================
    Auto Refresh
