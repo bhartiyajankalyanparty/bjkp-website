@@ -446,3 +446,138 @@ font-weight:600;
 .footer-links a:hover{
 text-decoration:underline;
 }
+
+/* ===========================
+   MOBILE RESPONSIVE
+=========================== */
+
+@media (max-width:768px){
+
+.topbar{
+flex-direction:column;
+text-align:center;
+gap:5px;
+padding:10px;
+}
+
+.header{
+flex-direction:column;
+text-align:center;
+padding:15px;
+}
+
+.logo-box{
+flex-direction:column;
+}
+
+.logo-box img{
+width:65px;
+height:65px;
+}
+
+.logo-box h1{
+font-size:22px;
+}
+
+.logo-box p{
+font-size:14px;
+}
+
+nav ul{
+flex-wrap:wrap;
+justify-content:center;
+gap:10px;
+margin-top:15px;
+}
+
+nav ul li a{
+font-size:15px;
+padding:8px 12px;
+}
+
+.hero-banner{
+width:100%;
+height:auto;
+}
+
+.about,
+.president,
+.membership,
+.notice-board,
+.contact,
+.counter{
+padding:40px 20px;
+}
+
+.about h2,
+.membership h2,
+.contact h2,
+.notice-board h2{
+font-size:28px;
+}
+
+.president{
+flex-direction:column;
+text-align:center;
+}
+
+.president img{
+width:220px;
+height:220px;
+}
+
+.member-container{
+margin:20px;
+padding:20px;
+}
+
+.form-buttons{
+flex-direction:column;
+}
+
+.resetBtn,
+.submitBtn{
+width:100%;
+}
+
+.footer-links{
+flex-direction:column;
+gap:12px;
+}
+
+}
+
+/* ===========================
+   ANIMATION
+=========================== */
+
+.about-card,
+.count-box,
+.contact-box,
+.member-container{
+transition:.3s;
+}
+
+.about-card:hover,
+.count-box:hover,
+.contact-box:hover{
+transform:translateY(-6px);
+box-shadow:0 8px 20px rgba(0,0,0,.15);
+}
+
+/* ===========================
+   SCROLLBAR
+=========================== */
+
+::-webkit-scrollbar{
+width:8px;
+}
+
+::-webkit-scrollbar-thumb{
+background:#0b7a2a;
+border-radius:10px;
+}
+
+::-webkit-scrollbar-track{
+background:#eee;
+}
