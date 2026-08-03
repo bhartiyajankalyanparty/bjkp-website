@@ -3,7 +3,33 @@ import {
 getFirestore,
 collection,
 getDocs
-} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+} from
+
+document.addEventListener("DOMContentLoaded", () => {
+
+const hero = document.querySelector(".hero-banner");
+
+if(hero){
+
+const banners = [
+"image/banner1.png",
+"image/banner2.png",
+"image/banner3.png"
+];
+
+let index = 0;
+
+setInterval(() => {
+
+index = (index + 1) % banners.length;
+
+hero.src = banners[index];
+
+}, 3000);
+
+}
+
+}); "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
 const firebaseConfig = {
 apiKey:"AIzaSyBGa257kKYT4zJcUSyeu7aITZ0Y3D6AYk0",
@@ -150,37 +176,6 @@ noticeContainer.innerHTML+=`
 
 }
 
-/* ===========================
-   Hero Banner Slider
-=========================== */
-
-const hero=document.querySelector(".hero-banner");
-
-if(hero){
-
-const banners=[
-"image/banner1.png",
-"image/banner2.png",
-"image/banner3.png"
-];
-
-let index=0;
-
-setInterval(()=>{
-
-index++;
-
-if(index>=banners.length){
-
-index=0;
-
-}
-
-hero.src=banners[index];
-
-},4000);
-
-}
 
 /* ===========================
    Auto Refresh
