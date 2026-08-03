@@ -7,13 +7,13 @@
 <title>ऑनलाइन सदस्यता | भारतीय जन कल्याण पार्टी</title>
 
 <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
 
 <header class="member-header">
-<img src="image/logo.png" class="member-logo" alt="Logo">
+
+<img src="image/logo.png" class="member-logo" alt="BJKP Logo">
 
 <h1>भारतीय जन कल्याण पार्टी</h1>
 
@@ -27,40 +27,72 @@
 
 <p>कृपया नीचे दी गई जानकारी सही-सही भरें।</p>
 
-<form id="memberForm">
+<form id="memberForm" autocomplete="off">
 
-<input type="text" id="name" placeholder="पूरा नाम" required>
+<input type="text"
+id="name"
+placeholder="पूरा नाम"
+required>
 
-<input type="tel" id="mobile" placeholder="मोबाइल नंबर" required>
+<input type="tel"
+id="mobile"
+placeholder="मोबाइल नंबर"
+maxlength="10"
+required>
 
-<input type="email" id="email" placeholder="ईमेल">
+<input type="email"
+id="email"
+placeholder="ईमेल">
 
-<textarea id="address" placeholder="पूरा पता"></textarea>
+<textarea
+id="address"
+placeholder="पूरा पता"></textarea>
 
-<label>📷 पासपोर्ट साइज फोटो</label>
+<label for="photo">📷 पासपोर्ट साइज फोटो</label>
 
-<input type="file" id="photo" accept="image/*">
+<input
+type="file"
+id="photo"
+accept="image/*">
 
 <select id="gender">
+
 <option value="">लिंग चुनें</option>
+
 <option value="पुरुष">पुरुष</option>
+
 <option value="महिला">महिला</option>
+
 <option value="अन्य">अन्य</option>
+
 </select>
 
-<input type="date" id="dob">
+<input
+type="date"
+id="dob">
 
-<input type="text" id="occupation" placeholder="व्यवसाय">
+<input
+type="text"
+id="occupation"
+placeholder="व्यवसाय">
 
-<input type="text" id="district" placeholder="जिला">
+<input
+type="text"
+id="district"
+placeholder="जिला">
 
-<input type="text" id="state" placeholder="राज्य">
+<input
+type="text"
+id="state"
+placeholder="राज्य">
 
 <div class="declaration">
 
 <label>
 
-<input type="checkbox" id="agree" required>
+<input
+type="checkbox"
+id="agree">
 
 मैं घोषणा करता/करती हूँ कि मेरे द्वारा दी गई सभी जानकारी सही है तथा मैं भारतीय जन कल्याण पार्टी के नियमों का पालन करूँगा/करूँगी।
 
@@ -70,13 +102,18 @@
 
 <div class="form-buttons">
 
-<button type="reset" class="resetBtn">
+<button
+type="reset"
+class="resetBtn">
 
 🔄 रीसेट
 
 </button>
 
-<button type="button" id="submitBtn" class="submitBtn">
+<button
+type="button"
+id="submitBtn"
+class="submitBtn">
 
 🚀 सदस्यता भेजें
 
@@ -90,7 +127,9 @@
 
 <footer class="member-footer">
 
-<img src="image/logo.png" class="footer-logo" alt="Logo">
+<img src="image/logo.png"
+class="footer-logo"
+alt="Logo">
 
 <h3>भारतीय जन कल्याण पार्टी</h3>
 
