@@ -22,15 +22,12 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 // ===========================
-// Start Website
+// Website Start
 // ===========================
 
 document.addEventListener("DOMContentLoaded", () => {
-
   loadWebsite();
-
   startBannerSlider();
-
 });
 
 // ===========================
@@ -38,19 +35,15 @@ document.addEventListener("DOMContentLoaded", () => {
 // ===========================
 
 async function loadWebsite() {
-
   try {
-
-    await loadMembers();
-    await loadNews();
-    await loadNotice();
-
+    await Promise.all([
+      loadMembers(),
+      loadNews(),
+      loadNotice()
+    ]);
   } catch (error) {
-
-    console.error("Website Error :", error);
-
+    console.error("Website Error:", error);
   }
-
 }
 
 // ===========================
@@ -63,45 +56,68 @@ async function loadMembers() {
 
   if (!memberBox) return;
 
-  const snapshot = await getDocs(collection(db, "members"));
+  try {
 
-  memberBox.innerText = snapshot.size;
+    const snapshot = await getDocs(collection(db, "members"));
+
+    memberBox.textContent = snapshot.size;
+
+  } catch (error) {
+
+    console.error("Member Counter Error:", error);
+
+    memberBox.textContent = "0";
+
+  }
 
 }
 
 // ===========================
-// News Counter
+// Latest News
 // ===========================
 
 async function loadNews() {
 
-  const snapshot = await getDocs(collection(db, "news"));
-
   const newsCount = document.getElementById("newsCount");
   const newsContainer = document.getElementById("newsContainer");
-
-  if (newsCount) {
-    newsCount.innerText = snapshot.size;
-  }
 
   if (!newsContainer) return;
 
   newsContainer.innerHTML = "";
 
-  snapshot.forEach((doc) => {
+  try {
 
-    const news = doc.data();
+    const snapshot = await getDocs(collection(db, "news"));
 
-    newsContainer.innerHTML += `
-      <div class="news-card">
-        <h3>${news.title || "समाचार"}</h3>
-        <p>${news.description || ""}</p>
-      </div>
-    `;
+    if (newsCount) {
+      newsCount.textContent = snapshot.size;
+    }
 
-  });
+    if (snapshot.empty) {
 
-}
+      newsContainer.innerHTML = `
+        <div class="news-card">
+          <h3>📢 कोई समाचार उपलब्ध नहीं है</h3>
+          <p>जल्द ही नए समाचार प्रकाशित किए जाएंगे।</p>
+        </div>
+      `;
+
+      return;
+
+    }
+
+    snapshot.forEach((doc) => {
+
+      const news = doc.data();
+
+      const date = news.date?.seconds
+        ? new Date(news.date.seconds * 1000).toLocaleDateString("hi-IN")
+        : "";
+
+      newsContainer.innerHTML += `
+        <div class="news-card">
+          <h3>${news.title || "समाचार"}</h3>
+          <p>${news.description || ""
 
 // ===========================
 // Notice Board
@@ -121,8 +137,11 @@ async function loadNotice() {
 
     if (snapshot.empty) {
 
-      noticeContainer.innerHTML =
-      "<p>कोई नई सूचना उपलब्ध नहीं है।</p>";
+      noticeContainer.innerHTML = `
+        <div class="news-card">
+          <h3>📢 कोई नई सूचना उपलब्ध नहीं है</h3>
+        </div>
+      `;
 
       return;
 
@@ -132,18 +151,29 @@ async function loadNotice() {
 
       const notice = doc.data();
 
+      const date = notice.date?.seconds
+        ? new Date(notice.date.seconds * 1000).toLocaleDateString("hi-IN")
+        : (notice.date || "");
+
       noticeContainer.innerHTML += `
-      <div class="news-card">
-        <h3>📢 ${notice.title || "सूचना"}</h3>
-        <p>${notice.description || ""}</p>
-      </div>
+        <div class="news-card">
+          <h3>📢 ${notice.title || "सूचना"}</h3>
+          <p>${notice.description || ""}</p>
+          <small>📅 ${date}</small>
+        </div>
       `;
 
     });
 
   } catch (error) {
 
-    console.error(error);
+    console.error("Notice Error:", error);
+
+    noticeContainer.innerHTML = `
+      <div class="news-card">
+        <h3>❌ सूचना लोड नहीं हो सकी</h3>
+      </div>
+    `;
 
   }
 
@@ -169,15 +199,9 @@ function startBannerSlider() {
 
   setInterval(() => {
 
-    index++;
+    index = (index + 1) % banners.length;
 
-    if (index >= banners.length) {
-
-      index = 0;
-
-    }
-
-    hero.src = banners[index];
+    hero.src = banners[index] + "?v=" + Date.now();
 
   }, 3000);
 
@@ -187,26 +211,20 @@ function startBannerSlider() {
 // Auto Refresh
 // ===========================
 
-setInterval(() => {
+setInterval(loadWebsite, 60000);
 
-  loadWebsite();
+document.addEventListener("visibilitychange", () => {
 
-}, 60000);
+  if (!document.hidden) {
+
+    loadWebsite();
+
+  }
+
+});
 
 // ===========================
 // Ready
 // ===========================
 
 console.log("✅ BJKP Website Loaded Successfully");
-
-window.addEventListener("online", () => {
-
-  console.log("🟢 Internet Connected");
-
-});
-
-window.addEventListener("offline", () => {
-
-  console.log("🔴 Internet Disconnected");
-
-});
