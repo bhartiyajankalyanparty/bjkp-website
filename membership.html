@@ -2,18 +2,39 @@
 <html lang="hi">
 
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>ऑनलाइन सदस्यता | भारतीय जन कल्याण पार्टी</title>
 
+<meta name="description"
+content="भारतीय जन कल्याण पार्टी ऑनलाइन सदस्यता फॉर्म">
+
 <link rel="stylesheet" href="style.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
 </head>
 
 <body>
 
+<!-- ==========================
+     HEADER
+========================== -->
+
 <header class="member-header">
 
-<img src="image/logo.png" class="member-logo" alt="BJKP Logo">
+<img
+src="image/logo.png"
+class="member-logo"
+alt="BJKP Logo">
 
 <h1>भारतीय जन कल्याण पार्टी</h1>
 
@@ -21,51 +42,68 @@
 
 </header>
 
+<!-- ==========================
+     FORM START
+========================== -->
+
 <div class="member-container">
 
 <h2>👥 सदस्य बनें</h2>
 
-<p>कृपया नीचे दी गई जानकारी सही-सही भरें।</p>
+<p>
 
-<form id="memberForm" autocomplete="off">
+कृपया नीचे दी गई सभी जानकारी सही-सही भरें।
 
-<input type="text"
+</p>
+
+<form id="memberForm">
+
+<input
+type="text"
 id="name"
 placeholder="पूरा नाम"
 required>
 
-<input type="tel"
+<input
+type="tel"
 id="mobile"
 placeholder="मोबाइल नंबर"
 maxlength="10"
 required>
 
-<input type="email"
+<input
+type="email"
 id="email"
-placeholder="ईमेल">
+placeholder="ईमेल पता">
 
 <textarea
 id="address"
 placeholder="पूरा पता"></textarea>
 
-<label for="photo">📷 पासपोर्ट साइज फोटो</label>
+<label>
+
+📷 पासपोर्ट साइज फोटो
+
+</label>
 
 <input
 type="file"
 id="photo"
 accept="image/*">
 
-<select id="gender">
+<select id="gender" required>
 
 <option value="">लिंग चुनें</option>
 
-<option value="पुरुष">पुरुष</option>
+<option value="पुरुष">👨 पुरुष</option>
 
-<option value="महिला">महिला</option>
+<option value="महिला">👩 महिला</option>
 
-<option value="अन्य">अन्य</option>
+<option value="अन्य">⚧️ अन्य</option>
 
 </select>
+
+<label>🎂 जन्म तिथि</label>
 
 <input
 type="date"
@@ -92,9 +130,10 @@ placeholder="राज्य">
 
 <input
 type="checkbox"
-id="agree">
+id="agree"
+required>
 
-मैं घोषणा करता/करती हूँ कि मेरे द्वारा दी गई सभी जानकारी सही है तथा मैं भारतीय जन कल्याण पार्टी के नियमों का पालन करूँगा/करूँगी।
+मैं घोषणा करता/करती हूँ कि मेरे द्वारा दी गई सभी जानकारी सत्य है तथा मैं भारतीय जन कल्याण पार्टी के नियमों का पालन करूँगा/करूँगी।
 
 </label>
 
@@ -125,15 +164,24 @@ class="submitBtn">
 
 </div>
 
+<!-- ==========================
+     FOOTER
+========================== -->
+
 <footer class="member-footer">
 
-<img src="image/logo.png"
+<img
+src="image/logo.png"
 class="footer-logo"
-alt="Logo">
+alt="BJKP Logo">
 
 <h3>भारतीय जन कल्याण पार्टी</h3>
 
-<p>राष्ट्रहित • जनहित • विकास</p>
+<p>
+
+राष्ट्रहित • जनहित • विकास
+
+</p>
 
 <div class="footer-links">
 
@@ -147,7 +195,9 @@ alt="Logo">
 
 <p class="copyright">
 
-© 2026 भारतीय जन कल्याण पार्टी<br>
+© 2026 भारतीय जन कल्याण पार्टी
+
+<br>
 
 All Rights Reserved
 
