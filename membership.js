@@ -6,6 +6,7 @@ import {
   getDocs
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
+// Firebase Config
 const firebaseConfig = {
   apiKey: "AIzaSyBGa257kKYT4zJcUSyeu7aITZ0Y3D6AYk0",
   authDomain: "bhartiya-jan-kalyan-party-org.firebaseapp.com",
@@ -19,9 +20,10 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 document.addEventListener("DOMContentLoaded", () => {
-  const btn = document.getElementById("submitBtn");
-  if (btn) {
-    btn.addEventListener("click", submitForm);
+  const submitBtn = document.getElementById("submitBtn");
+
+  if (submitBtn) {
+    submitBtn.addEventListener("click", submitForm);
   }
 });
 
@@ -33,83 +35,133 @@ async function submitForm() {
     const mobile = document.getElementById("mobile").value.trim();
     const email = document.getElementById("email").value.trim();
     const address = document.getElementById("address").value.trim();
+
+    const gender = document.getElementById("gender").value;
+    const dob = document.getElementById("dob").value;
+    const occupation = document.getElementById("occupation").value.trim();
+    const district = document.getElementById("district").value.trim();
+    const state = document.getElementById("state").value.trim();
+
+    const agree = document.getElementById("agree");
     const photo = document.getElementById("photo");
 
-    if (!name || !mobile) {
-      alert("नाम और मोबाइल नंबर आवश्यक है।");
+    // Validation
+
+    if (name === "") {
+      alert("कृपया पूरा नाम दर्ज करें");
       return;
     }
+
+    if (mobile.length !== 10) {
+      alert("कृपया 10 अंकों का मोबाइल नंबर दर्ज करें");
+      return;
+    }
+
+    if (!agree.checked) {
+      alert("कृपया घोषणा स्वीकार करें");
+      return;
+    }
+
+    // Duplicate Mobile Check
 
     const snapshot = await getDocs(collection(db, "members"));
 
     let duplicate = false;
 
     snapshot.forEach((doc) => {
+
       const member = doc.data();
+
       if (member.mobile === mobile) {
         duplicate = true;
       }
+
     });
 
     if (duplicate) {
+
       alert("❌ इस मोबाइल नंबर से सदस्य पहले से मौजूद है।");
+
       return;
+
     }
 
-    const memberId = "BJKP" + String(snapshot.size + 1).padStart(4, "0");
+    // Member ID
 
-    let photoUrl = "image/president.jpg";
+    const memberId =
+      "BJKP" + String(snapshot.size + 1).padStart(4, "0");
+
+    let photoData = "image/president.jpg";
 
     if (photo.files.length > 0) {
 
       const reader = new FileReader();
 
       reader.onload = async function (e) {
+
         await saveMember(e.target.result);
+
       };
 
       reader.readAsDataURL(photo.files[0]);
 
     } else {
 
-      await saveMember(photoUrl);
+      await saveMember(photoData);
 
     }
 
-    async function saveMember(photoData) {
+    async function saveMember(photoUrl) {
 
       await addDoc(collection(db, "members"), {
 
-        memberId: memberId,
-        name: name,
-        mobile: mobile,
-        email: email,
-        address: address,
-        photo: photoData,
-        status: "Active",
-        joinDate: new Date().toLocaleDateString("hi-IN"),
-        date: new Date()
-
-      });
-
-      localStorage.setItem("member", JSON.stringify({
         memberId,
         name,
         mobile,
         email,
         address,
-        photo: photoData
+        gender,
+        dob,
+        occupation,
+        district,
+        state,
+        photo: photoUrl,
+
+        status: "Active",
+
+        joinDate: new Date().toLocaleDateString("hi-IN"),
+
+        date: new Date()
+
+      });
+
+      localStorage.setItem("member", JSON.stringify({
+
+        memberId,
+        name,
+        mobile,
+        email,
+        address,
+        gender,
+        dob,
+        occupation,
+        district,
+        state,
+        photo: photoUrl
+
       }));
 
       alert("✅ सदस्यता सफल!\n\nMember ID : " + memberId);
 
-      window.location.href = "idcard.html?id=" + memberId;
+      window.location.href =
+        "idcard.html?id=" + memberId;
 
     }
 
   } catch (error) {
 
     console.error(error);
+
     alert("❌ सदस्यता सेव नहीं हो सकी।");
 
   }
@@ -117,6 +169,9 @@ async function submitForm() {
 }
 
 window.onerror = function (msg) {
+
   console.log(msg);
+
   return false;
+
 };
