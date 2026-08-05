@@ -1,23 +1,38 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const button = document.querySelector("button");
+// BJKP Website Main JavaScript
 
-    button.addEventListener("click", function () {
-        alert("जल्द ही ऑनलाइन सदस्यता फॉर्म उपलब्ध होगा।");
-    });
+
+// Page Load Message
+
+document.addEventListener("DOMContentLoaded", function(){
+
+
+console.log("BJKP Website Loaded Successfully");
+
+
+
+// Latest News Demo Data
+
+let newsBox = document.getElementById("latestNews");
+
+
+if(newsBox){
+
+
+newsBox.innerHTML = `
+
+<div class="card">
+
+<h3>भारतीय जन कल्याण पार्टी</h3>
+
+<p>
+जन सेवा और विकास के संकल्प के साथ पार्टी निरंतर कार्य कर रही है।
+</p>
+
+</div>
+
+`;
+
+}
+
+
 });
-// Image Slider
-const images = [
-  "image/banner1.png",
-  "image/banner2.png",
-  "image/banner3.png"
-];
-
-let current = 0;
-
-setInterval(() => {
-  current = (current + 1) % images.length;
-  const slider = document.getElementById("sliderImage");
-  if (slider) {
-    slider.src = images[current];
-  }
-}, 3000);
