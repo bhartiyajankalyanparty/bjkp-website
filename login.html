@@ -1,37 +1,88 @@
 <!DOCTYPE html>
 <html lang="hi">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin Login</title>
+
+<title>Admin Login | भारतीय जन कल्याण पार्टी</title>
+
 <link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
 
-<div style="max-width:400px;margin:60px auto;padding:20px;background:#fff;border-radius:10px;box-shadow:0 0 10px #ccc;">
+<div class="login-container">
 
-<h2 style="text-align:center;">Admin Login</h2>
+<div class="login-box">
 
-<input type="email"
+<img src="image/logo.png" class="login-logo" alt="Logo">
+
+<h2>Admin Login</h2>
+
+<p>भारतीय जन कल्याण पार्टी</p>
+
+<input
+type="email"
 id="email"
-placeholder="Email"
-style="width:100%;padding:10px;margin:10px 0;">
+placeholder="Admin Email">
 
-<input type="password"
+<input
+type="password"
 id="password"
-placeholder="Password"
-style="width:100%;padding:10px;margin:10px 0;">
+placeholder="Password">
 
 <button
-id="loginBtn"
-style="width:100%;padding:12px;background:green;color:white;border:none;border-radius:5px;">
-Login
+id="loginBtn">
+
+🔐 Login
+
 </button>
 
+<p id="loginMessage"></p>
+
 </div>
+
+</div>
+
+<footer class="member-footer">
+
+<img
+src="image/logo.png"
+class="footer-logo"
+alt="Logo">
+
+<h3>
+
+भारतीय जन कल्याण पार्टी
+
+</h3>
+
+<p>
+
+Admin Authentication System
+
+</p>
+
+<p class="copyright">
+
+© 2026 भारतीय जन कल्याण पार्टी
+
+<br>
+
+All Rights Reserved
+
+</p>
+
+</footer>
 
 <script type="module" src="login.js"></script>
 
 </body>
+
 </html>
