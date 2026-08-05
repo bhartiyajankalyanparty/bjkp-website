@@ -1,189 +1,342 @@
-/* =====================================
-ADMIN DASHBOARD
-===================================== */
-
-.admin-container{
-max-width:1300px;
-margin:auto;
-padding:20px;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
-.admin-header{
+
+body{
+font-family:Arial, sans-serif;
+background:#f5f5f5;
+color:#333;
+}
+
+
+/* HEADER */
+
+header{
+
+background:white;
 display:flex;
 justify-content:space-between;
 align-items:center;
+padding:15px 5%;
+box-shadow:0 2px 8px #ccc;
+flex-wrap:wrap;
+
+}
+
+
+.logo{
+
+display:flex;
+align-items:center;
+gap:12px;
+
+}
+
+
+.logo img{
+
+width:70px;
+height:70px;
+object-fit:contain;
+
+}
+
+
+.logo h1{
+
+color:#0b7a2a;
+font-size:24px;
+
+}
+
+
+
+/* MENU */
+
+nav{
+
+display:flex;
+gap:12px;
+flex-wrap:wrap;
+
+}
+
+
+nav a{
+
+text-decoration:none;
+color:#333;
+font-weight:bold;
+padding:8px 12px;
+border-radius:5px;
+
+}
+
+
+nav a:hover{
+
 background:#0b7a2a;
-padding:18px 25px;
-border-radius:15px;
-margin-bottom:25px;
-color:#fff;
+color:white;
+
 }
 
-.admin-header img{
-width:65px;
-height:65px;
-border-radius:50%;
-background:#fff;
-padding:5px;
+
+
+
+/* HERO */
+
+.hero{
+
+position:relative;
+width:100%;
+height:auto;
+
 }
 
-.logout-btn{
-background:#ff3b30;
-color:#fff;
-border:none;
-padding:12px 22px;
-border-radius:8px;
-cursor:pointer;
-font-weight:600;
+
+.hero img{
+
+width:100%;
+height:450px;
+object-fit:cover;
+
 }
 
-.logout-btn:hover{
-background:#d63031;
+
+
+.hero-text{
+
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:rgba(0,0,0,0.55);
+color:white;
+padding:30px;
+width:90%;
+max-width:600px;
+text-align:center;
+border-radius:10px;
+
 }
 
-.dashboard-cards{
+
+.hero-text h2{
+
+font-size:35px;
+margin-bottom:15px;
+
+}
+
+
+.hero-text p{
+
+font-size:18px;
+line-height:1.6;
+
+}
+
+
+.hero-text a{
+
+display:inline-block;
+margin-top:20px;
+padding:12px 25px;
+background:#ff9933;
+color:white;
+text-decoration:none;
+border-radius:5px;
+font-weight:bold;
+
+}
+
+
+
+
+/* COMMON SECTION */
+
+
+.section{
+
+width:90%;
+max-width:1100px;
+background:white;
+margin:30px auto;
+padding:30px;
+border-radius:10px;
+box-shadow:0 2px 8px #ddd;
+
+}
+
+
+.section h2{
+
+text-align:center;
+color:#0b7a2a;
+margin-bottom:20px;
+
+}
+
+
+.section p{
+
+line-height:1.8;
+text-align:center;
+
+}
+
+
+
+
+
+/* CARDS */
+
+.cards{
+
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 gap:20px;
-margin-bottom:30px;
+
 }
 
-.dashboard-card{
-background:#fff;
-padding:25px;
-text-align:center;
-border-radius:15px;
-box-shadow:0 5px 15px rgba(0,0,0,.12);
-}
 
-.dashboard-card h3{
-color:#666;
-margin-bottom:10px;
-}
+.card{
 
-.dashboard-card h1{
-font-size:42px;
-color:#0b7a2a;
-}
-
-.admin-section{
-background:#fff;
-padding:25px;
-border-radius:15px;
-margin-bottom:25px;
-box-shadow:0 5px 15px rgba(0,0,0,.1);
-}
-
-.admin-section h2{
-margin-bottom:20px;
-color:#0b7a2a;
-}
-
-.admin-section input,
-.admin-section textarea{
-width:100%;
-padding:14px;
-margin-bottom:15px;
-border:1px solid #ccc;
-border-radius:10px;
-font-size:16px;
-}
-
-.admin-section textarea{
-min-height:120px;
-resize:vertical;
-}
-
-.member-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-gap:20px;
-}
-
-.member-card{
 background:#fafafa;
-border:1px solid #ddd;
-border-radius:15px;
 padding:20px;
-text-align:center;
-box-shadow:0 3px 10px rgba(0,0,0,.08);
-}
-
-.member-photo{
-width:100px;
-height:100px;
-border-radius:50%;
-object-fit:cover;
-border:4px solid orange;
-margin-bottom:15px;
-}
-
-.member-card h3{
-color:#0b7a2a;
-margin-bottom:10px;
-}
-
-.member-card p{
-margin:6px 0;
-}
-
-.member-actions{
-display:flex;
-gap:10px;
-justify-content:center;
-margin-top:15px;
-flex-wrap:wrap;
-}
-
-.delete-btn{
-background:#e53935;
-}
-
-.delete-btn:hover{
-background:#c62828;
-}
-
-.empty-card{
-padding:30px;
-background:#fff3cd;
 border-radius:10px;
 text-align:center;
-font-weight:600;
-color:#856404;
+border:1px solid #ddd;
+
 }
 
-.admin-actions{
-display:flex;
-gap:15px;
-justify-content:center;
-flex-wrap:wrap;
+
+.card h3{
+
+color:#0b7a2a;
+margin-bottom:10px;
+
 }
 
-/* Mobile */
+
+
+
+/* JOIN */
+
+.join{
+
+background:#0b7a2a;
+color:white;
+text-align:center;
+padding:40px 20px;
+
+}
+
+
+.join h2{
+
+margin-bottom:15px;
+
+}
+
+
+.join a{
+
+display:inline-block;
+margin-top:20px;
+background:#ff9933;
+color:white;
+padding:12px 25px;
+border-radius:6px;
+text-decoration:none;
+font-weight:bold;
+
+}
+
+
+
+
+/* FOOTER */
+
+
+footer{
+
+background:#222;
+color:white;
+text-align:center;
+padding:20px;
+margin-top:30px;
+
+}
+
+
+
+
+
+/* MOBILE */
 
 @media(max-width:768px){
 
-.admin-header{
+
+header{
+
 flex-direction:column;
-gap:15px;
 text-align:center;
+
 }
 
-.dashboard-card h1{
-font-size:32px;
-}
 
-.member-grid{
-grid-template-columns:1fr;
-}
+.logo{
 
-.member-actions{
 flex-direction:column;
+
 }
 
-.logout-btn,
-.btn{
-width:100%;
+
+nav{
+
+justify-content:center;
+
 }
+
+
+nav a{
+
+font-size:14px;
+
+}
+
+
+.hero img{
+
+height:350px;
+
+}
+
+
+.hero-text h2{
+
+font-size:24px;
+
+}
+
+
+.hero-text p{
+
+font-size:15px;
+
+}
+
+
+.section{
+
+width:95%;
+padding:20px;
+
+}
+
 
 }
