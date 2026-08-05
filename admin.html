@@ -5,530 +5,268 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Admin Dashboard | भारतीय जन कल्याण पार्टी</title>
+<title>भारतीय जन कल्याण पार्टी | BJKP</title>
 
-<link rel="stylesheet" href="style.css">
-
-<link rel="preconnect"
-href="https://fonts.googleapis.com">
-
-<link rel="preconnect"
-href="https://fonts.gstatic.com"
-crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
 
 </head>
 
+
 <body>
 
-<!-- =========================
-TOP BAR
-========================= -->
 
-<div class="topbar">
+<!-- HEADER -->
 
-<div>
-🇮🇳 भारतीय जन कल्याण पार्टी
-</div>
+<header>
 
-<div class="top-right">
-ADMIN PANEL
-</div>
+
+<div class="logo">
+
+<img src="assets/image/logo.png" alt="BJKP Logo">
+
+<h1>भारतीय जन कल्याण पार्टी</h1>
 
 </div>
 
-<!-- =========================
-HEADER
-========================= -->
 
-<header class="header">
-
-<div class="logo-box">
-
-<img src="image/logo.png" alt="BJKP Logo">
-
-<div>
-
-<h1>
-भारतीय जन कल्याण पार्टी
-</h1>
-
-<p>
-Admin Dashboard
-</p>
-
-</div>
-
-</div>
 
 <nav>
 
-<ul>
+<a href="index.html">होम</a>
 
-<li>
-<a href="index.html">
-Website
-</a>
-</li>
+<a href="about.html">हमारे बारे में</a>
 
-<li>
-<a href="membership.html">
-Membership
-</a>
-</li>
+<a href="leadership.html">नेतृत्व</a>
 
-<li>
-<a href="news.html">
-News
-</a>
-</li>
+<a href="membership.html">सदस्यता</a>
 
-<li>
-<a href="gallery.html">
-Gallery
-</a>
-</li>
+<a href="news.html">समाचार</a>
 
-</ul>
+<a href="gallery.html">गैलरी</a>
+
+<a href="contact.html">संपर्क</a>
+
+<a href="admin/login.html">Admin</a>
 
 </nav>
 
+
 </header>
 
-<!-- =========================
-ADMIN CONTAINER
-========================= -->
 
-<div class="admin-container">
 
-<!-- Dashboard -->
 
-<div class="dashboard-cards">
 
-<div class="dashboard-card">
+<!-- HERO SECTION -->
 
-<h3>
-कुल सदस्य
-</h3>
 
-<h1 id="totalMembers">
-0
-</h1>
+<section class="hero">
 
-</div>
 
-<div class="dashboard-card">
+<img src="assets/image/banner.jpg" alt="BJKP Banner">
 
-<h3>
-Active Members
-</h3>
 
-<h1 id="activeMembers">
-0
-</h1>
 
-</div>
+<div class="hero-text">
 
-<div class="dashboard-card">
 
-<h3>
-समाचार
-</h3>
+<h2>जन सेवा ही हमारा संकल्प</h2>
 
-<h1 id="newsCount">
-0
-</h1>
-
-</div>
-
-<div class="dashboard-card">
-
-<h3>
-सूचनाएँ
-</h3>
-
-<h1 id="noticeCount">
-0
-</h1>
-
-</div>
-
-</div>
-
-<!-- =========================
-ADD NEWS
-========================= -->
-
-<div class="admin-section">
-
-<h2>
-📰 नया समाचार जोड़ें
-</h2>
-
-<input
-type="text"
-id="newsTitle"
-placeholder="समाचार शीर्षक">
-
-<textarea
-id="newsDescription"
-placeholder="समाचार विवरण">
-</textarea>
-
-<button
-id="addNewsBtn"
-class="btn">
-समाचार जोड़ें
-</button>
-
-</div>
-
-<!-- =========================
-ADD NOTICE
-========================= -->
-
-<div class="admin-section">
-
-<h2>
-📢 नई सूचना जोड़ें
-</h2>
-
-<input
-type="text"
-id="noticeTitle"
-placeholder="सूचना शीर्षक">
-
-<input
-type="date"
-id="noticeDate">
-
-<button
-id="addNoticeBtn"
-class="btn">
-सूचना जोड़ें
-</button>
-
-</div>
-
-<!-- =========================
-SEARCH MEMBER
-========================= -->
-
-<div class="admin-section">
-
-<h2>
-🔍 सदस्य खोजें
-</h2>
-
-<input
-type="text"
-id="searchMember"
-placeholder="Member ID / नाम / मोबाइल">
-
-</div>
-
-<!-- =========================
-MEMBER LIST
-========================= -->
-
-<div class="admin-section">
-
-<h2>
-👥 सभी सदस्य
-</h2>
-
-<div
-id="memberList"
-class="member-grid">
-
-<div class="empty-card">
-कोई सदस्य उपलब्ध नहीं
-</div>
-
-</div>
-
-</div>
-
-<!-- =========================
-EDIT MEMBER
-========================= -->
-
-<div class="admin-section">
-
-<h2>
-✏️ सदस्य की जानकारी अपडेट करें
-</h2>
-
-<input
-type="hidden"
-id="editId">
-
-<input
-type="text"
-id="editName"
-placeholder="पूरा नाम">
-
-<input
-type="text"
-id="editMobile"
-placeholder="मोबाइल नंबर">
-
-<input
-type="email"
-id="editEmail"
-placeholder="ईमेल">
-
-<textarea
-id="editAddress"
-placeholder="पूरा पता">
-</textarea>
-
-<select id="editStatus">
-
-<option value="Active">
-✅ Active
-</option>
-
-<option value="Inactive">
-❌ Inactive
-</option>
-
-</select>
-
-<button
-id="updateMemberBtn"
-class="btn">
-
-💾 सदस्य अपडेट करें
-
-</button>
-
-</div>
-
-<!-- =========================
-ADMIN ACTIONS
-========================= -->
-
-<div class="admin-section">
-
-<h2>
-⚙️ एडमिन कार्य
-</h2>
-
-<div class="admin-actions">
-
-<button
-id="refreshBtn"
-class="btn">
-
-🔄 Refresh Dashboard
-
-</button>
-
-<button
-id="exportBtn"
-class="btn">
-
-📄 Export Members
-
-</button>
-
-<button
-id="logoutBtn"
-class="logout-btn">
-
-🚪 Logout
-
-</button>
-
-</div>
-
-</div>
-
-<!-- =========================
-LATEST NEWS LIST
-========================= -->
-
-<div class="admin-section">
-
-<h2>
-📰 सभी समाचार
-</h2>
-
-<div
-id="newsList"
-class="member-grid">
-
-<div class="empty-card">
-
-अभी तक कोई समाचार उपलब्ध नहीं।
-
-</div>
-
-</div>
-
-</div>
-
-<!-- =========================
-NOTICE LIST
-========================= -->
-
-<div class="admin-section">
-
-<h2>
-📢 सभी सूचनाएँ
-</h2>
-
-<div
-id="noticeList"
-class="member-grid">
-
-<div class="empty-card">
-
-अभी तक कोई सूचना उपलब्ध नहीं।
-
-</div>
-
-</div>
-
-</div>
-
-<!-- =========================
-LIVE STATUS
-========================= -->
-
-<div class="admin-section">
-
-<h2>
-
-📊 सिस्टम स्थिति
-
-</h2>
-
-<div class="dashboard-cards">
-
-<div class="dashboard-card">
-
-<h3>
-
-🔥 Firebase
-
-</h3>
-
-<h2
-style="color:#0b7a2a;">
-
-Connected
-
-</h2>
-
-</div>
-
-<div class="dashboard-card">
-
-<h3>
-
-👨‍💼 Admin
-
-</h3>
-
-<h2
-style="color:#0b7a2a;">
-
-Online
-
-</h2>
-
-</div>
-
-<div class="dashboard-card">
-
-<h3>
-
-🌐 Website
-
-</h3>
-
-<h2
-style="color:#0b7a2a;">
-
-Live
-
-</h2>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- =========================
-FOOTER
-========================= -->
-
-<footer class="member-footer">
-
-<img
-src="image/logo.png"
-class="footer-logo"
-alt="BJKP Logo">
-
-<h3>
-भारतीय जन कल्याण पार्टी
-</h3>
 
 <p>
-Admin Management System
+भारतीय जन कल्याण पार्टी का उद्देश्य जनता की समस्याओं को समझना
+और उनके समाधान के लिए निरंतर कार्य करना है।
 </p>
 
-<div class="footer-links">
 
-<a href="index.html">
-🏠 Home
-</a>
 
 <a href="membership.html">
-📝 Membership
+सदस्य बनें
 </a>
 
-<a href="news.html">
-📰 News
-</a>
 
-<a href="gallery.html">
-🖼 Gallery
-</a>
-
-<a href="contact.html">
-📞 Contact
-</a>
 
 </div>
 
-<p class="copyright">
 
-© 2026 भारतीय जन कल्याण पार्टी
-<br>
-All Rights Reserved
+</section>
+
+
+
+
+
+
+
+<!-- PRESIDENT MESSAGE -->
+
+
+<section class="section">
+
+
+<h2>अध्यक्ष संदेश</h2>
+
+
+<p>
+
+प्रिय देशवासियों,
+
+भारतीय जन कल्याण पार्टी जनहित, विकास और सामाजिक न्याय के
+लिए समर्पित होकर कार्य करने का संकल्प लेती है।
 
 </p>
+
+
+</section>
+
+
+
+
+
+
+
+<!-- TARGET SECTION -->
+
+
+<section class="section">
+
+
+<h2>हमारे मुख्य लक्ष्य</h2>
+
+
+
+<div class="cards">
+
+
+
+<div class="card">
+
+<h3>जन सेवा</h3>
+
+<p>
+जनता की समस्याओं को प्राथमिकता देकर समाधान करना।
+</p>
+
+</div>
+
+
+
+
+<div class="card">
+
+<h3>युवा विकास</h3>
+
+<p>
+युवाओं को अवसर और रोजगार से जोड़ना।
+</p>
+
+</div>
+
+
+
+
+<div class="card">
+
+<h3>सामाजिक न्याय</h3>
+
+<p>
+हर वर्ग के विकास के लिए कार्य करना।
+</p>
+
+</div>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+<!-- NEWS -->
+
+
+<section class="section">
+
+
+<h2>लेटेस्ट समाचार</h2>
+
+
+<div id="latestNews">
+
+जल्द ही समाचार अपडेट होंगे।
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+<!-- JOIN -->
+
+
+<section class="join">
+
+
+<h2>पार्टी से जुड़ें</h2>
+
+
+<p>
+भारतीय जन कल्याण पार्टी के सदस्य बनकर जनसेवा के अभियान में भाग लें।
+</p>
+
+
+<a href="membership.html">
+
+अभी सदस्य बनें
+
+</a>
+
+
+</section>
+
+
+
+
+
+
+
+<!-- FOOTER -->
+
+
+<footer>
+
+
+<p>
+© 2026 भारतीय जन कल्याण पार्टी (BJKP)
+</p>
+
+
+<p>
+संपर्क करें | सोशल मीडिया
+</p>
+
 
 </footer>
 
-</div>
 
-<!-- =========================
-JavaScript Files
-========================= -->
 
-<script type="module" src="auth.js"></script>
 
-<script type="module" src="admin.js"></script>
+
+<script src="assets/js/script.js"></script>
+
 
 </body>
+
 </html>
