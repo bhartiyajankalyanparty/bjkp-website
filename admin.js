@@ -5,8 +5,11 @@ getFirestore,
 collection,
 getDocs,
 addDoc,
+updateDoc,
 deleteDoc,
-doc
+doc,
+query,
+orderBy
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
 import {
@@ -14,9 +17,7 @@ getAuth,
 signOut
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
 
-// =========================
 // Firebase Config
-// =========================
 
 const firebaseConfig = {
 
@@ -40,9 +41,7 @@ const db = getFirestore(app);
 
 const auth = getAuth(app);
 
-// =========================
-// Global Data
-// =========================
+// ===============================
 
 let members = [];
 
@@ -50,9 +49,15 @@ let news = [];
 
 let notices = [];
 
-// =========================
-// Dashboard Load
-// =========================
+// ===============================
+
+window.addEventListener("DOMContentLoaded",()=>{
+
+loadDashboard();
+
+});
+
+// ===============================
 
 async function loadDashboard(){
 
@@ -64,56 +69,69 @@ await loadNotice();
 
 }
 
-loadDashboard();
 
-// =========================
-// Load Members
-// =========================
+// ===============================
+// LOAD MEMBERS
+// ===============================
 
-async function loadMembers(){
+async function loadMembers() {
 
-const snapshot = await getDocs(collection(db,"members"));
+const snapshot = await getDocs(
+query(collection(db,"members"))
+);
 
 members = [];
 
+let active = 0;
+
 snapshot.forEach((d)=>{
 
-members.push({
+const m = {
 id:d.id,
 ...d.data()
-});
+};
+
+members.push(m);
+
+if((m.status || "Active") === "Active"){
+active++;
+}
 
 });
 
-// Total Members
-document.getElementById("memberCount").innerText = members.length;
+// Dashboard Counter
 
-// Show Members
+document.getElementById("totalMembers").innerText =
+members.length;
+
+document.getElementById("activeMembers").innerText =
+active;
+
+// Member List
+
 showMembers(members);
 
 }
 
-// =========================
-// Show Member Cards
-// =========================
+// ===============================
+// SHOW MEMBERS
+// ===============================
 
 function showMembers(data){
 
-const memberList = document.getElementById("memberList");
-
-memberList.innerHTML = "";
+let html = "";
 
 if(data.length===0){
 
-memberList.innerHTML=`
-
+html = `
 <div class="empty-card">
 
 कोई सदस्य उपलब्ध नहीं
 
 </div>
-
 `;
+
+document.getElementById("memberList").innerHTML=html;
 
 return;
 
@@ -121,37 +139,45 @@ return;
 
 data.forEach((m)=>{
 
-memberList.innerHTML += `
+html += `
 
 <div class="member-card">
 
-<img
-src="${m.photo || 'image/logo.png'}"
-class="member-photo">
-
 <h3>${m.name || "-"}</h3>
 
-<p><b>Member ID:</b> ${m.memberId || "-"}</p>
+<p><b>Member ID :</b> ${m.memberId || "-"}</p>
 
-<p><b>मोबाइल:</b> ${m.mobile || "-"}</p>
+<p><b>मोबाइल :</b> ${m.mobile || "-"}</p>
 
-<p><b>स्थिति:</b> ${m.status || "Active"}</p>
+<p><b>ईमेल :</b> ${m.email || "-"}</p>
 
-<div class="member-actions">
+<p><b>Status :</b>
+${m.status || "Active"}
+</p>
+
+<div class="action-buttons">
 
 <button
-class="btn"
-onclick="window.open('idcard.html?id=${m.memberId}','_blank')">
+class="edit-btn"
+onclick="editMember('${m.id}')">
 
-🪪 ID Card
+✏️ Edit
 
 </button>
 
 <button
-class="btn delete-btn"
+class="delete-btn"
 onclick="deleteMember('${m.id}')">
 
 🗑 Delete
+
+</button>
+
+<button
+class="id-btn"
+onclick="window.open('idcard.html?id=${m.memberId}','_blank')">
+
+🪪 ID Card
 
 </button>
 
@@ -163,33 +189,33 @@ onclick="deleteMember('${m.id}')">
 
 });
 
+document.getElementById("memberList").innerHTML = html;
+
 }
 
-// =========================
-// Search Members
-// =========================
+// ===============================
+// SEARCH MEMBER
+// ===============================
 
 const searchBox = document.getElementById("searchMember");
 
 if(searchBox){
 
-searchBox.addEventListener("keyup",()=>{
+searchBox.addEventListener("keyup",function(){
 
-const keyword = searchBox.value.trim().toLowerCase();
+const value=this.value.trim().toLowerCase();
 
-const result = members.filter(m=>{
+const result=members.filter(m=>
 
-return (
+(m.name||"").toLowerCase().includes(value) ||
 
-(m.name||"").toLowerCase().includes(keyword) ||
+(m.memberId||"").toLowerCase().includes(value) ||
 
-(m.memberId||"").toLowerCase().includes(keyword) ||
+(m.mobile||"").includes(value) ||
 
-(m.mobile||"").includes(keyword)
+(m.email||"").toLowerCase().includes(value)
 
 );
-
-});
 
 showMembers(result);
 
@@ -197,9 +223,89 @@ showMembers(result);
 
 }
 
-// =========================
-// Delete Member
-// =========================
+// ===============================
+// EDIT MEMBER
+// ===============================
+
+window.editMember=function(id){
+
+const m=members.find(x=>x.id===id);
+
+if(!m){
+
+alert("Member नहीं मिला");
+
+return;
+
+}
+
+document.getElementById("editId").value=id;
+
+document.getElementById("editName").value=m.name||"";
+
+document.getElementById("editMobile").value=m.mobile||"";
+
+document.getElementById("editEmail").value=m.email||"";
+
+document.getElementById("editAddress").value=m.address||"";
+
+document.getElementById("editStatus").value=m.status||"Active";
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+};
+
+// ===============================
+// UPDATE MEMBER
+// ===============================
+
+const updateBtn=document.getElementById("updateMemberBtn");
+
+if(updateBtn){
+
+updateBtn.addEventListener("click",async()=>{
+
+const id=document.getElementById("editId").value;
+
+if(!id){
+
+alert("पहले Edit करें");
+
+return;
+
+}
+
+await updateDoc(doc(db,"members",id),{
+
+name:document.getElementById("editName").value.trim(),
+
+mobile:document.getElementById("editMobile").value.trim(),
+
+email:document.getElementById("editEmail").value.trim(),
+
+address:document.getElementById("editAddress").value.trim(),
+
+status:document.getElementById("editStatus").value
+
+});
+
+alert("✅ Member Successfully Updated");
+
+loadMembers();
+
+});
+
+}
+
+// ===============================
+// DELETE MEMBER
+// ===============================
 
 window.deleteMember = async function(id){
 
@@ -211,77 +317,63 @@ try{
 
 await deleteDoc(doc(db,"members",id));
 
-alert("✅ Member Delete Successfully");
+alert("✅ Member Deleted Successfully");
 
 loadMembers();
 
-}catch(err){
+}catch(error){
 
-console.error(err);
+console.error(error);
 
-alert("❌ Member Delete Failed");
+alert("❌ Member Delete नहीं हो सका");
 
 }
 
 };
 
-// =========================
-// Refresh Dashboard
-// =========================
-
-const refreshBtn = document.getElementById("refreshBtn");
-
-if(refreshBtn){
-
-refreshBtn.addEventListener("click",()=>{
-
-loadDashboard();
-
-alert("✅ Dashboard Refreshed");
-
-});
-
-}
-
-// =========================
-// Load News
-// =========================
+// ===============================
+// LOAD NEWS
+// ===============================
 
 async function loadNews(){
 
-const snapshot = await getDocs(collection(db,"news"));
+const snapshot = await getDocs(
+
+query(
+collection(db,"news"),
+orderBy("date","desc")
+)
+
+);
 
 news = [];
 
+let html = "";
+
 snapshot.forEach((d)=>{
 
-news.push({
+const n = {
+
 id:d.id,
+
 ...d.data()
-});
 
-});
+};
 
-document.getElementById("newsCount").innerText = news.length;
+news.push(n);
 
-const newsList = document.getElementById("newsList");
-
-if(newsList){
-
-newsList.innerHTML = "";
-
-news.forEach((n)=>{
-
-newsList.innerHTML += `
+html += `
 
 <div class="member-card">
 
-<h3>${n.title}</h3>
+<h3>${n.title || "-"}</h3>
 
-<p>${n.description}</p>
+<p>${n.description || "-"}</p>
+
+<div class="action-buttons">
 
 <button
-class="btn delete-btn"
+class="delete-btn"
 onclick="deleteNews('${n.id}')">
 
 🗑 Delete
@@ -290,17 +382,25 @@ onclick="deleteNews('${n.id}')">
 
 </div>
 
+</div>
+
 `;
 
 });
 
-}
+document.getElementById("newsCount").innerText = news.length;
+
+document.getElementById("newsList").innerHTML =
+
+html ||
+
+'<div class="empty-card">कोई समाचार उपलब्ध नहीं</div>';
 
 }
 
-// =========================
-// Add News
-// =========================
+// ===============================
+// ADD NEWS
+// ===============================
 
 const addNewsBtn = document.getElementById("addNewsBtn");
 
@@ -308,9 +408,11 @@ if(addNewsBtn){
 
 addNewsBtn.addEventListener("click",async()=>{
 
-const title=document.getElementById("newsTitle").value.trim();
+const title =
+document.getElementById("newsTitle").value.trim();
 
-const description=document.getElementById("newsDescription").value.trim();
+const description =
+document.getElementById("newsDescription").value.trim();
 
 if(!title || !description){
 
@@ -334,17 +436,17 @@ document.getElementById("newsTitle").value="";
 
 document.getElementById("newsDescription").value="";
 
-loadNews();
+alert("✅ News Added Successfully");
 
-alert("✅ समाचार जोड़ दिया गया");
+loadNews();
 
 });
 
 }
 
-// =========================
-// Delete News
-// =========================
+// ===============================
+// DELETE NEWS
+// ===============================
 
 window.deleteNews = async function(id){
 
@@ -356,45 +458,49 @@ loadNews();
 
 };
 
-// =========================
-// Load Notice
-// =========================
+// ===============================
+// LOAD NOTICE
+// ===============================
 
 async function loadNotice(){
 
-const snapshot = await getDocs(collection(db,"notice"));
+const snapshot = await getDocs(
+
+query(
+collection(db,"notice"),
+orderBy("date","desc")
+)
+
+);
 
 notices = [];
 
+let html = "";
+
 snapshot.forEach((d)=>{
 
-notices.push({
+const n = {
+
 id:d.id,
+
 ...d.data()
-});
 
-});
+};
 
-document.getElementById("noticeCount").innerText = notices.length;
+notices.push(n);
 
-const noticeList = document.getElementById("noticeList");
-
-if(noticeList){
-
-noticeList.innerHTML="";
-
-notices.forEach((n)=>{
-
-noticeList.innerHTML += `
+html += `
 
 <div class="member-card">
 
 <h3>${n.title || "-"}</h3>
 
-<p>${n.description || "-"}</p>
+<p><b>दिनांक :</b> ${n.date || "-"}</p>
+
+<div class="action-buttons">
 
 <button
-class="btn delete-btn"
+class="delete-btn"
 onclick="deleteNotice('${n.id}')">
 
 🗑 Delete
@@ -403,29 +509,38 @@ onclick="deleteNotice('${n.id}')">
 
 </div>
 
+</div>
+
 `;
 
 });
 
-}
+document.getElementById("noticeCount").innerText =
+notices.length;
+
+document.getElementById("noticeList").innerHTML =
+html || '<div class="empty-card">कोई सूचना उपलब्ध नहीं</div>';
 
 }
 
-// =========================
-// Add Notice
-// =========================
+// ===============================
+// ADD NOTICE
+// ===============================
 
-const addNoticeBtn = document.getElementById("addNoticeBtn");
+const addNoticeBtn =
+document.getElementById("addNoticeBtn");
 
 if(addNoticeBtn){
 
 addNoticeBtn.addEventListener("click",async()=>{
 
-const title=document.getElementById("noticeTitle").value.trim();
+const title =
+document.getElementById("noticeTitle").value.trim();
 
-const description=document.getElementById("noticeDescription").value.trim();
+const date =
+document.getElementById("noticeDate").value;
 
-if(!title || !description){
+if(!title || !date){
 
 alert("सूचना पूरी भरें");
 
@@ -437,27 +552,25 @@ await addDoc(collection(db,"notice"),{
 
 title,
 
-description,
-
-date:new Date()
+date
 
 });
 
 document.getElementById("noticeTitle").value="";
 
-document.getElementById("noticeDescription").value="";
+document.getElementById("noticeDate").value="";
+
+alert("✅ Notice Added Successfully");
 
 loadNotice();
-
-alert("✅ सूचना जोड़ दी गई");
 
 });
 
 }
 
-// =========================
-// Delete Notice
-// =========================
+// ===============================
+// DELETE NOTICE
+// ===============================
 
 window.deleteNotice = async function(id){
 
@@ -469,27 +582,39 @@ loadNotice();
 
 };
 
-// =========================
-// Export Members
-// =========================
+// ===============================
+// EXPORT MEMBERS (CSV)
+// ===============================
 
-const exportBtn=document.getElementById("exportBtn");
+const exportBtn =
+document.getElementById("exportBtn");
 
 if(exportBtn){
 
 exportBtn.addEventListener("click",()=>{
 
-const data=JSON.stringify(members,null,2);
+let csv =
+"Member ID,Name,Mobile,Email,Address,Status\n";
 
-const blob=new Blob([data],{type:"application/json"});
+members.forEach((m)=>{
 
-const url=URL.createObjectURL(blob);
+csv += `"${m.memberId||""}","${m.name||""}","${m.mobile||""}","${m.email||""}","${m.address||""}","${m.status||"Active"}"\n`;
 
-const a=document.createElement("a");
+});
 
-a.href=url;
+const blob = new Blob([csv],{
+type:"text/csv"
+});
 
-a.download="members.json";
+const url =
+URL.createObjectURL(blob);
+
+const a =
+document.createElement("a");
+
+a.href = url;
+
+a.download = "members.csv";
 
 a.click();
 
@@ -499,11 +624,29 @@ URL.revokeObjectURL(url);
 
 }
 
-// =========================
-// Logout
-// =========================
+// ===============================
+// REFRESH DASHBOARD
+// ===============================
 
-const logoutBtn=document.getElementById("logoutBtn");
+const refreshBtn =
+document.getElementById("refreshBtn");
+
+if(refreshBtn){
+
+refreshBtn.addEventListener("click",()=>{
+
+loadDashboard();
+
+});
+
+}
+
+// ===============================
+// LOGOUT
+// ===============================
+
+const logoutBtn =
+document.getElementById("logoutBtn");
 
 if(logoutBtn){
 
