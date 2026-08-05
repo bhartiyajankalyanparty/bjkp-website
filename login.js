@@ -1,94 +1,128 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+
 import {
-  getAuth,
-  signInWithEmailAndPassword,
-  onAuthStateChanged
+getAuth,
+signInWithEmailAndPassword,
+onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
 
+// =========================
+// Firebase Config
+// =========================
+
 const firebaseConfig = {
-  apiKey: "AIzaSyBGa257kKYT4zJcUSyeu7aITZ0Y3D6AYk0",
-  authDomain: "bhartiya-jan-kalyan-party-org.firebaseapp.com",
-  projectId: "bhartiya-jan-kalyan-party-org",
-  storageBucket: "bhartiya-jan-kalyan-party-org.firebasestorage.app",
-  messagingSenderId: "715864126578",
-  appId: "1:715864126578:web:9f9901e4c2a119b225beeb"
+
+apiKey:"AIzaSyBGa257kKYT4zJcUSyeu7aITZ0Y3D6AYk0",
+
+authDomain:"bhartiya-jan-kalyan-party-org.firebaseapp.com",
+
+projectId:"bhartiya-jan-kalyan-party-org",
+
+storageBucket:"bhartiya-jan-kalyan-party-org.firebasestorage.app",
+
+messagingSenderId:"715864126578",
+
+appId:"1:715864126578:web:9f9901e4c2a119b225beeb"
+
 };
 
 const app = initializeApp(firebaseConfig);
+
 const auth = getAuth(app);
 
-// यदि पहले से Login है तो सीधे Admin Panel खोल दो
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    window.location.href = "admin.html";
-  }
-});
+// =========================
+// Already Logged In?
+// =========================
 
-document.getElementById("loginBtn").addEventListener("click", async () => {
+onAuthStateChanged(auth,(user)=>{
 
-  const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value;
+if(user){
 
-  if (!email || !password) {
-    alert("ईमेल और पासवर्ड भरें");
-    return;
-  }
+window.location.href="admin.html";
 
-  try {
-
-    await signInWithEmailAndPassword(auth, email, password);
-
-    alert("Login सफल हुआ");
-
-    window.location.href = "admin.html";
-
-  } catch (error) {
-
-    alert("गलत Email या Password");
-    console.log(error);
-
-  }
+}
 
 });
 
-const updateBtn = document.getElementById("updateMemberBtn");
+// =========================
+// Login Button
+// =========================
 
-if(updateBtn){
+const loginBtn = document.getElementById("loginBtn");
 
-updateBtn.addEventListener("click", async ()=>{
+if (loginBtn) {
 
-  const id = document.getElementById("editId").value;
+loginBtn.addEventListener("click", async () => {
 
-  if(!id){
-    alert("पहले किसी सदस्य को Edit करें");
-    return;
-  }
+const email = document.getElementById("email").value.trim();
 
-  await updateDoc(doc(db,"members",id),{
+const password = document.getElementById("password").value;
 
-    name: document.getElementById("editName").value.trim(),
+const message = document.getElementById("loginMessage");
 
-    mobile: document.getElementById("editMobile").value.trim(),
+message.style.color = "red";
 
-    email: document.getElementById("editEmail").value.trim(),
+message.innerText = "";
 
-    address: document.getElementById("editAddress").value.trim(),
+if (!email || !password) {
 
-    status: document.getElementById("editStatus").value
+message.innerText = "ईमेल और पासवर्ड दर्ज करें।";
 
-  });
+return;
 
-  alert("✅ सदस्य सफलतापूर्वक अपडेट हो गया");
+}
 
-  document.getElementById("editId").value="";
-  document.getElementById("editName").value="";
-  document.getElementById("editMobile").value="";
-  document.getElementById("editEmail").value="";
-  document.getElementById("editAddress").value="";
-  document.getElementById("editStatus").value="Active";
+try {
 
-  loadDashboard();
+loginBtn.disabled = true;
+
+loginBtn.innerText = "Logging in...";
+
+await signInWithEmailAndPassword(auth, email, password);
+
+message.style.color = "green";
+
+message.innerText = "✅ Login सफल";
+
+setTimeout(() => {
+
+window.location.href = "admin.html";
+
+}, 800);
+
+} catch (error) {
+
+switch (error.code) {
+
+case "auth/invalid-email":
+message.innerText = "गलत ईमेल पता।";
+break;
+
+case "auth/user-not-found":
+message.innerText = "यह Admin मौजूद नहीं है।";
+break;
+
+case "auth/wrong-password":
+case "auth/invalid-credential":
+message.innerText = "गलत पासवर्ड।";
+break;
+
+case "auth/too-many-requests":
+message.innerText = "बहुत अधिक प्रयास हुए हैं। बाद में पुनः प्रयास करें।";
+break;
+
+default:
+message.innerText = "Login असफल: " + error.message;
+}
+
+loginBtn.disabled = false;
+
+loginBtn.innerText = "🔐 Login";
+
+}
 
 });
 
 }
+
+console.log("✅ Login System Ready");
