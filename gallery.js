@@ -1,43 +1,104 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
-import {
-  getFirestore,
-  collection,
-  getDocs
-} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+// BJKP Gallery System
 
-const firebaseConfig = {
-  apiKey: "AIzaSyBGa257kKYT4zJcUSyeu7aITZ0Y3D6AYk0",
-  authDomain: "bhartiya-jan-kalyan-party-org.firebaseapp.com",
-  projectId: "bhartiya-jan-kalyan-party-org",
-  storageBucket: "bhartiya-jan-kalyan-party-org.firebasestorage.app",
-  messagingSenderId: "715864126578",
-  appId: "1:715864126578:web:9f9901e4c2a119b225beeb"
-};
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+import { db } from "./firebase-config.js";
 
-async function loadGallery() {
-  const snapshot = await getDocs(collection(db, "gallery"));
+import { 
+collection,
+getDocs 
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-  let html = "";
 
-  snapshot.forEach((doc) => {
-    const d = doc.data();
 
-    html += `
-      <div style="border:1px solid #ccc;padding:10px;border-radius:8px;text-align:center;">
-        <img src="${d.image}" style="width:100%;height:200px;object-fit:cover;border-radius:6px;">
-        <p>${d.title}</p>
-      </div>
-    `;
-  });
+const galleryContainer = document.getElementById("galleryContainer");
 
-  if (html === "") {
-    html = "<p>अभी कोई फोटो उपलब्ध नहीं है।</p>";
-  }
 
-  document.getElementById("gallery").innerHTML = html;
+
+async function loadGallery(){
+
+
+try{
+
+
+const snapshot = await getDocs(
+collection(db,"gallery")
+);
+
+
+
+galleryContainer.innerHTML="";
+
+
+
+if(snapshot.empty){
+
+
+galleryContainer.innerHTML=`
+
+<div class="card">
+
+<h3>
+अभी कोई फोटो उपलब्ध नहीं है
+</h3>
+
+</div>
+
+`;
+
+return;
+
 }
+
+
+
+
+
+snapshot.forEach((doc)=>{
+
+
+let data = doc.data();
+
+
+
+galleryContainer.innerHTML += `
+
+
+<div class="card">
+
+
+<img src="${data.image}" 
+style="width:100%;border-radius:10px;"
+alt="BJKP Gallery">
+
+
+<p>
+${data.title || ""}
+</p>
+
+
+</div>
+
+
+`;
+
+
+
+});
+
+
+
+}
+
+catch(error){
+
+console.log("Gallery Error:",error);
+
+}
+
+
+
+}
+
+
 
 loadGallery();
