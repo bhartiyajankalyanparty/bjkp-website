@@ -1,6 +1,0 @@
-User-agent: *
-
-Allow: /
-
-
-Sitemap: https://bhartiyajankalyanparty.github.io/bjkp-website/sitemap.xml
