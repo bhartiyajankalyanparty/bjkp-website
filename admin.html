@@ -6,33 +6,58 @@
 <meta charset="UTF-8">
 
 <meta name="viewport"
-content="width=device-width,initial-scale=1.0">
+content="width=device-width, initial-scale=1.0">
 
-<title>
-Admin Dashboard | भारतीय जन कल्याण पार्टी
-</title>
+<title>Admin Dashboard | भारतीय जन कल्याण पार्टी</title>
 
 <link rel="stylesheet" href="style.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
 
 </head>
 
 <body>
 
-<div class="admin-container">
+<!-- =========================
+TOP BAR
+========================= -->
 
-<header class="admin-header">
+<div class="topbar">
+
+<div>
+🇮🇳 भारतीय जन कल्याण पार्टी
+</div>
+
+<div class="top-right">
+ADMIN PANEL
+</div>
+
+</div>
+
+<!-- =========================
+HEADER
+========================= -->
+
+<header class="header">
 
 <div class="logo-box">
 
-<img src="image/logo.png">
+<img src="images/logo.png"
+alt="BJKP Logo">
 
 <div>
 
-<h2>
+<h1>
 भारतीय जन कल्याण पार्टी
-</h2>
+</h1>
 
 <p>
 Admin Dashboard
@@ -42,6 +67,278 @@ Admin Dashboard
 
 </div>
 
+<nav>
+
+<ul>
+
+<li>
+<a href="index.html">
+Website
+</a>
+</li>
+
+<li>
+<a href="membership.html">
+Membership
+</a>
+</li>
+
+<li>
+<a href="news.html">
+News
+</a>
+</li>
+
+<li>
+<a href="gallery.html">
+Gallery
+</a>
+</li>
+
+</ul>
+
+</nav>
+
+</header>
+
+<!-- =========================
+ADMIN CONTAINER
+========================= -->
+
+<div class="admin-container">
+
+<!-- Dashboard -->
+
+<div class="dashboard-cards">
+
+<div class="dashboard-card">
+
+<h3>
+कुल सदस्य
+</h3>
+
+<h1 id="totalMembers">
+0
+</h1>
+
+</div>
+
+<div class="dashboard-card">
+
+<h3>
+Active Members
+</h3>
+
+<h1 id="activeMembers">
+0
+</h1>
+
+</div>
+
+<div class="dashboard-card">
+
+<h3>
+समाचार
+</h3>
+
+<h1 id="newsCount">
+0
+</h1>
+
+</div>
+
+<div class="dashboard-card">
+
+<h3>
+सूचनाएँ
+</h3>
+
+<h1 id="noticeCount">
+0
+</h1>
+
+</div>
+
+</div>
+
+<!-- =========================
+ADD NEWS
+========================= -->
+
+<div class="admin-section">
+
+<h2>
+📰 नया समाचार जोड़ें
+</h2>
+
+<input
+type="text"
+id="newsTitle"
+placeholder="समाचार शीर्षक">
+
+<textarea
+id="newsDescription"
+placeholder="समाचार विवरण">
+</textarea>
+
+<button
+id="addNewsBtn"
+class="btn">
+समाचार जोड़ें
+</button>
+
+</div>
+
+<!-- =========================
+ADD NOTICE
+========================= -->
+
+<div class="admin-section">
+
+<h2>
+📢 नई सूचना जोड़ें
+</h2>
+
+<input
+type="text"
+id="noticeTitle"
+placeholder="सूचना शीर्षक">
+
+<input
+type="date"
+id="noticeDate">
+
+<button
+id="addNoticeBtn"
+class="btn">
+सूचना जोड़ें
+</button>
+
+</div>
+
+<!-- =========================
+SEARCH MEMBER
+========================= -->
+
+<div class="admin-section">
+
+<h2>
+🔍 सदस्य खोजें
+</h2>
+
+<input
+type="text"
+id="searchMember"
+placeholder="Member ID / नाम / मोबाइल">
+
+</div>
+
+<!-- =========================
+MEMBER LIST
+========================= -->
+
+<div class="admin-section">
+
+<h2>
+👥 सभी सदस्य
+</h2>
+
+<div
+id="memberList"
+class="member-grid">
+
+<div class="empty-card">
+कोई सदस्य उपलब्ध नहीं
+</div>
+
+</div>
+
+</div>
+
+<!-- =========================
+EDIT MEMBER
+========================= -->
+
+<div class="admin-section">
+
+<h2>
+✏️ सदस्य की जानकारी अपडेट करें
+</h2>
+
+<input
+type="hidden"
+id="editId">
+
+<input
+type="text"
+id="editName"
+placeholder="पूरा नाम">
+
+<input
+type="text"
+id="editMobile"
+placeholder="मोबाइल नंबर">
+
+<input
+type="email"
+id="editEmail"
+placeholder="ईमेल">
+
+<textarea
+id="editAddress"
+placeholder="पूरा पता">
+</textarea>
+
+<select id="editStatus">
+
+<option value="Active">
+✅ Active
+</option>
+
+<option value="Inactive">
+❌ Inactive
+</option>
+
+</select>
+
+<button
+id="updateMemberBtn"
+class="btn">
+
+💾 सदस्य अपडेट करें
+
+</button>
+
+</div>
+
+<!-- =========================
+ADMIN ACTIONS
+========================= -->
+
+<div class="admin-section">
+
+<h2>
+⚙️ एडमिन कार्य
+</h2>
+
+<div class="admin-actions">
+
+<button
+id="refreshBtn"
+class="btn">
+
+🔄 Refresh Dashboard
+
+</button>
+
+<button
+id="exportBtn"
+class="btn">
+
+📄 Export Members
+
+</button>
+
 <button
 id="logoutBtn"
 class="logout-btn">
@@ -50,174 +347,130 @@ class="logout-btn">
 
 </button>
 
-</header>
-
-<section class="dashboard-cards">
-
-<div class="dashboard-card">
-
-<h3>Total Members</h3>
-
-<h1 id="memberCount">0</h1>
+</div>
 
 </div>
 
-<div class="dashboard-card">
+<!-- =========================
+LATEST NEWS LIST
+========================= -->
 
-<h3>Total News</h3>
-
-<h1 id="newsCount">0</h1>
-
-</div>
-
-<div class="dashboard-card">
-
-<h3>Total Notice</h3>
-
-<h1 id="noticeCount">0</h1>
-
-</div>
-
-</section>
-
-<section class="admin-section">
+<div class="admin-section">
 
 <h2>
-
-➕ नया समाचार
-
-</h2>
-
-<input
-id="newsTitle"
-placeholder="समाचार शीर्षक">
-
-<textarea
-id="newsDescription"
-placeholder="समाचार विवरण">
-
-</textarea>
-
-<button
-id="addNewsBtn"
-class="btn">
-
-समाचार जोड़ें
-
-</button>
-
-</section>
-
-<section class="admin-section">
-
-<h2>
-
-📢 नई सूचना
-
-</h2>
-
-<input
-id="noticeTitle"
-placeholder="सूचना शीर्षक">
-
-<textarea
-id="noticeDescription"
-placeholder="सूचना विवरण">
-
-</textarea>
-
-<button
-id="addNoticeBtn"
-class="btn">
-
-सूचना जोड़ें
-
-</button>
-
-</section>
-
-<section class="admin-section">
-
-<h2>
-
-🔍 सदस्य खोजें
-
-</h2>
-
-<input
-type="text"
-id="searchMember"
-placeholder="Member ID / नाम / मोबाइल">
-
-</section>
-
-<section class="admin-section">
-
-<h2>
-
-👥 सभी सदस्य
-
-</h2>
-
-<div
-id="memberList"
-class="member-grid">
-
-</div>
-
-</section>
-
-<section class="admin-section">
-
-<h2>
-
 📰 सभी समाचार
-
 </h2>
 
 <div
 id="newsList"
 class="member-grid">
 
+<div class="empty-card">
+
+अभी तक कोई समाचार उपलब्ध नहीं।
+
 </div>
 
-</section>
+</div>
 
-<section class="admin-section">
+</div>
+
+<!-- =========================
+NOTICE LIST
+========================= -->
+
+<div class="admin-section">
 
 <h2>
-
 📢 सभी सूचनाएँ
-
 </h2>
 
 <div
 id="noticeList"
 class="member-grid">
 
+<div class="empty-card">
+
+अभी तक कोई सूचना उपलब्ध नहीं।
+
 </div>
 
-</section>
+</div>
 
-<section class="admin-section admin-actions">
+</div>
 
-<button
-id="refreshBtn"
-class="btn">
+<!-- =========================
+LIVE STATUS
+========================= -->
 
-🔄 Refresh
+<div class="admin-section">
 
-</button>
+<h2>
 
-<button
-id="exportBtn"
-class="btn">
+📊 सिस्टम स्थिति
 
-📥 Export Members
+</h2>
 
-</button>
+<div class="dashboard-cards">
 
-</section>
+<div class="dashboard-card">
+
+<h3>
+
+🔥 Firebase
+
+</h3>
+
+<h2
+style="color:#0b7a2a;">
+
+Connected
+
+</h2>
+
+</div>
+
+<div class="dashboard-card">
+
+<h3>
+
+👨‍💼 Admin
+
+</h3>
+
+<h2
+style="color:#0b7a2a;">
+
+Online
+
+</h2>
+
+</div>
+
+<div class="dashboard-card">
+
+<h3>
+
+🌐 Website
+
+</h3>
+
+<h2
+style="color:#0b7a2a;">
+
+Live
+
+</h2>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- =========================
+FOOTER
+========================= -->
 
 <footer class="member-footer">
 
@@ -227,23 +480,41 @@ class="footer-logo"
 alt="BJKP Logo">
 
 <h3>
-
 भारतीय जन कल्याण पार्टी
-
 </h3>
 
 <p>
-
 Admin Management System
-
 </p>
+
+<div class="footer-links">
+
+<a href="index.html">
+🏠 Home
+</a>
+
+<a href="membership.html">
+📝 Membership
+</a>
+
+<a href="news.html">
+📰 News
+</a>
+
+<a href="gallery.html">
+🖼 Gallery
+</a>
+
+<a href="contact.html">
+📞 Contact
+</a>
+
+</div>
 
 <p class="copyright">
 
 © 2026 भारतीय जन कल्याण पार्टी
-
 <br>
-
 All Rights Reserved
 
 </p>
@@ -252,10 +523,13 @@ All Rights Reserved
 
 </div>
 
+<!-- =========================
+JavaScript Files
+========================= -->
+
 <script type="module" src="auth.js"></script>
 
 <script type="module" src="admin.js"></script>
 
 </body>
-
 </html>
