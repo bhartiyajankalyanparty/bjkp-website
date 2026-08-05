@@ -11,6 +11,7 @@
 
 <link rel="stylesheet" href="style.css">
 
+
 <style>
 
 .id-card{
@@ -45,7 +46,6 @@ object-fit:contain;
 }
 
 
-
 .photo{
 
 text-align:center;
@@ -65,14 +65,12 @@ border:3px solid #ff9933;
 }
 
 
-
 .details{
 
 padding:20px;
 line-height:1.8;
 
 }
-
 
 
 .qr{
@@ -83,13 +81,11 @@ padding:15px;
 }
 
 
-
 .qr img{
 
 width:100px;
 
 }
-
 
 
 .footer-card{
@@ -101,6 +97,7 @@ padding:10px;
 
 }
 
+
 </style>
 
 
@@ -110,18 +107,22 @@ padding:10px;
 <body>
 
 
+
 <div class="id-card">
+
 
 
 <div class="card-header">
 
-
 <img src="image/logo.png">
 
+<h3>
+भारतीय जन कल्याण पार्टी
+</h3>
 
-<h3>भारतीय जन कल्याण पार्टी</h3>
-
-<p>सदस्यता पहचान पत्र</p>
+<p>
+सदस्यता पहचान पत्र
+</p>
 
 
 </div>
@@ -132,11 +133,11 @@ padding:10px;
 
 <div class="photo">
 
-
-<img src="image/profile.jpg">
-
+<img src="image/profile.jpg" id="profile">
 
 </div>
+
+
 
 
 
@@ -145,26 +146,43 @@ padding:10px;
 <div class="details">
 
 
-<b>नाम:</b> सदस्य का नाम
+<b>नाम:</b>
+<span id="cardName">---</span>
 
 <br>
 
-<b>सदस्य ID:</b> BJKP00001
+
+<b>सदस्य ID:</b>
+<span id="cardId">---</span>
 
 <br>
 
-<b>मोबाइल:</b> 9876543210
+
+<b>मोबाइल:</b>
+<span id="cardMobile">---</span>
 
 <br>
 
-<b>जिला:</b> आपका जिला
+
+<b>जिला:</b>
+<span id="cardDistrict">---</span>
 
 <br>
 
-<b>तिथि:</b> 05-08-2026
+
+<b>राज्य:</b>
+<span id="cardState">---</span>
+
+<br>
+
+
+<b>तारीख:</b>
+<span id="cardDate">---</span>
 
 
 </div>
+
+
 
 
 
@@ -190,7 +208,55 @@ padding:10px;
 </div>
 
 
+
 </div>
+
+
+
+
+
+
+
+<script>
+
+
+let data = JSON.parse(
+localStorage.getItem("bjkpMember")
+);
+
+
+
+if(data){
+
+
+document.getElementById("cardName").innerHTML=data.name;
+
+document.getElementById("cardId").innerHTML=data.id;
+
+document.getElementById("cardMobile").innerHTML=data.mobile;
+
+document.getElementById("cardDistrict").innerHTML=data.district;
+
+document.getElementById("cardState").innerHTML=data.state;
+
+document.getElementById("cardDate").innerHTML=data.date;
+
+
+}
+
+
+else{
+
+
+alert("सदस्य जानकारी नहीं मिली।");
+
+
+}
+
+
+
+</script>
+
 
 
 </body>
