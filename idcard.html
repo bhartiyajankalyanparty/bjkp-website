@@ -2,143 +2,196 @@
 <html lang="hi">
 
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>BJKP Member ID Card</title>
+<title>BJKP Membership ID Card</title>
 
-<link rel="stylesheet" href="idcard.css">
+<link rel="stylesheet" href="style.css">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<style>
+
+.id-card{
+
+width:350px;
+margin:30px auto;
+background:white;
+border-radius:15px;
+overflow:hidden;
+box-shadow:0 5px 15px #999;
+border:2px solid #0b7a2a;
+
+}
+
+
+.card-header{
+
+background:#0b7a2a;
+color:white;
+text-align:center;
+padding:15px;
+
+}
+
+
+.card-header img{
+
+width:60px;
+height:60px;
+object-fit:contain;
+
+}
+
+
+
+.photo{
+
+text-align:center;
+margin:20px;
+
+}
+
+
+.photo img{
+
+width:100px;
+height:100px;
+border-radius:50%;
+object-fit:cover;
+border:3px solid #ff9933;
+
+}
+
+
+
+.details{
+
+padding:20px;
+line-height:1.8;
+
+}
+
+
+
+.qr{
+
+text-align:center;
+padding:15px;
+
+}
+
+
+
+.qr img{
+
+width:100px;
+
+}
+
+
+
+.footer-card{
+
+background:#ff9933;
+color:white;
+text-align:center;
+padding:10px;
+
+}
+
+</style>
+
 
 </head>
 
+
 <body>
 
-<div class="id-container">
 
-<div class="id-card" id="card">
+<div class="id-card">
+
 
 <div class="card-header">
 
-<img src="image/logo.png" class="logo">
 
-<div>
-<h2>भारतीय जन कल्याण पार्टी</h2>
-<p>Official Member Identity Card</p>
-</div>
+<img src="image/logo.png">
 
-</div>
 
-<div id="verifyBadge" class="verify-badge">
-✅ VERIFIED
-</div>
+<h3>भारतीय जन कल्याण पार्टी</h3>
 
-<div class="photo-box">
-<img id="photo" src="image/president.jpg" alt="Member Photo">
-</div>
+<p>सदस्यता पहचान पत्र</p>
 
-<div class="member-info">
-
-<h3 id="name">नाम</h3>
-
-<p><b>Member ID :</b> <span id="memberId"></span></p>
-
-<p><b>मोबाइल :</b> <span id="mobile"></span></p>
-
-<p><b>ईमेल :</b> <span id="email"></span></p>
-
-<p><b>पता :</b> <span id="address"></span></p>
-
-<p><b>स्थिति :</b>
-<span id="status" style="color:green;">✅ Active</span>
-</p>
-
-<p><b>Join Date :</b>
-<span id="joinDate"></span>
-</p>
 
 </div>
 
-<div class="qr-section">
 
-<img id="qr" src="" alt="QR Code">
 
-<p>Scan to Verify</p>
 
-</div>
 
-<div class="signature">
+<div class="photo">
 
-<div>
-<p>__________________</p>
-<b>राष्ट्रीय अध्यक्ष</b>
-</div>
 
-<div>
-<p>__________________</p>
-<b>सदस्य हस्ताक्षर</b>
-</div>
+<img src="image/profile.jpg">
+
 
 </div>
 
-<div class="card-footer">
 
-<p>"जनता का विश्वास • राष्ट्र का विकास"</p>
+
+
+
+<div class="details">
+
+
+<b>नाम:</b> सदस्य का नाम
+
+<br>
+
+<b>सदस्य ID:</b> BJKP00001
+
+<br>
+
+<b>मोबाइल:</b> 9876543210
+
+<br>
+
+<b>जिला:</b> आपका जिला
+
+<br>
+
+<b>तिथि:</b> 05-08-2026
+
 
 </div>
 
-</div>
 
-<div class="card-buttons">
 
-<button onclick="window.print()">
-🖨 Print
-</button>
 
-<button onclick="downloadPDF()">
-📄 Download PDF
-</button>
+
+<div class="qr">
+
+<img src="image/qr.png">
+
+<p>ID Verify</p>
 
 </div>
 
+
+
+
+
+
+<div class="footer-card">
+
+जन सेवा • विकास • विश्वास
+
 </div>
 
-<script type="module" src="idcard.js"></script>
 
-<script>
+</div>
 
-function downloadPDF(){
-
-const element=document.getElementById("card");
-
-html2pdf().set({
-
-margin:0.3,
-
-filename:
-(document.getElementById("memberId").innerText || "BJKP_ID") + ".pdf",
-
-image:{
-type:"jpeg",
-quality:1
-},
-
-html2canvas:{
-scale:2
-},
-
-jsPDF:{
-unit:"in",
-format:"a4",
-orientation:"portrait"
-}
-
-}).from(element).save();
-
-}
-
-</script>
 
 </body>
 
