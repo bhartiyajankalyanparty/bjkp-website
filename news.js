@@ -1,32 +1,97 @@
-<!DOCTYPE html>
-<html lang="hi">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>समाचार - भारतीय जन कल्याण पार्टी</title>
-<link rel="stylesheet" href="style.css">
-</head>
+// BJKP News System
 
-<body>
+import { db } from "./firebase-config.js";
+import { collection, getDocs, query, orderBy } from 
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-<nav style="background:#0b7a2a;padding:12px;text-align:center;">
-<a href="index.html" style="color:white;margin:10px;text-decoration:none;">🏠 Home</a>
-<a href="about.html" style="color:white;margin:10px;text-decoration:none;">📖 About</a>
-<a href="membership.html" style="color:white;margin:10px;text-decoration:none;">📝 Membership</a>
-<a href="gallery.html" style="color:white;margin:10px;text-decoration:none;">🖼 Gallery</a>
-<a href="contact.html" style="color:white;margin:10px;text-decoration:none;">📞 Contact</a>
-<a href="news.html" style="color:white;margin:10px;text-decoration:none;">📰 News</a>
-</nav>
 
-<header>
-<h1>सभी समाचार</h1>
-</header>
+const newsContainer = document.getElementById("newsContainer");
 
-<div id="newsList" style="max-width:900px;margin:auto;padding:20px;">
-<p>समाचार लोड हो रहे हैं...</p>
+
+async function loadNews(){
+
+
+try{
+
+
+const q = query(
+collection(db,"news"),
+orderBy("date","desc")
+);
+
+
+const snapshot = await getDocs(q);
+
+
+newsContainer.innerHTML="";
+
+
+
+if(snapshot.empty){
+
+newsContainer.innerHTML = `
+<div class="card">
+<h3>कोई समाचार उपलब्ध नहीं है</h3>
+</div>
+`;
+
+return;
+
+}
+
+
+
+snapshot.forEach((doc)=>{
+
+
+let data = doc.data();
+
+
+
+newsContainer.innerHTML += `
+
+<div class="card">
+
+
+${data.image ? 
+`<img src="${data.image}" style="width:100%;border-radius:10px;">`
+:
+""}
+
+
+
+<h3>${data.title}</h3>
+
+
+<p>${data.description}</p>
+
+
+<small>
+${data.date || ""}
+</small>
+
+
 </div>
 
-<script type="module" src="latest-news.js"></script>
+`;
 
-</body>
-</html>
+
+});
+
+
+
+}
+
+catch(error){
+
+console.log("News Error:",error);
+
+}
+
+
+
+}
+
+
+
+loadNews();
