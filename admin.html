@@ -7,9 +7,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>भारतीय जन कल्याण पार्टी | BJKP</title>
+<title>Admin Panel | BJKP</title>
 
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="style.css">
 
 </head>
 
@@ -17,41 +17,15 @@
 <body>
 
 
-<!-- HEADER -->
-
 <header>
-
 
 <div class="logo">
 
-<img src="assets/image/logo.png" alt="BJKP Logo">
+<img src="image/logo.png">
 
-<h1>भारतीय जन कल्याण पार्टी</h1>
+<h1>BJKP Admin Panel</h1>
 
 </div>
-
-
-
-<nav>
-
-<a href="index.html">होम</a>
-
-<a href="about.html">हमारे बारे में</a>
-
-<a href="leadership.html">नेतृत्व</a>
-
-<a href="membership.html">सदस्यता</a>
-
-<a href="news.html">समाचार</a>
-
-<a href="gallery.html">गैलरी</a>
-
-<a href="contact.html">संपर्क</a>
-
-<a href="admin/login.html">Admin</a>
-
-</nav>
-
 
 </header>
 
@@ -59,36 +33,23 @@
 
 
 
-<!-- HERO SECTION -->
+<section class="section" id="loginBox">
 
 
-<section class="hero">
+<h2>Admin Login</h2>
 
 
-<img src="assets/image/banner.jpg" alt="BJKP Banner">
+<input type="text" id="adminUser" placeholder="Username">
 
 
-
-<div class="hero-text">
-
-
-<h2>जन सेवा ही हमारा संकल्प</h2>
+<input type="password" id="adminPass" placeholder="Password">
 
 
-<p>
-भारतीय जन कल्याण पार्टी का उद्देश्य जनता की समस्याओं को समझना
-और उनके समाधान के लिए निरंतर कार्य करना है।
-</p>
+<button class="join-btn" onclick="adminLogin()">
 
+Login
 
-
-<a href="membership.html">
-सदस्य बनें
-</a>
-
-
-
-</div>
+</button>
 
 
 </section>
@@ -99,86 +60,53 @@
 
 
 
-<!-- PRESIDENT MESSAGE -->
+
+<section class="section" id="dashboard" style="display:none;">
 
 
-<section class="section">
-
-
-<h2>अध्यक्ष संदेश</h2>
-
-
-<p>
-
-प्रिय देशवासियों,
-
-भारतीय जन कल्याण पार्टी जनहित, विकास और सामाजिक न्याय के
-लिए समर्पित होकर कार्य करने का संकल्प लेती है।
-
-</p>
-
-
-</section>
-
-
-
-
-
-
-
-<!-- TARGET SECTION -->
-
-
-<section class="section">
-
-
-<h2>हमारे मुख्य लक्ष्य</h2>
+<h2>Dashboard</h2>
 
 
 
 <div class="cards">
 
 
-
 <div class="card">
 
-<h3>जन सेवा</h3>
+<h3>Total Members</h3>
 
-<p>
-जनता की समस्याओं को प्राथमिकता देकर समाधान करना।
-</p>
+<p id="totalMembers">0</p>
 
 </div>
-
 
 
 
 <div class="card">
 
-<h3>युवा विकास</h3>
+<h3>Total News</h3>
 
-<p>
-युवाओं को अवसर और रोजगार से जोड़ना।
-</p>
-
-</div>
-
-
-
-
-<div class="card">
-
-<h3>सामाजिक न्याय</h3>
-
-<p>
-हर वर्ग के विकास के लिए कार्य करना।
-</p>
+<p id="totalNews">0</p>
 
 </div>
 
 
 
 </div>
+
+
+
+
+
+
+<h2>Members List</h2>
+
+
+<div id="memberList">
+
+Loading...
+
+</div>
+
 
 
 </section>
@@ -189,82 +117,7 @@
 
 
 
-<!-- NEWS -->
-
-
-<section class="section">
-
-
-<h2>लेटेस्ट समाचार</h2>
-
-
-<div id="latestNews">
-
-जल्द ही समाचार अपडेट होंगे।
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-<!-- JOIN -->
-
-
-<section class="join">
-
-
-<h2>पार्टी से जुड़ें</h2>
-
-
-<p>
-भारतीय जन कल्याण पार्टी के सदस्य बनकर जनसेवा के अभियान में भाग लें।
-</p>
-
-
-<a href="membership.html">
-
-अभी सदस्य बनें
-
-</a>
-
-
-</section>
-
-
-
-
-
-
-
-<!-- FOOTER -->
-
-
-<footer>
-
-
-<p>
-© 2026 भारतीय जन कल्याण पार्टी (BJKP)
-</p>
-
-
-<p>
-संपर्क करें | सोशल मीडिया
-</p>
-
-
-</footer>
-
-
-
-
-
-<script src="assets/js/script.js"></script>
+<script src="admin.js"></script>
 
 
 </body>
