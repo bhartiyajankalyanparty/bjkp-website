@@ -934,5 +934,110 @@ height:70px;
 }
 
 /* ==========================
+VERIFY PAGE
+========================== */
+
+.verify-section{
+
+padding:70px 20px;
+
+background:#f5f7fa;
+
+}
+
+.verify-box{
+
+max-width:550px;
+
+margin:auto;
+
+background:#fff;
+
+padding:35px;
+
+border-radius:15px;
+
+box-shadow:0 8px 25px rgba(0,0,0,.12);
+
+text-align:center;
+
+}
+
+.verify-logo{
+
+width:90px;
+
+height:90px;
+
+margin-bottom:20px;
+
+}
+
+.verify-box h2{
+
+color:#0b7a2a;
+
+margin-bottom:15px;
+
+}
+
+.verify-box p{
+
+margin-bottom:20px;
+
+color:#555;
+
+}
+
+.verify-box input{
+
+width:100%;
+
+padding:14px;
+
+margin-bottom:20px;
+
+border:1px solid #ccc;
+
+border-radius:8px;
+
+font-size:16px;
+
+}
+
+.verify-card{
+
+margin-top:25px;
+
+text-align:left;
+
+background:#f9f9f9;
+
+padding:20px;
+
+border-radius:10px;
+
+}
+
+.verify-photo{
+
+display:block;
+
+width:130px;
+
+height:130px;
+
+margin:0 auto 20px;
+
+border-radius:50%;
+
+object-fit:cover;
+
+border:4px solid #ff9800;
+
+}
+
+
+/* ==========================
    END OF STYLE.CSS
 ========================== */
