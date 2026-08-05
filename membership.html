@@ -7,205 +7,159 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ऑनलाइन सदस्यता | भारतीय जन कल्याण पार्टी</title>
-
-<meta name="description"
-content="भारतीय जन कल्याण पार्टी ऑनलाइन सदस्यता फॉर्म">
+<title>सदस्यता | भारतीय जन कल्याण पार्टी</title>
 
 <link rel="stylesheet" href="style.css">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-rel="stylesheet">
-
 </head>
+
 
 <body>
 
-<!-- ==========================
-     HEADER
-========================== -->
 
-<header class="member-header">
+<header>
 
-<img
-src="image/logo.png"
-class="member-logo"
-alt="BJKP Logo">
+<div class="logo">
+
+<img src="image/logo.png" alt="BJKP Logo">
 
 <h1>भारतीय जन कल्याण पार्टी</h1>
 
-<p>ऑनलाइन सदस्यता फॉर्म</p>
+</div>
+
+
+<nav>
+
+<a href="index.html">होम</a>
+
+<a href="about.html">हमारे बारे में</a>
+
+<a href="leadership.html">नेतृत्व</a>
+
+<a href="membership.html">सदस्यता</a>
+
+<a href="news.html">समाचार</a>
+
+<a href="gallery.html">गैलरी</a>
+
+<a href="contact.html">संपर्क</a>
+
+<a href="admin.html">Admin</a>
+
+</nav>
 
 </header>
 
-<!-- ==========================
-     FORM START
-========================== -->
 
-<div class="member-container">
 
-<h2>👥 सदस्य बनें</h2>
+
+
+<section class="hero">
+
+<img src="image/banner.jpg" alt="BJKP">
+
+<div class="hero-text">
+
+<h2>पार्टी की सदस्यता लें</h2>
 
 <p>
-
-कृपया नीचे दी गई सभी जानकारी सही-सही भरें।
-
+भारतीय जन कल्याण पार्टी से जुड़कर जनसेवा अभियान का हिस्सा बनें।
 </p>
 
-<form id="memberForm">
+</div>
 
-<input
-type="text"
-id="name"
+</section>
+
+
+
+
+
+
+<section class="section">
+
+
+<h2>ऑनलाइन सदस्यता फॉर्म</h2>
+
+
+<form id="membershipForm">
+
+
+<input 
+type="text" 
+id="name" 
 placeholder="पूरा नाम"
 required>
 
-<input
-type="tel"
-id="mobile"
+
+<input 
+type="number" 
+id="mobile" 
 placeholder="मोबाइल नंबर"
-maxlength="10"
 required>
 
-<input
-type="email"
-id="email"
-placeholder="ईमेल पता">
 
-<textarea
-id="address"
-placeholder="पूरा पता"></textarea>
+<input 
+type="email" 
+id="email" 
+placeholder="ईमेल">
 
-<label>
 
-📷 पासपोर्ट साइज फोटो
-
-</label>
-
-<input
-type="file"
-id="photo"
-accept="image/*">
-
-<select id="gender" required>
-
-<option value="">लिंग चुनें</option>
-
-<option value="पुरुष">👨 पुरुष</option>
-
-<option value="महिला">👩 महिला</option>
-
-<option value="अन्य">⚧️ अन्य</option>
-
-</select>
-
-<label>🎂 जन्म तिथि</label>
-
-<input
-type="date"
-id="dob">
-
-<input
-type="text"
-id="occupation"
-placeholder="व्यवसाय">
-
-<input
-type="text"
-id="district"
-placeholder="जिला">
-
-<input
-type="text"
-id="state"
-placeholder="राज्य">
-
-<div class="declaration">
-
-<label>
-
-<input
-type="checkbox"
-id="agree"
+<input 
+type="text" 
+id="district" 
+placeholder="जिला"
 required>
 
-मैं घोषणा करता/करती हूँ कि मेरे द्वारा दी गई सभी जानकारी सत्य है तथा मैं भारतीय जन कल्याण पार्टी के नियमों का पालन करूँगा/करूँगी।
 
-</label>
+<input 
+type="text" 
+id="state" 
+placeholder="राज्य"
+required>
 
-</div>
 
-<div class="form-buttons">
+<textarea 
+id="address" 
+placeholder="पूरा पता"
+required></textarea>
 
-<button
-type="reset"
-class="resetBtn">
 
-🔄 रीसेट
+
+<button type="submit" class="join-btn">
+
+सदस्य बनें
 
 </button>
 
-<button
-type="button"
-id="submitBtn"
-class="submitBtn">
-
-🚀 सदस्यता भेजें
-
-</button>
-
-</div>
 
 </form>
 
-</div>
 
-<!-- ==========================
-     FOOTER
-========================== -->
+</section>
 
-<footer class="member-footer">
 
-<img
-src="image/logo.png"
-class="footer-logo"
-alt="BJKP Logo">
 
-<h3>भारतीय जन कल्याण पार्टी</h3>
+
+
+
+<footer>
 
 <p>
-
-राष्ट्रहित • जनहित • विकास
-
+© 2026 भारतीय जन कल्याण पार्टी (BJKP)
 </p>
 
-<div class="footer-links">
-
-<a href="index.html">🏠 होम</a>
-
-<a href="verify.html">🪪 सत्यापन</a>
-
-<a href="contact.html">📞 संपर्क</a>
-
-</div>
-
-<p class="copyright">
-
-© 2026 भारतीय जन कल्याण पार्टी
-
-<br>
-
-All Rights Reserved
-
+<p>
+संपर्क करें | सोशल मीडिया
 </p>
 
 </footer>
 
-<script type="module" src="membership.js"></script>
+
+
+
+
+<script src="member.js"></script>
+
 
 </body>
 
