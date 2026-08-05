@@ -14,9 +14,9 @@ getAuth,
 signOut
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
 
-// ==============================
+// =========================
 // Firebase Config
-// ==============================
+// =========================
 
 const firebaseConfig = {
 
@@ -40,9 +40,9 @@ const db = getFirestore(app);
 
 const auth = getAuth(app);
 
-// ==============================
+// =========================
 // Global Data
-// ==============================
+// =========================
 
 let members = [];
 
@@ -50,19 +50,9 @@ let news = [];
 
 let notices = [];
 
-// ==============================
-// Dashboard Start
-// ==============================
-
-document.addEventListener("DOMContentLoaded",()=>{
-
-loadDashboard();
-
-});
-
-// ==============================
-// Load Dashboard
-// ==============================
+// =========================
+// Dashboard Load
+// =========================
 
 async function loadDashboard(){
 
@@ -74,155 +64,92 @@ await loadNotice();
 
 }
 
-// ==============================
+loadDashboard();
+
+// =========================
 // Load Members
-// ==============================
+// =========================
 
 async function loadMembers(){
 
 const snapshot = await getDocs(collection(db,"members"));
 
-members=[];
+members = [];
 
 snapshot.forEach((d)=>{
 
 members.push({
-
 id:d.id,
-
 ...d.data()
-
 });
 
 });
 
-const memberCount=document.getElementById("memberCount");
+// Total Members
+document.getElementById("memberCount").innerText = members.length;
 
-if(memberCount){
-
-memberCount.innerText=members.length;
-
-}
-
-}
-
-// ==============================
-// Load News
-// ==============================
-
-async function loadNews(){
-
-const snapshot = await getDocs(collection(db,"news"));
-
-news=[];
-
-snapshot.forEach((d)=>{
-
-news.push({
-
-id:d.id,
-
-...d.data()
-
-});
-
-});
-
-const newsCount=document.getElementById("newsCount");
-
-if(newsCount){
-
-newsCount.innerText=news.length;
-
-}
-
-showNews();
-
-}
-
-// ==============================
-// Load Notice
-// ==============================
-
-async function loadNotice(){
-
-const snapshot = await getDocs(collection(db,"notice"));
-
-notices=[];
-
-snapshot.forEach((d)=>{
-
-notices.push({
-
-id:d.id,
-
-...d.data()
-
-});
-
-});
-
-const noticeCount=document.getElementById("noticeCount");
-
-if(noticeCount){
-
-noticeCount.innerText=notices.length;
-
-}
-
-showNotice();
-
-}
-
-// ==============================
 // Show Members
-// ==============================
+showMembers(members);
 
-function showMembers(data=members){
+}
 
-const memberList=document.getElementById("memberList");
+// =========================
+// Show Member Cards
+// =========================
 
-if(!memberList) return;
+function showMembers(data){
+
+const memberList = document.getElementById("memberList");
+
+memberList.innerHTML = "";
 
 if(data.length===0){
 
-memberList.innerHTML="<p>कोई सदस्य उपलब्ध नहीं है।</p>";
+memberList.innerHTML=`
+
+<div class="empty-card">
+
+कोई सदस्य उपलब्ध नहीं
+
+</div>
+
+`;
 
 return;
 
 }
 
-let html="";
-
 data.forEach((m)=>{
 
-html+=`
+memberList.innerHTML += `
 
 <div class="member-card">
 
-<h3>${m.name||"-"}</h3>
+<img
+src="${m.photo || 'image/logo.png'}"
+class="member-photo">
 
-<p><b>ID :</b> ${m.memberId||"-"}</p>
+<h3>${m.name || "-"}</h3>
 
-<p><b>मोबाइल :</b> ${m.mobile||"-"}</p>
+<p><b>Member ID:</b> ${m.memberId || "-"}</p>
 
-<p><b>जिला :</b> ${m.district||"-"}</p>
+<p><b>मोबाइल:</b> ${m.mobile || "-"}</p>
 
-<p>
+<p><b>स्थिति:</b> ${m.status || "Active"}</p>
 
-<b>Status :</b>
-
-<span style="color:${m.status==="Inactive"?"red":"green"}">
-
-${m.status||"Active"}
-
-</span>
-
-</p>
+<div class="member-actions">
 
 <button
-onclick="deleteMember('${m.id}')"
-class="btn">
+class="btn"
+onclick="window.open('idcard.html?id=${m.memberId}','_blank')">
+
+🪪 ID Card
+
+</button>
+
+<button
+class="btn delete-btn"
+onclick="deleteMember('${m.id}')">
 
 🗑 Delete
 
@@ -230,35 +157,35 @@ class="btn">
 
 </div>
 
+</div>
+
 `;
 
 });
 
-memberList.innerHTML=html;
-
 }
 
-// ==============================
-// Search
-// ==============================
+// =========================
+// Search Members
+// =========================
 
-const search=document.getElementById("searchMember");
+const searchBox = document.getElementById("searchMember");
 
-if(search){
+if(searchBox){
 
-search.addEventListener("keyup",function(){
+searchBox.addEventListener("keyup",()=>{
 
-const value=this.value.toLowerCase();
+const keyword = searchBox.value.trim().toLowerCase();
 
-const result=members.filter((m)=>{
+const result = members.filter(m=>{
 
-return(
+return (
 
-(m.name||"").toLowerCase().includes(value)||
+(m.name||"").toLowerCase().includes(keyword) ||
 
-(m.mobile||"").includes(value)||
+(m.memberId||"").toLowerCase().includes(keyword) ||
 
-(m.memberId||"").toLowerCase().includes(value)
+(m.mobile||"").includes(keyword)
 
 );
 
@@ -270,75 +197,82 @@ showMembers(result);
 
 }
 
-// ==============================
-// Add News
-// ==============================
+// =========================
+// Delete Member
+// =========================
 
-const addNewsBtn = document.getElementById("addNewsBtn");
+window.deleteMember = async function(id){
 
-if (addNewsBtn) {
+const ok = confirm("क्या आप इस सदस्य को हटाना चाहते हैं?");
 
-addNewsBtn.addEventListener("click", async () => {
+if(!ok) return;
 
-const title = document.getElementById("newsTitle").value.trim();
+try{
 
-const description = document.getElementById("newsDescription").value.trim();
+await deleteDoc(doc(db,"members",id));
 
-if (!title || !description) {
+alert("✅ Member Delete Successfully");
 
-alert("समाचार का शीर्षक और विवरण भरें");
+loadMembers();
 
-return;
+}catch(err){
 
-}
+console.error(err);
 
-await addDoc(collection(db, "news"), {
-
-title,
-
-description,
-
-date: new Date().toLocaleDateString("hi-IN"),
-
-createdAt: new Date()
-
-});
-
-alert("✅ समाचार सफलतापूर्वक जोड़ दिया गया");
-
-document.getElementById("newsTitle").value = "";
-
-document.getElementById("newsDescription").value = "";
-
-await loadNews();
-
-});
+alert("❌ Member Delete Failed");
 
 }
 
-// ==============================
-// Show News
-// ==============================
+};
 
-function showNews() {
+// =========================
+// Refresh Dashboard
+// =========================
+
+const refreshBtn = document.getElementById("refreshBtn");
+
+if(refreshBtn){
+
+refreshBtn.addEventListener("click",()=>{
+
+loadDashboard();
+
+alert("✅ Dashboard Refreshed");
+
+});
+
+}
+
+// =========================
+// Load News
+// =========================
+
+async function loadNews(){
+
+const snapshot = await getDocs(collection(db,"news"));
+
+news = [];
+
+snapshot.forEach((d)=>{
+
+news.push({
+id:d.id,
+...d.data()
+});
+
+});
+
+document.getElementById("newsCount").innerText = news.length;
 
 const newsList = document.getElementById("newsList");
 
-if (!newsList) return;
+if(newsList){
 
-if (news.length === 0) {
+newsList.innerHTML = "";
 
-newsList.innerHTML = "<p>कोई समाचार उपलब्ध नहीं है।</p>";
+news.forEach((n)=>{
 
-return;
-
-}
-
-let html = "";
-
-news.forEach((n) => {
-
-html += `
+newsList.innerHTML += `
 
 <div class="member-card">
 
@@ -346,10 +280,8 @@ html += `
 
 <p>${n.description}</p>
 
-<p><small>${n.date || "-"}</small></p>
-
 <button
-class="btn"
+class="btn delete-btn"
 onclick="deleteNews('${n.id}')">
 
 🗑 Delete
@@ -362,90 +294,107 @@ onclick="deleteNews('${n.id}')">
 
 });
 
-newsList.innerHTML = html;
+}
 
 }
 
-// ==============================
-// Add Notice
-// ==============================
+// =========================
+// Add News
+// =========================
 
-const addNoticeBtn = document.getElementById("addNoticeBtn");
+const addNewsBtn = document.getElementById("addNewsBtn");
 
-if (addNoticeBtn) {
+if(addNewsBtn){
 
-addNoticeBtn.addEventListener("click", async () => {
+addNewsBtn.addEventListener("click",async()=>{
 
-const title = document.getElementById("noticeTitle").value.trim();
+const title=document.getElementById("newsTitle").value.trim();
 
-const description = document.getElementById("noticeDescription").value.trim();
+const description=document.getElementById("newsDescription").value.trim();
 
-if (!title || !description) {
+if(!title || !description){
 
-alert("सूचना का शीर्षक और विवरण भरें");
+alert("समाचार पूरा भरें");
 
 return;
 
 }
 
-await addDoc(collection(db, "notice"), {
+await addDoc(collection(db,"news"),{
 
 title,
 
 description,
 
-date: new Date().toLocaleDateString("hi-IN"),
-
-createdAt: new Date()
+date:new Date()
 
 });
 
-alert("✅ सूचना सफलतापूर्वक जोड़ दी गई");
+document.getElementById("newsTitle").value="";
 
-document.getElementById("noticeTitle").value = "";
+document.getElementById("newsDescription").value="";
 
-document.getElementById("noticeDescription").value = "";
+loadNews();
 
-await loadNotice();
+alert("✅ समाचार जोड़ दिया गया");
 
 });
 
 }
 
-// ==============================
-// Show Notice
-// ==============================
+// =========================
+// Delete News
+// =========================
 
-function showNotice() {
+window.deleteNews = async function(id){
+
+if(!confirm("समाचार हटाना चाहते हैं?")) return;
+
+await deleteDoc(doc(db,"news",id));
+
+loadNews();
+
+};
+
+// =========================
+// Load Notice
+// =========================
+
+async function loadNotice(){
+
+const snapshot = await getDocs(collection(db,"notice"));
+
+notices = [];
+
+snapshot.forEach((d)=>{
+
+notices.push({
+id:d.id,
+...d.data()
+});
+
+});
+
+document.getElementById("noticeCount").innerText = notices.length;
 
 const noticeList = document.getElementById("noticeList");
 
-if (!noticeList) return;
+if(noticeList){
 
-if (notices.length === 0) {
+noticeList.innerHTML="";
 
-noticeList.innerHTML = "<p>कोई सूचना उपलब्ध नहीं है।</p>";
+notices.forEach((n)=>{
 
-return;
-
-}
-
-let html = "";
-
-notices.forEach((n) => {
-
-html += `
+noticeList.innerHTML += `
 
 <div class="member-card">
 
-<h3>${n.title}</h3>
+<h3>${n.title || "-"}</h3>
 
-<p>${n.description}</p>
-
-<p><small>${n.date || "-"}</small></p>
+<p>${n.description || "-"}</p>
 
 <button
-class="btn"
+class="btn delete-btn"
 onclick="deleteNotice('${n.id}')">
 
 🗑 Delete
@@ -458,117 +407,71 @@ onclick="deleteNotice('${n.id}')">
 
 });
 
-noticeList.innerHTML = html;
+}
 
 }
 
-// ==============================
-// Delete Member
-// ==============================
+// =========================
+// Add Notice
+// =========================
 
-window.deleteMember = async function(id){
+const addNoticeBtn = document.getElementById("addNoticeBtn");
 
-const ok = confirm("क्या आप इस सदस्य को हटाना चाहते हैं?");
+if(addNoticeBtn){
 
-if(!ok) return;
+addNoticeBtn.addEventListener("click",async()=>{
 
-try{
+const title=document.getElementById("noticeTitle").value.trim();
 
-await deleteDoc(doc(db,"members",id));
+const description=document.getElementById("noticeDescription").value.trim();
 
-alert("✅ सदस्य सफलतापूर्वक हटा दिया गया");
+if(!title || !description){
 
-await loadMembers();
+alert("सूचना पूरी भरें");
 
-}catch(err){
-
-console.error(err);
-
-alert("❌ सदस्य हटाया नहीं जा सका");
+return;
 
 }
 
-};
+await addDoc(collection(db,"notice"),{
 
-// ==============================
-// Delete News
-// ==============================
+title,
 
-window.deleteNews = async function(id){
+description,
 
-const ok = confirm("क्या आप यह समाचार हटाना चाहते हैं?");
+date:new Date()
 
-if(!ok) return;
+});
 
-try{
+document.getElementById("noticeTitle").value="";
 
-await deleteDoc(doc(db,"news",id));
+document.getElementById("noticeDescription").value="";
 
-alert("✅ समाचार हटाया गया");
+loadNotice();
 
-await loadNews();
-
-}catch(err){
-
-console.error(err);
-
-alert("❌ समाचार हटाया नहीं जा सका");
-
-}
-
-};
-
-// ==============================
-// Delete Notice
-// ==============================
-
-window.deleteNotice = async function(id){
-
-const ok = confirm("क्या आप यह सूचना हटाना चाहते हैं?");
-
-if(!ok) return;
-
-try{
-
-await deleteDoc(doc(db,"notice",id));
-
-alert("✅ सूचना हटाई गई");
-
-await loadNotice();
-
-}catch(err){
-
-console.error(err);
-
-alert("❌ सूचना हटाई नहीं जा सकी");
-
-}
-
-};
-
-// ==============================
-// Refresh Button
-// ==============================
-
-const refreshBtn=document.getElementById("refreshBtn");
-
-if(refreshBtn){
-
-refreshBtn.addEventListener("click",async()=>{
-
-await loadDashboard();
-
-showMembers();
-
-alert("✅ Dashboard Refresh हो गया");
+alert("✅ सूचना जोड़ दी गई");
 
 });
 
 }
 
-// ==============================
+// =========================
+// Delete Notice
+// =========================
+
+window.deleteNotice = async function(id){
+
+if(!confirm("सूचना हटाना चाहते हैं?")) return;
+
+await deleteDoc(doc(db,"notice",id));
+
+loadNotice();
+
+};
+
+// =========================
 // Export Members
-// ==============================
+// =========================
 
 const exportBtn=document.getElementById("exportBtn");
 
@@ -586,7 +489,7 @@ const a=document.createElement("a");
 
 a.href=url;
 
-a.download="BJKP_Members.json";
+a.download="members.json";
 
 a.click();
 
@@ -596,9 +499,9 @@ URL.revokeObjectURL(url);
 
 }
 
-// ==============================
+// =========================
 // Logout
-// ==============================
+// =========================
 
 const logoutBtn=document.getElementById("logoutBtn");
 
@@ -606,42 +509,10 @@ if(logoutBtn){
 
 logoutBtn.addEventListener("click",async()=>{
 
-const ok=confirm("क्या आप Logout करना चाहते हैं?");
-
-if(!ok) return;
-
-try{
-
 await signOut(auth);
 
 window.location.href="login.html";
 
-}catch(err){
-
-console.error(err);
-
-alert("❌ Logout नहीं हो सका");
-
-}
-
 });
 
 }
-
-// ==============================
-// Auto Refresh
-// ==============================
-
-setInterval(async()=>{
-
-await loadDashboard();
-
-showMembers();
-
-},30000);
-
-// ==============================
-// Ready
-// ==============================
-
-console.log("✅ BJKP Admin Panel Ready");
