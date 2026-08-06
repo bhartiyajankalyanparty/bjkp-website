@@ -453,3 +453,332 @@ margin:auto;
 color:var(--gray);
 
 }
+
+/*==========================================
+        ABOUT SECTION
+==========================================*/
+
+.about-home{
+
+padding:100px 0;
+background:#fff;
+
+}
+
+.section-title{
+
+text-align:center;
+margin-bottom:60px;
+
+}
+
+.section-title span{
+
+color:var(--secondary);
+font-weight:700;
+letter-spacing:1px;
+
+}
+
+.section-title h2{
+
+font-size:42px;
+color:var(--primary);
+margin:15px 0;
+
+}
+
+.section-title p{
+
+color:var(--gray);
+font-size:18px;
+
+}
+
+.about-grid{
+
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:30px;
+
+}
+
+.about-card{
+
+background:#fff;
+padding:40px 30px;
+border-radius:20px;
+box-shadow:var(--shadow);
+text-align:center;
+transition:.4s;
+border-top:5px solid transparent;
+
+}
+
+.about-card:hover{
+
+transform:translateY(-12px);
+border-top:5px solid var(--secondary);
+
+}
+
+.about-card i{
+
+font-size:55px;
+color:var(--secondary);
+margin-bottom:20px;
+
+}
+
+.about-card h3{
+
+font-size:24px;
+margin-bottom:15px;
+color:var(--primary);
+
+}
+
+.about-card p{
+
+line-height:1.8;
+color:var(--gray);
+
+}
+
+/*==========================================
+      PRESIDENT MESSAGE
+==========================================*/
+
+.president-message{
+
+padding:100px 0;
+background:#fdf8f2;
+
+}
+
+.president-message .container{
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:60px;
+
+}
+
+.message-left{
+
+flex:1;
+
+}
+
+.message-left img{
+
+width:100%;
+max-width:420px;
+border-radius:25px;
+box-shadow:var(--shadow);
+border:8px solid var(--secondary);
+
+}
+
+.message-right{
+
+flex:1;
+
+}
+
+.section-tag{
+
+display:inline-block;
+background:var(--secondary);
+padding:8px 18px;
+border-radius:25px;
+font-weight:700;
+margin-bottom:20px;
+
+}
+
+.message-right h2{
+
+font-size:42px;
+color:var(--primary);
+
+}
+
+.message-right h4{
+
+color:var(--gray);
+margin-bottom:20px;
+
+}
+
+.message-right p{
+
+font-size:17px;
+line-height:1.9;
+margin-bottom:20px;
+color:#444;
+
+}
+
+/*==========================================
+        COUNTER SECTION
+==========================================*/
+
+.counter-section{
+
+padding:90px 0;
+background:linear-gradient(135deg,var(--primary),#4d0913);
+
+}
+
+.counter-section .container{
+
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:30px;
+
+}
+
+.counter-box{
+
+background:rgba(255,255,255,.08);
+padding:40px;
+border-radius:20px;
+text-align:center;
+backdrop-filter:blur(8px);
+
+}
+
+.counter-box h2{
+
+font-size:48px;
+color:var(--secondary);
+
+}
+
+.counter-box p{
+
+margin-top:10px;
+font-size:18px;
+color:#fff;
+
+}
+
+/*==========================================
+          VALUES
+==========================================*/
+
+.values{
+
+padding:100px 0;
+background:#fff;
+
+}
+
+.cards{
+
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:30px;
+
+}
+
+.card{
+
+background:#fff;
+padding:35px;
+border-radius:18px;
+box-shadow:var(--shadow);
+transition:.4s;
+text-align:center;
+
+}
+
+.card:hover{
+
+transform:translateY(-10px);
+
+}
+
+.card i{
+
+font-size:55px;
+color:var(--secondary);
+margin-bottom:20px;
+
+}
+
+.card h3{
+
+color:var(--primary);
+margin-bottom:15px;
+
+}
+
+.card p{
+
+line-height:1.8;
+color:var(--gray);
+
+}
+
+/*==========================================
+       JOIN PARTY
+==========================================*/
+
+.join-party{
+
+padding:100px 0;
+background:linear-gradient(135deg,#6b0f1a,#8b1321);
+text-align:center;
+color:#fff;
+
+}
+
+.join-party h2{
+
+font-size:42px;
+margin-bottom:25px;
+
+}
+
+.join-grid{
+
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:25px;
+margin:50px 0;
+
+}
+
+.join-grid div{
+
+background:rgba(255,255,255,.10);
+padding:35px;
+border-radius:18px;
+transition:.4s;
+
+}
+
+.join-grid div:hover{
+
+background:rgba(255,255,255,.18);
+transform:translateY(-8px);
+
+}
+
+.join-grid i{
+
+font-size:45px;
+color:var(--secondary);
+margin-bottom:15px;
+
+}
+
+.join-grid h3{
+
+font-size:20px;
+color:#fff;
+
+}
