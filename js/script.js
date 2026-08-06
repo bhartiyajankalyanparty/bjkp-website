@@ -450,3 +450,209 @@ console.log("BJKP Website Running Smoothly");
 
 });
 
+
+/*==========================================
+      SCRIPT.JS PART 3 (FINAL)
+==========================================*/
+
+
+/* ==========================
+      Language Switch
+========================== */
+
+const langBtn = document.getElementById("lang-btn");
+
+if (langBtn) {
+
+    let hindi = true;
+
+    langBtn.addEventListener("click", function () {
+
+        if (hindi) {
+
+            langBtn.innerHTML = "🇬🇧 English";
+
+            document.documentElement.lang = "en";
+
+        } else {
+
+            langBtn.innerHTML = "🇮🇳 हिन्दी";
+
+            document.documentElement.lang = "hi";
+
+        }
+
+        hindi = !hindi;
+
+    });
+
+}
+
+
+/* ==========================
+      Search Filter
+========================== */
+
+const searchInput = document.getElementById("search-box");
+
+if (searchInput) {
+
+    searchInput.addEventListener("keyup", function () {
+
+        let value = this.value.toLowerCase();
+
+        document.querySelectorAll(".search-item").forEach(item => {
+
+            item.style.display = item.innerText.toLowerCase().includes(value)
+                ? "block"
+                : "none";
+
+        });
+
+    });
+
+}
+
+
+/* ==========================
+      Share Website
+========================== */
+
+const shareBtn = document.getElementById("shareBtn");
+
+if (shareBtn) {
+
+    shareBtn.addEventListener("click", async () => {
+
+        if (navigator.share) {
+
+            try {
+
+                await navigator.share({
+
+                    title: "भारतीय जन कल्याण पार्टी",
+
+                    text: "जन-जन का विश्वास, राष्ट्र का विकास",
+
+                    url: window.location.href
+
+                });
+
+            } catch (e) {
+
+                console.log(e);
+
+            }
+
+        } else {
+
+            alert("आपका ब्राउज़र Share API सपोर्ट नहीं करता।");
+
+        }
+
+    });
+
+}
+
+
+/* ==========================
+      Copy Website Link
+========================== */
+
+const copyBtn = document.getElementById("copyBtn");
+
+if (copyBtn) {
+
+    copyBtn.addEventListener("click", () => {
+
+        navigator.clipboard.writeText(window.location.href);
+
+        alert("वेबसाइट लिंक कॉपी हो गया।");
+
+    });
+
+}
+
+
+/* ==========================
+      Print Page
+========================== */
+
+const printBtn = document.getElementById("printBtn");
+
+if (printBtn) {
+
+    printBtn.addEventListener("click", () => {
+
+        window.print();
+
+    });
+
+}
+
+
+/* ==========================
+      Lazy Loading Images
+========================== */
+
+document.querySelectorAll("img").forEach(img => {
+
+    img.loading = "lazy";
+
+});
+
+
+/* ==========================
+      Active Navigation
+========================== */
+
+const currentPage = location.pathname.split("/").pop();
+
+document.querySelectorAll("nav a").forEach(link => {
+
+    if (link.getAttribute("href") === currentPage) {
+
+        link.classList.add("active");
+
+    }
+
+});
+
+
+/* ==========================
+      Footer Year
+========================== */
+
+const year = document.getElementById("year");
+
+if (year) {
+
+    year.textContent = new Date().getFullYear();
+
+}
+
+
+/* ==========================
+      Disable Right Click
+========================== */
+
+document.addEventListener("contextmenu", function (e) {
+
+    e.preventDefault();
+
+});
+
+
+/* ==========================
+      Developer Console
+========================== */
+
+console.log("%cBJKP Official Website", "color:#6b0f1a;font-size:20px;font-weight:bold;");
+console.log("%cDeveloped for Bharatiya Jan Kalyan Party", "color:#c89b3c;font-size:14px;");
+
+
+/* ==========================
+      Finished
+========================== */
+
+console.log("All Scripts Loaded Successfully.");
