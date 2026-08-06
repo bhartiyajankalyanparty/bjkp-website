@@ -1,849 +1,321 @@
-/* ==========================================
-   BJKP OFFICIAL WEBSITE
-   STYLE.CSS - PART 1
-========================================== */
-
-/* RESET */
+/* ===========================
+   BJKP Official Website CSS
+=========================== */
 
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
 }
 
 html{
-scroll-behavior:smooth;
+    scroll-behavior:smooth;
 }
 
 body{
-font-family:'Poppins',sans-serif;
-background:#f5f5f5;
-color:#222;
-line-height:1.6;
-overflow-x:hidden;
-}
-
-/* THEME */
-
-:root{
---primary:#ff7a00;
---secondary:#0b7a2a;
---dark:#1d1d1d;
---white:#ffffff;
---light:#f7f7f7;
---shadow:0 6px 20px rgba(0,0,0,.10);
-}
-
-/* COMMON */
-
-.container{
-width:90%;
-max-width:1200px;
-margin:auto;
-}
-
-img{
-max-width:100%;
-display:block;
-}
-
-a{
-text-decoration:none;
-color:inherit;
-}
-
-section{
-padding:80px 0;
+    background:#f8f5ef;
+    color:#222;
 }
 
 /* HEADER */
 
-.header{
-position:sticky;
-top:0;
-z-index:9999;
-background:#fff;
-box-shadow:var(--shadow);
+header{
+    width:100%;
+    background:#5b0f1d;
+    position:sticky;
+    top:0;
+    z-index:999;
+    box-shadow:0 5px 20px rgba(0,0,0,.2);
 }
 
-.header .container{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:15px 0;
+.topbar{
+    width:90%;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 0;
 }
 
 .logo{
-display:flex;
-align-items:center;
-gap:15px;
+    display:flex;
+    align-items:center;
+    gap:15px;
 }
 
 .logo img{
-width:70px;
-height:70px;
-border-radius:50%;
+    width:70px;
+    height:70px;
 }
 
-.logo-text h2{
-font-size:24px;
-font-weight:700;
-color:var(--primary);
+.logo h2{
+    color:#d4af37;
+    font-size:26px;
+    font-weight:700;
 }
-
-.logo-text p{
-font-size:13px;
-color:var(--secondary);
-font-weight:600;
-}
-
-/* MENU */
 
 nav ul{
-display:flex;
-align-items:center;
-gap:18px;
-list-style:none;
+    display:flex;
+    list-style:none;
 }
 
 nav ul li{
-list-style:none;
+    margin-left:25px;
 }
 
 nav ul li a{
-display:block;
-padding:10px 16px;
-border-radius:6px;
-font-size:15px;
-font-weight:600;
-transition:.3s;
+    color:#fff;
+    text-decoration:none;
+    font-weight:500;
+    transition:.3s;
 }
 
-nav ul li a:hover,
-nav ul li a.active{
-background:var(--primary);
-color:#fff;
+nav ul li a:hover{
+    color:#d4af37;
 }
 
 /* HERO */
 
 .hero{
-position:relative;
-height:90vh;
-display:flex;
-align-items:center;
-justify-content:center;
-overflow:hidden;
+    width:90%;
+    margin:auto;
+    min-height:90vh;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:50px;
 }
 
-.hero-image{
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
-object-fit:cover;
+.hero-left{
+    flex:1;
 }
 
-.overlay{
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,.55);
+.hero-left h1{
+    font-size:50px;
+    color:#5b0f1d;
+    margin-bottom:20px;
 }
 
-.hero-content{
-position:relative;
-z-index:2;
-text-align:center;
-color:#fff;
-max-width:850px;
-padding:20px;
+.hero-left h3{
+    color:#d4af37;
+    font-size:30px;
+    margin-bottom:20px;
 }
 
-.hero-content h1{
-font-size:58px;
-font-weight:700;
-margin-bottom:15px;
+.hero-left p{
+    font-size:18px;
+    line-height:30px;
+    margin-bottom:30px;
 }
 
-.hero-content h3{
-font-size:28px;
-color:#ffd54f;
-margin-bottom:20px;
-}
-
-.hero-content p{
-font-size:20px;
-margin-bottom:35px;
-}
-
-/* BUTTON */
-
-.hero-buttons{
-display:flex;
-justify-content:center;
-gap:20px;
-flex-wrap:wrap;
+.buttons{
+    display:flex;
+    gap:20px;
 }
 
 .btn,
 .btn2{
-padding:14px 35px;
-border-radius:40px;
-font-size:17px;
-font-weight:600;
-transition:.3s;
-display:inline-block;
+    padding:14px 35px;
+    text-decoration:none;
+    border-radius:50px;
+    transition:.4s;
+    font-weight:bold;
 }
 
 .btn{
-background:var(--primary);
-color:#fff;
+    background:#5b0f1d;
+    color:#fff;
 }
 
 .btn:hover{
-background:#e76700;
-transform:translateY(-3px);
+    background:#d4af37;
+    color:#000;
 }
 
 .btn2{
-background:var(--secondary);
-color:#fff;
+    border:2px solid #5b0f1d;
+    color:#5b0f1d;
 }
 
 .btn2:hover{
-background:#075b1d;
-transform:translateY(-3px);
+    background:#5b0f1d;
+    color:#fff;
 }
 
-/* TITLE */
-
-.title{
-text-align:center;
-margin-bottom:45px;
+.hero-right{
+    flex:1;
+    text-align:center;
 }
 
-.title h2{
-font-size:38px;
-margin-bottom:12px;
+.hero-right img{
+    width:350px;
+    height:350px;
+    border-radius:50%;
+    border:8px solid #d4af37;
+    object-fit:cover;
+    box-shadow:0 10px 30px rgba(0,0,0,.3);
 }
 
-.line{
-width:90px;
-height:4px;
-background:var(--primary);
-margin:auto;
-border-radius:20px;
+.hero-right h2{
+    margin-top:20px;
+    color:#5b0f1d;
 }
 
-/* ==========================================
-   BJKP OFFICIAL WEBSITE
-   STYLE.CSS - PART 2
-   Welcome • About • News • Vision
-========================================== */
-
-/* WELCOME */
-
-.welcome{
-background:#fff;
+.hero-right p{
+    color:#777;
 }
-
-.welcome p{
-max-width:900px;
-margin:auto;
-text-align:center;
-font-size:18px;
-color:#555;
-line-height:1.9;
-}
-
 
 /* ABOUT */
 
-.about-preview{
-background:#f8f8f8;
+.about{
+    width:90%;
+    margin:80px auto;
+    text-align:center;
 }
 
-.about-preview .container{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:60px;
-align-items:center;
+.about h2{
+    font-size:40px;
+    color:#5b0f1d;
+    margin-bottom:25px;
 }
 
-.about-left{
-text-align:center;
+.about p{
+    font-size:18px;
+    line-height:34px;
 }
 
-.about-left img{
-width:320px;
-margin:auto;
-filter:drop-shadow(0 10px 20px rgba(0,0,0,.15));
-}
-
-.about-right h2{
-font-size:38px;
-margin-bottom:20px;
-color:var(--primary);
-}
-
-.about-right p{
-font-size:18px;
-line-height:1.9;
-margin-bottom:20px;
-color:#555;
-}
-
-.about-right ul{
-list-style:none;
-}
-
-.about-right ul li{
-padding:10px 0;
-font-size:18px;
-font-weight:500;
-color:#333;
-}
-
-
-/* NEWS */
-
-.news{
-background:#fff;
-}
-
-.news-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-gap:30px;
-}
-
-.news-card{
-background:#fff;
-padding:30px;
-border-radius:15px;
-box-shadow:var(--shadow);
-transition:.35s;
-border-top:5px solid var(--primary);
-}
-
-.news-card:hover{
-transform:translateY(-10px);
-}
-
-.news-card h3{
-font-size:24px;
-color:var(--secondary);
-margin-bottom:15px;
-}
-
-.news-card p{
-font-size:16px;
-color:#666;
-line-height:1.8;
-margin-bottom:18px;
-}
-
-.news-card a{
-font-weight:600;
-color:var(--primary);
-}
-
-
-/* VISION */
+/* CARDS */
 
 .vision{
-background:#f5f5f5;
+    width:90%;
+    margin:80px auto;
 }
 
-.vision-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
-}
-
-.vision-card{
-background:#fff;
-padding:30px;
-text-align:center;
-border-radius:15px;
-box-shadow:var(--shadow);
-transition:.35s;
-}
-
-.vision-card:hover{
-transform:translateY(-10px);
-}
-
-.vision-card h3{
-font-size:24px;
-margin-bottom:15px;
-color:var(--primary);
-}
-
-.vision-card p{
-font-size:16px;
-line-height:1.8;
-color:#666;
-}
-
-/* COMMON CARD */
-
-.card{
-background:#fff;
-padding:25px;
-border-radius:15px;
-box-shadow:var(--shadow);
-transition:.35s;
-}
-
-.card:hover{
-transform:translateY(-10px);
+.vision h2{
+    text-align:center;
+    color:#5b0f1d;
+    font-size:40px;
+    margin-bottom:50px;
 }
 
 .cards{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:25px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:30px;
 }
 
-.card img{
-width:100%;
-border-radius:12px;
-margin-bottom:15px;
+.card{
+    background:#fff;
+    border-radius:15px;
+    padding:35px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    transition:.4s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+}
+
+.card i{
+    font-size:45px;
+    color:#d4af37;
+    margin-bottom:20px;
 }
 
 .card h3{
-font-size:22px;
-margin-bottom:12px;
-color:var(--secondary);
+    color:#5b0f1d;
+    margin-bottom:15px;
 }
 
 .card p{
-font-size:16px;
-color:#666;
-line-height:1.8;
+    line-height:28px;
 }
-
-/* ==========================================
-   BJKP OFFICIAL WEBSITE
-   STYLE.CSS - PART 3
-   Counter • Join • Gallery • Footer
-   Responsive
-========================================== */
-
-/* COUNTER */
-
-.counter{
-background:var(--secondary);
-padding:70px 0;
-}
-
-.counter .container{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:30px;
-text-align:center;
-}
-
-.counter-box{
-color:#fff;
-padding:20px;
-}
-
-.counter-box h2{
-font-size:48px;
-font-weight:700;
-margin-bottom:10px;
-}
-
-.counter-box p{
-font-size:18px;
-}
-
-
-/* JOIN */
-
-.join{
-background:var(--primary);
-color:#fff;
-text-align:center;
-padding:80px 20px;
-}
-
-.join h2{
-font-size:40px;
-margin-bottom:20px;
-}
-
-.join p{
-font-size:18px;
-max-width:800px;
-margin:0 auto 30px;
-line-height:1.8;
-}
-
-
-/* GALLERY */
-
-.gallery-home{
-background:#fff;
-}
-
-.gallery-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
-}
-
-.gallery-grid img{
-width:100%;
-height:240px;
-object-fit:cover;
-border-radius:15px;
-box-shadow:var(--shadow);
-transition:.3s;
-cursor:pointer;
-}
-
-.gallery-grid img:hover{
-transform:scale(1.05);
-}
-
 
 /* FOOTER */
 
 footer{
-background:#111;
-color:#ddd;
-padding:60px 0 20px;
+    background:#5b0f1d;
+    color:#fff;
+    text-align:center;
+    padding:50px 20px;
+    margin-top:80px;
 }
 
-.footer-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:35px;
-margin-bottom:30px;
+footer h2{
+    color:#d4af37;
+    margin-bottom:20px;
 }
 
-.footer-grid h3{
-color:#fff;
-margin-bottom:15px;
+footer p{
+    margin:10px 0;
 }
 
-.footer-grid p{
-line-height:1.8;
+.social{
+    margin:25px 0;
 }
 
-.footer-grid ul{
-list-style:none;
-padding:0;
+.social a{
+    color:#fff;
+    margin:0 10px;
+    font-size:28px;
+    transition:.3s;
 }
 
-.footer-grid li{
-margin-bottom:10px;
+.social a:hover{
+    color:#d4af37;
 }
 
-.footer-grid a{
-color:#ccc;
-transition:.3s;
-}
+/* MOBILE */
 
-.footer-grid a:hover{
-color:var(--primary);
-}
+@media(max-width:900px){
 
-footer hr{
-border:none;
-height:1px;
-background:#333;
-margin:20px 0;
-}
-
-.copyright{
-text-align:center;
-font-size:14px;
-color:#aaa;
-}
-
-
-/* FORM */
-
-form{
-max-width:700px;
-margin:auto;
-}
-
-input,
-textarea,
-select{
-width:100%;
-padding:14px;
-margin-bottom:18px;
-border:1px solid #ddd;
-border-radius:8px;
-font-size:16px;
-outline:none;
-}
-
-input:focus,
-textarea:focus,
-select:focus{
-border-color:var(--primary);
-}
-
-textarea{
-min-height:150px;
-resize:vertical;
-}
-
-.join-btn{
-background:var(--primary);
-color:#fff;
-border:none;
-padding:14px 35px;
-border-radius:8px;
-font-size:17px;
-cursor:pointer;
-transition:.3s;
-}
-
-.join-btn:hover{
-background:#e56b00;
-}
-
-
-/* RESPONSIVE */
-
-@media (max-width:992px){
-
-.about-preview .container{
-grid-template-columns:1fr;
-text-align:center;
-}
-
-.about-left img{
-width:220px;
-}
-
-.hero-content h1{
-font-size:42px;
-}
-
-.hero-content h3{
-font-size:24px;
-}
-
-}
-
-
-@media (max-width:768px){
-
-.header .container{
-flex-direction:column;
-}
-
-.logo{
-flex-direction:column;
-text-align:center;
-}
-
-.logo img{
-width:60px;
-height:60px;
-}
-
-.logo-text h2{
-font-size:20px;
-}
-
-nav{
-width:100%;
-margin-top:15px;
+.topbar{
+    flex-direction:column;
 }
 
 nav ul{
-justify-content:center;
-flex-wrap:wrap;
-gap:8px;
+    flex-wrap:wrap;
+    justify-content:center;
+    margin-top:20px;
 }
 
-nav ul li a{
-padding:8px 10px;
-font-size:14px;
-}
-
-.hero{
-height:70vh;
-}
-
-.hero-content h1{
-font-size:32px;
-}
-
-.hero-content h3{
-font-size:20px;
-}
-
-.hero-content p{
-font-size:16px;
-}
-
-.hero-buttons{
-flex-direction:column;
-align-items:center;
-}
-
-.btn,
-.btn2{
-width:220px;
-text-align:center;
-}
-
-.title h2{
-font-size:28px;
-}
-
-.join h2{
-font-size:30px;
-}
-
-.counter-box h2{
-font-size:36px;
-}
-
-}
-
-
-@media (max-width:480px){
-
-section{
-padding:60px 0;
+nav ul li{
+    margin:10px;
 }
 
 .hero{
-height:60vh;
+    flex-direction:column-reverse;
+    text-align:center;
+    padding:60px 0;
 }
 
-.hero-content h1{
-font-size:26px;
+.hero-left h1{
+    font-size:36px;
 }
 
-.hero-content h3{
-font-size:18px;
+.hero-left h3{
+    font-size:24px;
 }
 
-.hero-content p{
-font-size:15px;
+.hero-right img{
+    width:260px;
+    height:260px;
 }
 
-.title h2{
-font-size:24px;
+.buttons{
+    justify-content:center;
+    flex-wrap:wrap;
 }
 
-.gallery-grid img{
-height:180px;
+.logo h2{
+    font-size:20px;
 }
 
-footer{
-text-align:center;
-}
-
-.footer-grid{
-grid-template-columns:1fr;
-}
-
-.news-grid,
-.vision-grid,
-.gallery-grid,
-.counter .container{
-grid-template-columns:1fr;
-}
-
-.about-right h2{
-font-size:28px;
-}
-
-.about-right p,
-.welcome p{
-font-size:16px;
-}
-
-/* ===========================
-   MOBILE MENU
-=========================== */
-
-.menu-toggle{
-display:none;
-font-size:30px;
-font-weight:bold;
-cursor:pointer;
-color:var(--primary);
-}
-
-@media (max-width:768px){
-
-.header .container{
-flex-direction:row;
-justify-content:space-between;
-align-items:center;
-padding:12px 0;
-}
-
-.logo{
-flex-direction:row;
-gap:10px;
-}
-
-.logo img{
-width:50px;
-height:50px;
-}
-
-.logo-text h2{
-font-size:18px;
-}
-
-.logo-text p{
-font-size:11px;
-}
-
-.menu-toggle{
-display:block;
-}
-
-nav{
-position:absolute;
-top:100%;
-left:0;
-width:100%;
-background:#fff;
-box-shadow:0 5px 15px rgba(0,0,0,.15);
-display:none;
-}
-
-nav.active{
-display:block;
-}
-
-nav ul{
-display:flex;
-flex-direction:column;
-padding:15px;
-gap:5px;
-}
-
-nav ul li a{
-display:block;
-padding:12px;
-border-radius:8px;
-}
-
-.hero{
-height:65vh;
+.about h2,
+.vision h2{
+    font-size:32px;
 }
 
 }
