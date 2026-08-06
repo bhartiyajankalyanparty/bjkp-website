@@ -11,28 +11,12 @@
 ========================== */
 
 window.addEventListener("load", () => {
-
     const loader = document.querySelector(".loader");
 
     if (loader) {
-
-        setTimeout(() => {
-
-            loader.style.opacity = "0";
-            loader.style.visibility = "hidden";
-
-            setTimeout(() => {
-
-                loader.style.display = "none";
-
-            }, 500);
-
-        }, 800);
-
+        loader.style.display = "none";
     }
-
 });
-
 
 /* ==========================
    Mobile Menu
