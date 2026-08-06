@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Dashboard | भारतीय जन कल्याण पार्टी</title>
+
+<meta name="description" content="BJKP Official Admin Dashboard">
+
+<link rel="icon" href="images/logo.png">
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/animation.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- Sidebar -->
+
+<aside class="admin-sidebar">
+
+<div class="admin-logo">
+
+<img src="images/logo.png" alt="Logo">
+
+<h2>BJKP Admin</h2>
+
+</div>
+
+<ul>
+
+<li><a class="active" href="admin-dashboard.html">
+
+<i class="fas fa-gauge"></i>
+
+Dashboard
+
+</a></li>
+
+<li><a href="members.html">
+
+<i class="fas fa-users"></i>
+
+Members
+
+</a></li>
+
+<li><a href="volunteers.html">
+
+<i class="fas fa-user-friends"></i>
+
+Volunteers
+
+</a></li>
+
+<li><a href="news-manager.html">
+
+<i class="fas fa-newspaper"></i>
+
+News
+
+</a></li>
+
+<li><a href="gallery-manager.html">
+
+<i class="fas fa-images"></i>
+
+Gallery
+
+</a></li>
+
+<li><a href="events-manager.html">
+
+<i class="fas fa-calendar-days"></i>
+
+Events
+
+</a></li>
+
+<li><a href="donation-manager.html">
+
+<i class="fas fa-hand-holding-heart"></i>
+
+Donations
+
+</a></li>
+
+<li><a href="downloads-manager.html">
+
+<i class="fas fa-download"></i>
+
+Downloads
+
+</a></li>
+
+<li><a href="settings.html">
+
+<i class="fas fa-gear"></i>
+
+Settings
+
+</a></li>
+
+<li><a href="admin-login.html">
+
+<i class="fas fa-right-from-bracket"></i>
+
+Logout
+
+</a></li>
+
+</ul>
+
+</aside>
+
+<!-- Main Content -->
+
+<div class="admin-main">
+
+<header class="admin-header">
+
+<h1>
+
+<i class="fas fa-chart-line"></i>
+
+Dashboard
+
+</h1>
+
+<p>
+
+Welcome Administrator
+
+</p>
+
+</header>
+
+<!-- Statistics -->
+
+<section class="admin-cards">
+
+<div class="card">
+
+<i class="fas fa-users fa-3x"></i>
+
+<h2 id="memberCount">0</h2>
+
+<p>Total Members</p>
+
+</div>
+
+<div class="card">
+
+<i class="fas fa-user-friends fa-3x"></i>
+
+<h2 id="volunteerCount">0</h2>
+
+<p>Total Volunteers</p>
+
+</div>
+
+<div class="card">
+
+<i class="fas fa-newspaper fa-3x"></i>
+
+<h2 id="newsCount">0</h2>
+
+<p>News Articles</p>
+
+</div>
+
+<div class="card">
+
+<i class="fas fa-calendar-check fa-3x"></i>
+
+<h2 id="eventCount">0</h2>
+
+<p>Upcoming Events</p>
+
+</div>
+
+</section>
+
+<!-- ==========================
+     QUICK ACTIONS
+========================== -->
+
+<section class="admin-section">
+
+<h2>
+
+<i class="fas fa-bolt"></i>
+
+Quick Actions
+
+</h2>
+
+<div class="admin-cards">
+
+<div class="card">
+
+<i class="fas fa-user-plus fa-3x"></i>
+
+<h3>Add Member</h3>
+
+<p>नया सदस्य जोड़ें</p>
+
+<a href="membership.html" class="btn-primary">Open</a>
+
+</div>
+
+<div class="card">
+
+<i class="fas fa-newspaper fa-3x"></i>
+
+<h3>Add News</h3>
+
+<p>नई खबर प्रकाशित करें</p>
+
+<a href="news-manager.html" class="btn-primary">Open</a>
+
+</div>
+
+<div class="card">
+
+<i class="fas fa-calendar-plus fa-3x"></i>
+
+<h3>Create Event</h3>
+
+<p>नया कार्यक्रम जोड़ें</p>
+
+<a href="events-manager.html" class="btn-primary">Open</a>
+
+</div>
+
+<div class="card">
+
+<i class="fas fa-image fa-3x"></i>
+
+<h3>Upload Gallery</h3>
+
+<p>नई फोटो अपलोड करें</p>
+
+<a href="gallery-manager.html" class="btn-primary">Open</a>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ==========================
+     RECENT ACTIVITY
+========================== -->
+
+<section class="admin-section">
+
+<h2>
+
+<i class="fas fa-clock"></i>
+
+Recent Activity
+
+</h2>
+
+<table class="admin-table">
+
+<thead>
+
+<tr>
+
+<th>Date</th>
+
+<th>Activity</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>15 Aug 2026</td>
+
+<td>New Member Registered</td>
+
+<td><span class="badge success">Completed</span></td>
+
+</tr>
+
+<tr>
+
+<td>14 Aug 2026</td>
+
+<td>News Published</td>
+
+<td><span class="badge success">Live</span></td>
+
+</tr>
+
+<tr>
+
+<td>13 Aug 2026</td>
+
+<td>Volunteer Joined</td>
+
+<td><span class="badge success">Approved</span></td>
+
+</tr>
+
+<tr>
+
+<td>12 Aug 2026</td>
+
+<td>Donation Received</td>
+
+<td><span class="badge warning">Pending Verification</span></td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</section>
+
+<!-- ==========================
+     DASHBOARD SUMMARY
+========================== -->
+
+<section class="admin-section">
+
+<h2>
+
+<i class="fas fa-chart-pie"></i>
+
+Dashboard Summary
+
+</h2>
+
+<div class="admin-cards">
+
+<div class="card">
+
+<h3>Total Donations</h3>
+
+<h2>₹0</h2>
+
+<p>Current Collection</p>
+
+</div>
+
+<div class="card">
+
+<h3>Downloads</h3>
+
+<h2>0</h2>
+
+<p>Documents Downloaded</p>
+
+</div>
+
+<div class="card">
+
+<h3>Gallery Photos</h3>
+
+<h2>0</h2>
+
+<p>Total Uploaded</p>
+
+</div>
+
+<div class="card">
+
+<h3>Website Visitors</h3>
+
+<h2>0</h2>
+
+<p>Today's Visitors</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ==========================
+     UPCOMING EVENTS
+========================== -->
+
+<section class="admin-section">
+
+<h2>
+
+<i class="fas fa-calendar-days"></i>
+
+Upcoming Events
+
+</h2>
+
+<div class="cards">
+
+<div class="card">
+
+<h3>राष्ट्रीय सम्मेलन</h3>
+
+<p>📅 15 अगस्त 2026</p>
+
+<p>📍 नई दिल्ली</p>
+
+</div>
+
+<div class="card">
+
+<h3>युवा सम्मेलन</h3>
+
+<p>📅 05 सितम्बर 2026</p>
+
+<p>📍 लखनऊ</p>
+
+</div>
+
+<div class="card">
+
+<h3>सदस्यता अभियान</h3>
+
+<p>📅 20 सितम्बर 2026</p>
+
+<p>📍 बस्ती</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ==========================
+     ADMIN PROFILE
+========================== -->
+
+<section class="admin-section">
+
+<h2>
+<i class="fas fa-user-shield"></i>
+Administrator
+</h2>
+
+<div class="admin-cards">
+
+<div class="card">
+
+<img src="images/admin.png"
+alt="Administrator"
+style="width:120px;height:120px;border-radius:50%;object-fit:cover;margin-bottom:15px;">
+
+<h3>Administrator</h3>
+
+<p>भारतीय जन कल्याण पार्टी</p>
+
+<p>
+<i class="fas fa-envelope"></i>
+info.bjkp.org.in@gmail.com
+</p>
+
+<p>
+<i class="fas fa-phone"></i>
++91 7317384231
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>System Status</h3>
+
+<p>🟢 Website Status : Online</p>
+
+<p>🟢 Database : Connected</p>
+
+<p>🟢 Security : Protected</p>
+
+<p>🟢 Backup : Active</p>
+
+</div>
+
+<div class="card">
+
+<h3>Quick Settings</h3>
+
+<a href="settings.html" class="btn-primary">
+<i class="fas fa-gear"></i>
+Settings
+</a>
+
+<br><br>
+
+<button class="btn-primary" onclick="backupData()">
+
+<i class="fas fa-database"></i>
+
+Backup Data
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ==========================
+     FOOTER
+========================== -->
+
+<footer class="admin-footer">
+
+<p>
+
+© <span id="year"></span>
+
+<strong>भारतीय जन कल्याण पार्टी (BJKP)</strong>
+
+<br>
+
+Official Admin Dashboard
+
+</p>
+
+</footer>
+
+<!-- ==========================
+     DASHBOARD SCRIPT
+========================== -->
+
+<script>
+
+// Current Year
+
+document.getElementById("year").textContent =
+new Date().getFullYear();
+
+// Demo Statistics
+
+document.getElementById("memberCount").innerHTML = 125;
+
+document.getElementById("volunteerCount").innerHTML = 42;
+
+document.getElementById("newsCount").innerHTML = 18;
+
+document.getElementById("eventCount").innerHTML = 7;
+
+// Backup Button
+
+function backupData(){
+
+alert("Backup Started Successfully.");
+
+}
+
+// Logout Confirmation
+
+const logoutLink = document.querySelector('a[href="admin-login.html"]');
+
+logoutLink.addEventListener("click", function(e){
+
+const confirmLogout = confirm("क्या आप लॉगआउट करना चाहते हैं?");
+
+if(!confirmLogout){
+
+e.preventDefault();
+
+}
+
+});
+
+</script>
+
+<!-- Main Script -->
+
+<script src="js/script.js"></script>
+
+</div>
+
+</body>
+
+</html>
