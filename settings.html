@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Settings | BJKP Admin</title>
+
+<link rel="icon" href="images/logo.png">
+
+<link rel="stylesheet" href="css/style.css">
+
+<link rel="stylesheet" href="css/responsive.css">
+
+<link rel="stylesheet" href="css/animation.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- Sidebar -->
+
+<aside class="admin-sidebar">
+
+<div class="admin-logo">
+
+<img src="images/logo.png" alt="Logo">
+
+<h2>BJKP Admin</h2>
+
+</div>
+
+<ul>
+
+<li><a href="admin-dashboard.html"><i class="fas fa-gauge"></i> Dashboard</a></li>
+
+<li><a href="members.html"><i class="fas fa-users"></i> Members</a></li>
+
+<li><a href="volunteers.html"><i class="fas fa-user-friends"></i> Volunteers</a></li>
+
+<li><a href="news-manager.html"><i class="fas fa-newspaper"></i> News</a></li>
+
+<li><a href="gallery-manager.html"><i class="fas fa-images"></i> Gallery</a></li>
+
+<li><a href="events-manager.html"><i class="fas fa-calendar-days"></i> Events</a></li>
+
+<li><a href="donation-manager.html"><i class="fas fa-hand-holding-heart"></i> Donations</a></li>
+
+<li><a href="downloads-manager.html"><i class="fas fa-download"></i> Downloads</a></li>
+
+<li><a class="active" href="settings.html">
+
+<i class="fas fa-gear"></i>
+
+Settings
+
+</a></li>
+
+<li><a href="admin-login.html">
+
+<i class="fas fa-right-from-bracket"></i>
+
+Logout
+
+</a></li>
+
+</ul>
+
+</aside>
+
+<!-- Main -->
+
+<div class="admin-main">
+
+<header class="admin-header">
+
+<h1>
+
+<i class="fas fa-gear"></i>
+
+Website Settings
+
+</h1>
+
+<p>
+
+वेबसाइट की सभी सेटिंग्स का प्रबंधन
+
+</p>
+
+</header>
+
+<!-- Website Information -->
+
+<section class="admin-section">
+
+<h2>
+
+<i class="fas fa-globe"></i>
+
+Website Information
+
+</h2>
+
+<form id="settingsForm">
+
+<div class="form-group">
+
+<label>Website Name</label>
+
+<input
+type="text"
+value="भारतीय जन कल्याण पार्टी">
+
+</div>
+
+<div class="form-group">
+
+<label>Website Tagline</label>
+
+<input
+type="text"
+value="राष्ट्रहित • जनसेवा • विकास">
+
+</div>
+
+<div class="form-group">
+
+<label>Website URL</label>
+
+<input
+type="url"
+placeholder="https://example.com">
+
+</div>
+
+<div class="form-group">
+
+<label>Admin Email</label>
+
+<input
+type="email"
+placeholder="admin@example.com">
+
+</div>
+
+<div class="form-group">
+
+<label>Contact Number</label>
+
+<input
+type="tel"
+placeholder="+91XXXXXXXXXX">
+
+</div>
+
+</form>
+
+</section>
+
+<!-- Statistics -->
+
+<section class="admin-cards">
+
+<div class="card">
+
+<i class="fas fa-globe fa-3x"></i>
+
+<h2>Online</h2>
+
+<p>Website Status</p>
+
+</div>
+
+<div class="card">
+
+<i class="fas fa-database fa-3x"></i>
+
+<h2>Ready</h2>
+
+<p>Database</p>
+
+</div>
+
+<div class="card">
+
+<i class="fas fa-user-shield fa-3x"></i>
+
+<h2>Admin</h2>
+
+<p>Access Level</p>
+
+</div>
+
+<div class="card">
+
+<i class="fas fa-server fa-3x"></i>
+
+<h2>v1.0</h2>
+
+<p>System Version</p>
+
+</div>
+
+</section>
+
+<!-- ==========================
+     LOGO & FAVICON SETTINGS
+========================== -->
+
+<section class="admin-section">
+
+<h2>
+
+<i class="fas fa-image"></i>
+
+Logo & Branding
+
+</h2>
+
+<div class="form-group">
+
+<label>Website Logo</label>
+
+<input type="file" accept="image/*">
+
+</div>
+
+<div class="form-group">
+
+<label>Favicon</label>
+
+<input type="file" accept="image/*">
+
+</div>
+
+</section>
+
+<!-- ==========================
+     SOCIAL MEDIA SETTINGS
+========================== -->
+
+<section class="admin-section">
+
+<h2>
+
+<i class="fas fa-share-alt"></i>
+
+Social Media Links
+
+</h2>
+
+<div class="form-group">
+
+<label>Facebook</label>
+
+<input type="url" placeholder="https://facebook.com/">
+
+</div>
+
+<div class="form-group">
+
+<label>Instagram</label>
+
+<input type="url" placeholder="https://instagram.com/">
+
+</div>
+
+<div class="form-group">
+
+<label>X (Twitter)</label>
+
+<input type="url" placeholder="https://x.com/">
+
+</div>
+
+<div class="form-group">
+
+<label>YouTube</label>
+
+<input type="url" placeholder="https://youtube.com/">
+
+</div>
+
+<div class="form-group">
+
+<label>Telegram</label>
+
+<input type="url" placeholder="https://t.me/">
+
+</div>
+
+<div class="form-group">
+
+<label>WhatsApp Channel</label>
+
+<input type="url" placeholder="https://whatsapp.com/channel/...">
+
+</div>
+
+</section>
+
+<!-- ==========================
+     OFFICE ADDRESS
+========================== -->
+
+<section class="admin-section">
+
+<h2>
+
+<i class="fas fa-location-dot"></i>
+
+Office Address
+
+</h2>
+
+<div class="form-group">
+
+<label>Head Office Address</label>
+
+<textarea rows="4"
+placeholder="मुख्यालय का पूरा पता"></textarea>
+
+</div>
+
+</section>
+
+<!-- ==========================
+     CHANGE PASSWORD
+========================== -->
+
+<section class="admin-section">
+
+<h2>
+
+<i class="fas fa-lock"></i>
+
+Change Admin Password
+
+</h2>
+
+<div class="form-group">
+
+<label>Current Password</label>
+
+<input type="password">
+
+</div>
+
+<div class="form-group">
+
+<label>New Password</label>
+
+<input type="password">
+
+</div>
+
+<div class="form-group">
+
+<label>Confirm Password</label>
+
+<input type="password">
+
+</div>
+
+</section>
+
+<!-- ==========================
+     WEBSITE SETTINGS
+========================== -->
+
+<section class="admin-section">
+
+<h2>
+
+<i class="fas fa-sliders"></i>
+
+Website Options
+
+</h2>
+
+<label>
+
+<input type="checkbox" checked>
+
+Enable Membership Form
+
+</label>
+
+<br><br>
+
+<label>
+
+<input type="checkbox" checked>
+
+Enable Donation Page
+
+</label>
+
+<br><br>
+
+<label>
+
+<input type="checkbox" checked>
+
+Enable Events Section
+
+</label>
+
+<br><br>
+
+<label>
+
+<input type="checkbox" checked>
+
+Enable Gallery
+
+</label>
+
+<br><br>
+
+<label>
+
+<input type="checkbox">
+
+Maintenance Mode
+
+</label>
+
+</section>
+
+<!-- ==========================
+     SAVE BUTTON
+========================== -->
+
+<section class="admin-section" style="text-align:center;">
+
+<button class="btn-primary">
+
+<i class="fas fa-floppy-disk"></i>
+
+Save All Settings
+
+</button>
+
+<button class="btn-danger">
+
+<i class="fas fa-rotate-left"></i>
+
+Reset Settings
+
+</button>
+
+</section>
+
+<!-- ==========================
+     FOOTER
+========================== -->
+
+<footer class="admin-footer">
+
+<div class="container">
+
+<p>
+
+© <span id="year"></span>
+
+<strong>भारतीय जन कल्याण पार्टी (BJKP)</strong>
+
+<br>
+
+Website Settings Panel
+
+</p>
+
+</div>
+
+</footer>
+
+<!-- ==========================
+     JAVASCRIPT
+========================== -->
+
+<script>
+
+// Current Year
+
+document.getElementById("year").textContent =
+new Date().getFullYear();
+
+// Save Settings
+
+const settingsForm = document.getElementById("settingsForm");
+
+document.querySelector(".btn-primary").addEventListener("click", function(e){
+
+e.preventDefault();
+
+alert("Settings Saved Successfully! (Demo)");
+
+});
+
+// Reset Settings
+
+document.querySelector(".btn-danger").addEventListener("click", function(){
+
+if(confirm("क्या आप सभी सेटिंग्स रीसेट करना चाहते हैं?")){
+
+location.reload();
+
+}
+
+});
+
+// Password Validation
+
+const passwords = document.querySelectorAll('input[type="password"]');
+
+passwords.forEach(function(input){
+
+input.addEventListener("keyup", function(){
+
+if(passwords[1].value !== "" &&
+passwords[2].value !== ""){
+
+if(passwords[1].value === passwords[2].value){
+
+passwords[2].style.border =
+"2px solid green";
+
+}else{
+
+passwords[2].style.border =
+"2px solid red";
+
+}
+
+}
+
+});
+
+});
+
+// Theme Toggle (Demo)
+
+let darkMode = false;
+
+function toggleTheme(){
+
+darkMode = !darkMode;
+
+if(darkMode){
+
+document.body.classList.add("dark-mode");
+
+}else{
+
+document.body.classList.remove("dark-mode");
+
+}
+
+}
+
+// System Info
+
+console.log("BJKP Admin Panel Loaded Successfully");
+
+console.log("Settings Module Active");
+
+</script>
+
+<!-- Main Script -->
+
+<script src="js/script.js"></script>
+
+</div>
+
+</body>
+
+</html>
