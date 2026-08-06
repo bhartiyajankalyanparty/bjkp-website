@@ -1,0 +1,263 @@
+/*==========================================
+      PROFESSIONAL HEADER & NAVBAR
+==========================================*/
+
+header{
+position:sticky;
+top:0;
+left:0;
+width:100%;
+background:#fff;
+box-shadow:0 5px 20px rgba(0,0,0,.08);
+z-index:9999;
+transition:.3s;
+}
+
+header .container{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:12px 0;
+gap:20px;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:15px;
+flex-shrink:0;
+}
+
+.logo img{
+width:70px;
+height:70px;
+object-fit:contain;
+}
+
+.logo h2{
+font-size:22px;
+color:var(--primary);
+margin:0;
+}
+
+.logo p{
+font-size:13px;
+color:var(--gray);
+}
+
+/* Navigation */
+
+nav{
+flex:1;
+display:flex;
+justify-content:center;
+}
+
+nav ul{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:18px;
+flex-wrap:nowrap;
+}
+
+nav ul li{
+margin:0;
+}
+
+nav ul li a{
+display:flex;
+align-items:center;
+gap:6px;
+padding:10px 14px;
+font-size:15px;
+font-weight:600;
+color:var(--dark);
+border-radius:8px;
+transition:.3s;
+white-space:nowrap;
+}
+
+nav ul li a:hover,
+nav ul li a.active{
+background:rgba(107,15,26,.08);
+color:var(--primary);
+}
+
+/* Admin Login Button */
+
+nav ul li:last-child a{
+background:var(--primary);
+color:#fff;
+border-radius:30px;
+padding:11px 20px;
+}
+
+nav ul li:last-child a:hover{
+background:var(--secondary);
+color:#000;
+}
+
+/* Right Section */
+
+.header-right{
+display:flex;
+align-items:center;
+gap:12px;
+flex-shrink:0;
+}
+
+.join-btn{
+background:var(--secondary);
+color:#000;
+padding:12px 24px;
+border-radius:30px;
+font-weight:700;
+}
+
+.join-btn:hover{
+background:var(--primary);
+color:#fff;
+}
+
+#menu-btn{
+display:none;
+font-size:30px;
+cursor:pointer;
+}
+
+/*==========================================
+      PROFESSIONAL MOBILE NAVBAR
+==========================================*/
+
+@media (max-width:992px){
+
+header .container{
+flex-wrap:wrap;
+}
+
+#menu-btn{
+display:block;
+color:var(--primary);
+}
+
+nav{
+width:100%;
+display:none;
+margin-top:15px;
+}
+
+nav.active{
+display:block;
+animation:fadeDown .4s ease;
+}
+
+nav ul{
+flex-direction:column;
+gap:0;
+background:#fff;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,.12);
+padding:10px 0;
+overflow:hidden;
+}
+
+nav ul li{
+width:100%;
+}
+
+nav ul li a{
+display:block;
+padding:15px 25px;
+border-bottom:1px solid #eee;
+border-radius:0;
+}
+
+nav ul li:last-child a{
+margin:12px;
+text-align:center;
+border-radius:30px;
+border:none;
+}
+
+.header-right{
+margin-left:auto;
+}
+
+.join-btn{
+display:none;
+}
+
+.logo h2{
+font-size:18px;
+}
+
+.logo p{
+font-size:12px;
+}
+
+.logo img{
+width:60px;
+}
+
+}
+
+@media (max-width:768px){
+
+.top-bar{
+display:none;
+}
+
+.hero-content{
+flex-direction:column;
+text-align:center;
+}
+
+.hero h1{
+font-size:38px;
+}
+
+.hero h3{
+font-size:24px;
+}
+
+.hero-buttons{
+justify-content:center;
+flex-wrap:wrap;
+}
+
+.president-card{
+margin:auto;
+}
+
+}
+
+@media (max-width:480px){
+
+.container{
+width:94%;
+}
+
+.hero h1{
+font-size:30px;
+}
+
+.hero h3{
+font-size:20px;
+}
+
+.btn-primary,
+.btn-secondary{
+width:100%;
+text-align:center;
+}
+
+.logo h2{
+font-size:16px;
+}
+
+.logo p{
+display:none;
+}
+
+}
