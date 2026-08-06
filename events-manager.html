@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Events Manager | BJKP Admin</title>
+
+<link rel="icon" href="images/logo.png">
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/animation.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- ==========================
+     SIDEBAR
+========================== -->
+
+<aside class="admin-sidebar">
+
+<div class="admin-logo">
+
+<img src="images/logo.png" alt="Logo">
+
+<h2>BJKP Admin</h2>
+
+</div>
+
+<ul>
+
+<li><a href="admin-dashboard.html"><i class="fas fa-gauge"></i> Dashboard</a></li>
+
+<li><a href="members.html"><i class="fas fa-users"></i> Members</a></li>
+
+<li><a href="volunteers.html"><i class="fas fa-user-friends"></i> Volunteers</a></li>
+
+<li><a href="news-manager.html"><i class="fas fa-newspaper"></i> News</a></li>
+
+<li><a href="gallery-manager.html"><i class="fas fa-images"></i> Gallery</a></li>
+
+<li><a class="active" href="events-manager.html"><i class="fas fa-calendar-days"></i> Events</a></li>
+
+<li><a href="donation-manager.html"><i class="fas fa-hand-holding-heart"></i> Donations</a></li>
+
+<li><a href="downloads-manager.html"><i class="fas fa-download"></i> Downloads</a></li>
+
+<li><a href="settings.html"><i class="fas fa-gear"></i> Settings</a></li>
+
+<li><a href="admin-login.html"><i class="fas fa-right-from-bracket"></i> Logout</a></li>
+
+</ul>
+
+</aside>
+
+<!-- ==========================
+     MAIN CONTENT
+========================== -->
+
+<div class="admin-main">
+
+<header class="admin-header">
+
+<h1>
+
+<i class="fas fa-calendar-days"></i>
+
+Events Management
+
+</h1>
+
+<p>
+
+सभी कार्यक्रमों का प्रबंधन
+
+</p>
+
+</header>
+
+<!-- ==========================
+     TOOLBAR
+========================== -->
+
+<section class="admin-section">
+
+<div class="admin-toolbar">
+
+<input
+type="text"
+id="eventSearch"
+placeholder="🔍 कार्यक्रम खोजें...">
+
+<button class="btn-primary">
+
+<i class="fas fa-calendar-plus"></i>
+
+Add Event
+
+</button>
+
+<button class="btn-primary">
+
+<i class="fas fa-file-export"></i>
+
+Export
+
+</button>
+
+<button class="btn-primary">
+
+<i class="fas fa-print"></i>
+
+Print
+
+</button>
+
+</div>
+
+</section>
+
+<!-- ==========================
+     STATISTICS
+========================== -->
+
+<section class="admin-cards">
+
+<div class="card">
+
+<i class="fas fa-calendar-check fa-3x"></i>
+
+<h2 id="totalEvents">0</h2>
+
+<p>Total Events</p>
+
+</div>
+
+<div class="card">
+
+<i class="fas fa-star fa-3x"></i>
+
+<h2 id="featuredEvents">0</h2>
+
+<p>Featured Events</p>
+
+</div>
+
+<div class="card">
+
+<i class="fas fa-clock fa-3x"></i>
+
+<h2 id="upcomingEvents">0</h2>
+
+<p>Upcoming Events</p>
+
+</div>
+
+<div class="card">
+
+<i class="fas fa-users fa-3x"></i>
+
+<h2 id="totalRegistrations">0</h2>
+
+<p>Total Registrations</p>
+
+</div>
+
+</section>
+
+<!-- ==========================
+     EVENTS TABLE
+========================== -->
+
+<section class="admin-section">
+
+<h2>
+
+<i class="fas fa-table"></i>
+
+कार्यक्रम सूची
+
+</h2>
+
+<div class="table-responsive">
+
+<table class="admin-table" id="eventsTable">
+
+<thead>
+
+<tr>
+
+<th>ID</th>
+
+<th>Banner</th>
+
+<th>Event Name</th>
+
+<th>Location</th>
+
+<th>Date</th>
+
+<th>Time</th>
+
+<th>Organizer</th>
+
+<th>Status</th>
+
+<th>Actions</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>1</td>
+
+<td>
+
+<img src="images/event1.jpg"
+width="80"
+height="55"
+style="object-fit:cover;border-radius:8px;">
+
+</td>
+
+<td>राष्ट्रीय सम्मेलन</td>
+
+<td>नई दिल्ली</td>
+
+<td>15 Aug 2026</td>
+
+<td>10:00 AM</td>
+
+<td>National Team</td>
+
+<td>
+
+<span class="badge success">
+
+Upcoming
+
+</span>
+
+</td>
+
+<td>
+
+<button class="btn-primary">
+
+<i class="fas fa-eye"></i>
+
+</button>
+
+<button class="btn-primary">
+
+<i class="fas fa-pen"></i>
+
+</button>
+
+<button class="btn-danger">
+
+<i class="fas fa-trash"></i>
+
+</button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>2</td>
+
+<td>
+
+<img src="images/event2.jpg"
+width="80"
+height="55"
+style="object-fit:cover;border-radius:8px;">
+
+</td>
+
+<td>युवा सम्मेलन</td>
+
+<td>लखनऊ</td>
+
+<td>05 Sep 2026</td>
+
+<td>11:30 AM</td>
+
+<td>Youth Wing</td>
+
+<td>
+
+<span class="badge success">
+
+Open
+
+</span>
+
+</td>
+
+<td>
+
+<button class="btn-primary">
+
+<i class="fas fa-eye"></i>
+
+</button>
+
+<button class="btn-primary">
+
+<i class="fas fa-pen"></i>
+
+</button>
+
+<button class="btn-danger">
+
+<i class="fas fa-trash"></i>
+
+</button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>3</td>
+
+<td>
+
+<img src="images/event3.jpg"
+width="80"
+height="55"
+style="object-fit:cover;border-radius:8px;">
+
+</td>
+
+<td>सदस्यता अभियान</td>
+
+<td>बस्ती</td>
+
+<td>20 Sep 2026</td>
+
+<td>09:00 AM</td>
+
+<td>District Team</td>
+
+<td>
+
+<span class="badge warning">
+
+Draft
+
+</span>
+
+</td>
+
+<td>
+
+<button class="btn-primary">
+
+<i class="fas fa-eye"></i>
+
+</button>
+
+<button class="btn-primary">
+
+<i class="fas fa-pen"></i>
+
+</button>
+
+<button class="btn-danger">
+
+<i class="fas fa-trash"></i>
+
+</button>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+<!-- ==========================
+     PAGINATION
+========================== -->
+
+<section class="admin-section">
+
+<div class="pagination">
+
+<button class="btn-primary">
+
+<i class="fas fa-angle-left"></i>
+
+Previous
+
+</button>
+
+<span style="padding:10px 20px;">
+
+Page 1 of 2
+
+</span>
+
+<button class="btn-primary">
+
+Next
+
+<i class="fas fa-angle-right"></i>
+
+</button>
+
+</div>
+
+</section>
+
+<!-- ==========================
+     EVENT SUMMARY
+========================== -->
+
+<section class="admin-cards">
+
+<div class="card">
+
+<h3>Upcoming</h3>
+
+<h2>12</h2>
+
+</div>
+
+<div class="card">
+
+<h3>Completed</h3>
+
+<h2>28</h2>
+
+</div>
+
+<div class="card">
+
+<h3>Draft</h3>
+
+<h2>04</h2>
+
+</div>
+
+<div class="card">
+
+<h3>Total Registration</h3>
+
+<h2>2,580</h2>
+
+</div>
+
+</section>
+
+<!-- ==========================
+     ADD EVENT MODAL
+========================== -->
+
+<div id="addEventModal" class="modal">
+
+<div class="modal-content">
+
+<span class="close">&times;</span>
+
+<h2>नया कार्यक्रम जोड़ें</h2>
+
+<form id="eventForm">
+
+<input type="text" placeholder="कार्यक्रम का नाम" required>
+
+<input type="text" placeholder="स्थान (Location)" required>
+
+<input type="date" required>
+
+<input type="time" required>
+
+<input type="text" placeholder="Organizer" required>
+
+<input type="number" placeholder="Expected Participants">
+
+<input type="file" accept="image/*">
+
+<textarea rows="5" placeholder="कार्यक्रम का विवरण"></textarea>
+
+<label>
+
+<input type="checkbox">
+
+Featured Event
+
+</label>
+
+<select>
+
+<option>Upcoming</option>
+
+<option>Open</option>
+
+<option>Completed</option>
+
+<option>Draft</option>
+
+</select>
+
+<button type="submit" class="btn-primary">
+
+<i class="fas fa-save"></i>
+
+Save Event
+
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+<!-- ==========================
+     FOOTER
+========================== -->
+
+<footer class="admin-footer">
+
+<div class="container">
+
+<p>
+
+© <span id="year"></span>
+
+<strong>भारतीय जन कल्याण पार्टी (BJKP)</strong>
+
+<br>
+
+Events Management Panel
+
+</p>
+
+</div>
+
+</footer>
+
+<!-- ==========================
+     JAVASCRIPT
+========================== -->
+
+<script>
+
+// Current Year
+document.getElementById("year").textContent =
+new Date().getFullYear();
+
+// Demo Statistics
+document.getElementById("totalEvents").textContent = "44";
+document.getElementById("featuredEvents").textContent = "10";
+document.getElementById("upcomingEvents").textContent = "12";
+document.getElementById("totalRegistrations").textContent = "2580";
+
+// Search Function
+const eventSearch = document.getElementById("eventSearch");
+
+eventSearch.addEventListener("keyup", function(){
+
+let filter = this.value.toUpperCase();
+
+let rows = document.querySelectorAll("#eventsTable tbody tr");
+
+rows.forEach(function(row){
+
+let title = row.cells[2].textContent.toUpperCase();
+
+row.style.display =
+title.includes(filter) ? "" : "none";
+
+});
+
+});
+
+// Modal
+const modal = document.getElementById("addEventModal");
+
+const addBtn = document.querySelector(".admin-toolbar .btn-primary");
+
+const closeBtn = document.querySelector(".close");
+
+addBtn.onclick = function(){
+
+modal.style.display = "block";
+
+}
+
+closeBtn.onclick = function(){
+
+modal.style.display = "none";
+
+}
+
+window.onclick = function(e){
+
+if(e.target == modal){
+
+modal.style.display = "none";
+
+}
+
+}
+
+// Demo Form Submit
+document.getElementById("eventForm")
+.addEventListener("submit", function(e){
+
+e.preventDefault();
+
+alert("Event Saved Successfully! (Demo)");
+
+this.reset();
+
+modal.style.display = "none";
+
+});
+
+// Demo Delete
+document.querySelectorAll(".btn-danger").forEach(function(btn){
+
+btn.onclick = function(){
+
+if(confirm("क्या आप यह कार्यक्रम हटाना चाहते हैं?")){
+
+alert("Event Deleted Successfully! (Demo)");
+
+}
+
+}
+
+});
+
+</script>
+
+<!-- Main Script -->
+
+<script src="js/script.js"></script>
+
+</div>
+
+</body>
+
+</html>
