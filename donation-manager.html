@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Donation Manager | BJKP Admin</title>
+
+<link rel="icon" href="images/logo.png">
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/animation.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- ==========================
+     SIDEBAR
+========================== -->
+
+<aside class="admin-sidebar">
+
+<div class="admin-logo">
+
+<img src="images/logo.png" alt="Logo">
+
+<h2>BJKP Admin</h2>
+
+</div>
+
+<ul>
+
+<li><a href="admin-dashboard.html"><i class="fas fa-gauge"></i> Dashboard</a></li>
+
+<li><a href="members.html"><i class="fas fa-users"></i> Members</a></li>
+
+<li><a href="volunteers.html"><i class="fas fa-user-friends"></i> Volunteers</a></li>
+
+<li><a href="news-manager.html"><i class="fas fa-newspaper"></i> News</a></li>
+
+<li><a href="gallery-manager.html"><i class="fas fa-images"></i> Gallery</a></li>
+
+<li><a href="events-manager.html"><i class="fas fa-calendar-days"></i> Events</a></li>
+
+<li><a class="active" href="donation-manager.html"><i class="fas fa-hand-holding-heart"></i> Donations</a></li>
+
+<li><a href="downloads-manager.html"><i class="fas fa-download"></i> Downloads</a></li>
+
+<li><a href="settings.html"><i class="fas fa-gear"></i> Settings</a></li>
+
+<li><a href="admin-login.html"><i class="fas fa-right-from-bracket"></i> Logout</a></li>
+
+</ul>
+
+</aside>
+
+<!-- ==========================
+     MAIN CONTENT
+========================== -->
+
+<div class="admin-main">
+
+<header class="admin-header">
+
+<h1>
+
+<i class="fas fa-hand-holding-heart"></i>
+
+Donation Management
+
+</h1>
+
+<p>
+
+दान एवं सहयोग राशि का प्रबंधन
+
+</p>
+
+</header>
+
+<!-- ==========================
+     TOOLBAR
+========================== -->
+
+<section class="admin-section">
+
+<div class="admin-toolbar">
+
+<input
+type="text"
+id="donationSearch"
+placeholder="🔍 दानदाता खोजें...">
+
+<button class="btn-primary">
+
+<i class="fas fa-plus-circle"></i>
+
+Add Donation
+
+</button>
+
+<button class="btn-primary">
+
+<i class="fas fa-file-excel"></i>
+
+Export Excel
+
+</button>
+
+<button class="btn-primary">
+
+<i class="fas fa-file-pdf"></i>
+
+Export PDF
+
+</button>
+
+<button class="btn-primary">
+
+<i class="fas fa-print"></i>
+
+Print
+
+</button>
+
+</div>
+
+</section>
+
+<!-- ==========================
+     STATISTICS
+========================== -->
+
+<section class="admin-cards">
+
+<div class="card">
+
+<i class="fas fa-indian-rupee-sign fa-3x"></i>
+
+<h2 id="totalDonation">₹0</h2>
+
+<p>Total Donation</p>
+
+</div>
+
+<div class="card">
+
+<i class="fas fa-users fa-3x"></i>
+
+<h2 id="totalDonors">0</h2>
+
+<p>Total Donors</p>
+
+</div>
+
+<div class="card">
+
+<i class="fas fa-check-circle fa-3x"></i>
+
+<h2 id="successfulPayments">0</h2>
+
+<p>Successful Payments</p>
+
+</div>
+
+<div class="card">
+
+<i class="fas fa-clock fa-3x"></i>
+
+<h2 id="pendingPayments">0</h2>
+
+<p>Pending Payments</p>
+
+</div>
+
+</section>
+
+<!-- ==========================
+     DONATION TABLE
+========================== -->
+
+<section class="admin-section">
+
+<h2>
+
+<i class="fas fa-table"></i>
+
+दान सूची
+
+</h2>
+
+<div class="table-responsive">
+
+<table class="admin-table" id="donationTable">
+
+<thead>
+
+<tr>
+
+<th>ID</th>
+
+<th>Donor</th>
+
+<th>Mobile</th>
+
+<th>Amount</th>
+
+<th>Payment Method</th>
+
+<th>Receipt No.</th>
+
+<th>Date</th>
+
+<th>Status</th>
+
+<th>Actions</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>1</td>
+
+<td>अजय कुमार</td>
+
+<td>9876543210</td>
+
+<td>₹5,000</td>
+
+<td>UPI</td>
+
+<td>BJKP-1001</td>
+
+<td>15 Aug 2026</td>
+
+<td>
+
+<span class="badge success">
+
+Paid
+
+</span>
+
+</td>
+
+<td>
+
+<button class="btn-primary">
+
+<i class="fas fa-eye"></i>
+
+</button>
+
+<button class="btn-primary">
+
+<i class="fas fa-pen"></i>
+
+</button>
+
+<button class="btn-danger">
+
+<i class="fas fa-trash"></i>
+
+</button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>2</td>
+
+<td>सीमा देवी</td>
+
+<td>9123456789</td>
+
+<td>₹2,500</td>
+
+<td>Bank Transfer</td>
+
+<td>BJKP-1002</td>
+
+<td>13 Aug 2026</td>
+
+<td>
+
+<span class="badge success">
+
+Paid
+
+</span>
+
+</td>
+
+<td>
+
+<button class="btn-primary">
+
+<i class="fas fa-eye"></i>
+
+</button>
+
+<button class="btn-primary">
+
+<i class="fas fa-pen"></i>
+
+</button>
+
+<button class="btn-danger">
+
+<i class="fas fa-trash"></i>
+
+</button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>3</td>
+
+<td>राहुल सिंह</td>
+
+<td>9012345678</td>
+
+<td>₹1,000</td>
+
+<td>Cash</td>
+
+<td>BJKP-1003</td>
+
+<td>11 Aug 2026</td>
+
+<td>
+
+<span class="badge warning">
+
+Pending
+
+</span>
+
+</td>
+
+<td>
+
+<button class="btn-primary">
+
+<i class="fas fa-eye"></i>
+
+</button>
+
+<button class="btn-primary">
+
+<i class="fas fa-pen"></i>
+
+</button>
+
+<button class="btn-danger">
+
+<i class="fas fa-trash"></i>
+
+</button>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+<!-- ==========================
+     PAGINATION
+========================== -->
+
+<section class="admin-section">
+
+<div class="pagination">
+
+<button class="btn-primary">
+
+<i class="fas fa-angle-left"></i>
+
+Previous
+
+</button>
+
+<span style="padding:10px 20px;">
+
+Page 1 of 3
+
+</span>
+
+<button class="btn-primary">
+
+Next
+
+<i class="fas fa-angle-right"></i>
+
+</button>
+
+</div>
+
+</section>
+
+<!-- ==========================
+     DONATION SUMMARY
+========================== -->
+
+<section class="admin-cards">
+
+<div class="card">
+
+<h3>Today's Donation</h3>
+
+<h2>₹12,500</h2>
+
+</div>
+
+<div class="card">
+
+<h3>This Month</h3>
+
+<h2>₹1,85,000</h2>
+
+</div>
+
+<div class="card">
+
+<h3>Highest Donation</h3>
+
+<h2>₹51,000</h2>
+
+</div>
+
+<div class="card">
+
+<h3>Pending Payments</h3>
+
+<h2>08</h2>
+
+</div>
+
+</section>
+
+<!-- ==========================
+     ADD DONATION MODAL
+========================== -->
+
+<div id="addDonationModal" class="modal">
+
+<div class="modal-content">
+
+<span class="close">&times;</span>
+
+<h2>नया दान जोड़ें</h2>
+
+<form id="donationForm">
+
+<input type="text" placeholder="दाता का नाम" required>
+
+<input type="tel" placeholder="मोबाइल नंबर" required>
+
+<input type="number" placeholder="दान राशि (₹)" required>
+
+<select required>
+
+<option value="">Payment Method</option>
+
+<option>UPI</option>
+
+<option>Cash</option>
+
+<option>Bank Transfer</option>
+
+<option>Cheque</option>
+
+<option>Credit / Debit Card</option>
+
+</select>
+
+<input type="text" placeholder="Receipt Number">
+
+<input type="date" required>
+
+<select>
+
+<option>Paid</option>
+
+<option>Pending</option>
+
+<option>Failed</option>
+
+</select>
+
+<textarea rows="4" placeholder="Remarks (Optional)"></textarea>
+
+<button type="submit" class="btn-primary">
+
+<i class="fas fa-save"></i>
+
+Save Donation
+
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+<!-- ==========================
+     FOOTER
+========================== -->
+
+<footer class="admin-footer">
+
+<div class="container">
+
+<p>
+
+© <span id="year"></span>
+
+<strong>भारतीय जन कल्याण पार्टी (BJKP)</strong>
+
+<br>
+
+Donation Management Panel
+
+</p>
+
+</div>
+
+</footer>
+
+<!-- ==========================
+     JAVASCRIPT
+========================== -->
+
+<script>
+
+// Current Year
+
+document.getElementById("year").textContent =
+new Date().getFullYear();
+
+// Demo Statistics
+
+document.getElementById("totalDonation").textContent = "₹4,82,500";
+document.getElementById("totalDonors").textContent = "126";
+document.getElementById("successfulPayments").textContent = "118";
+document.getElementById("pendingPayments").textContent = "08";
+
+// Search
+
+const donationSearch = document.getElementById("donationSearch");
+
+donationSearch.addEventListener("keyup", function(){
+
+let filter = this.value.toUpperCase();
+
+let rows = document.querySelectorAll("#donationTable tbody tr");
+
+rows.forEach(function(row){
+
+let donor = row.cells[1].textContent.toUpperCase();
+
+row.style.display = donor.includes(filter) ? "" : "none";
+
+});
+
+});
+
+// Modal
+
+const modal = document.getElementById("addDonationModal");
+
+const addBtn = document.querySelector(".admin-toolbar .btn-primary");
+
+const closeBtn = document.querySelector(".close");
+
+addBtn.onclick = function(){
+
+modal.style.display = "block";
+
+}
+
+closeBtn.onclick = function(){
+
+modal.style.display = "none";
+
+}
+
+window.onclick = function(e){
+
+if(e.target == modal){
+
+modal.style.display = "none";
+
+}
+
+}
+
+// Form Submit Demo
+
+document.getElementById("donationForm")
+.addEventListener("submit", function(e){
+
+e.preventDefault();
+
+alert("Donation Saved Successfully! (Demo)");
+
+this.reset();
+
+modal.style.display = "none";
+
+});
+
+// Delete Demo
+
+document.querySelectorAll(".btn-danger").forEach(function(btn){
+
+btn.onclick = function(){
+
+if(confirm("क्या आप इस Donation Record को हटाना चाहते हैं?")){
+
+alert("Donation Deleted Successfully! (Demo)");
+
+}
+
+}
+
+});
+
+</script>
+
+<!-- Main Script -->
+
+<script src="js/script.js"></script>
+
+</div>
+
+</body>
+
+</html>
