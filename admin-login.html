@@ -8,7 +8,8 @@
 
 <title>Admin Login | भारतीय जन कल्याण पार्टी</title>
 
-<meta name="description" content="BJKP Official Admin Login Panel">
+<meta name="description"
+content="BJKP Official Admin Login Panel">
 
 <link rel="icon" href="images/logo.png">
 
@@ -16,7 +17,8 @@
 <link rel="stylesheet" href="css/responsive.css">
 <link rel="stylesheet" href="css/animation.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
 
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
@@ -25,7 +27,9 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 
 <body>
 
-<!-- Loader -->
+<!-- ==========================
+     LOADER
+========================== -->
 
 <div class="loader">
 
@@ -35,7 +39,9 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 
 </div>
 
-<!-- Login Section -->
+<!-- ==========================
+     LOGIN SECTION
+========================== -->
 
 <section class="login-page">
 
@@ -43,40 +49,36 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 
 <div class="login-box">
 
+<!-- Logo -->
+
 <div class="login-logo">
 
-<img src="images/logo.png" alt="Logo">
+<img src="images/logo.png" alt="BJKP Logo">
 
 <h2>भारतीय जन कल्याण पार्टी</h2>
 
-<p>
-
-Official Admin Panel
-
-</p>
+<p>Official Admin Panel</p>
 
 </div>
 
-<form id="adminLoginForm">
+<!-- Login Form -->
+
+<form id="loginForm">
 
 <div class="input-group">
 
 <label>
 
-<i class="fas fa-user"></i>
+<i class="fas fa-envelope"></i>
 
-Admin Username
+Admin Email
 
 </label>
 
 <input
-
-type="text"
-
-id="username"
-
-placeholder="Enter Username"
-
+type="email"
+id="email"
+placeholder="Enter Admin Email"
 required>
 
 </div>
@@ -91,53 +93,65 @@ Password
 
 </label>
 
+<div class="password-box">
+
 <input
-
 type="password"
-
 id="password"
-
 placeholder="Enter Password"
-
 required>
+
+<button
+type="button"
+id="togglePassword"
+class="password-toggle">
+
+<i class="fas fa-eye"></i>
+
+</button>
 
 </div>
 
-<div class="input-group">
+</div>
+
+<div class="login-options">
 
 <label>
 
-<i class="fas fa-shield-alt"></i>
+<input
+type="checkbox"
+id="rememberMe">
 
-Security Code
+Remember Me
 
 </label>
 
-<input
+<a href="#" id="forgotPassword">
 
-type="text"
+Forgot Password?
 
-id="security"
-
-placeholder="Security Code"
-
-required>
+</a>
 
 </div>
 
 <button
-
 type="submit"
-
 class="btn-primary login-btn">
 
-<i class="fas fa-sign-in-alt"></i>
+<i class="fas fa-right-to-bracket"></i>
 
 Login
 
 </button>
 
 </form>
+
+<!-- Login Message -->
+
+<div id="loginMessage"
+class="login-message">
+
+</div>
 
 <div class="login-footer">
 
@@ -158,38 +172,18 @@ Back To Website
 </section>
 
 <!-- ==========================
-     LOGIN OPTIONS
-========================== -->
-
-<div class="login-options">
-
-<label class="remember-me">
-
-<input type="checkbox" id="rememberMe">
-
-<span>Remember Me</span>
-
-</label>
-
-<a href="#" id="forgotPassword">
-
-Forgot Password?
-
-</a>
-
-</div>
-
-<!-- ==========================
      SECURITY NOTICE
 ========================== -->
 
-<div class="login-security">
+<section class="login-security">
+
+<div class="container">
 
 <div class="security-box">
 
 <h3>
 
-<i class="fas fa-shield-alt"></i>
+<i class="fas fa-shield-halved"></i>
 
 सुरक्षा सूचना
 
@@ -197,13 +191,15 @@ Forgot Password?
 
 <ul>
 
-<li>केवल अधिकृत एडमिन ही लॉगिन करें।</li>
+<li>केवल अधिकृत एडमिन ही इस पैनल में लॉगिन करें।</li>
 
-<li>अपना पासवर्ड किसी के साथ साझा न करें।</li>
+<li>अपना Email और Password किसी के साथ साझा न करें।</li>
 
 <li>सार्वजनिक कंप्यूटर पर "Remember Me" का उपयोग न करें।</li>
 
-<li>संदिग्ध गतिविधि मिलने पर तुरंत एडमिन से संपर्क करें।</li>
+<li>कार्य पूरा होने पर हमेशा Logout करें।</li>
+
+<li>संदिग्ध गतिविधि दिखाई देने पर तुरंत Super Admin को सूचित करें।</li>
 
 </ul>
 
@@ -211,37 +207,41 @@ Forgot Password?
 
 </div>
 
+</section>
+
 <!-- ==========================
      ADMIN FEATURES
 ========================== -->
 
-<div class="admin-info">
+<section class="admin-info">
 
-<h3>
+<div class="container">
+
+<h2>
 
 <i class="fas fa-user-shield"></i>
 
-Admin Dashboard में उपलब्ध सुविधाएँ
+Admin Dashboard Features
 
-</h3>
+</h2>
 
 <div class="cards">
 
 <div class="card">
 
-<i class="fas fa-users fa-2x"></i>
+<i class="fas fa-users fa-3x"></i>
 
-<h4>Members</h4>
+<h3>Members</h3>
 
-<p>सदस्यों का प्रबंधन</p>
+<p>सदस्यों का प्रबंधन एवं सत्यापन</p>
 
 </div>
 
 <div class="card">
 
-<i class="fas fa-user-friends fa-2x"></i>
+<i class="fas fa-user-friends fa-3x"></i>
 
-<h4>Volunteers</h4>
+<h3>Volunteers</h3>
 
 <p>स्वयंसेवक प्रबंधन</p>
 
@@ -249,59 +249,91 @@ Admin Dashboard में उपलब्ध सुविधाएँ
 
 <div class="card">
 
-<i class="fas fa-newspaper fa-2x"></i>
+<i class="fas fa-newspaper fa-3x"></i>
 
-<h4>News</h4>
+<h3>News Manager</h3>
 
-<p>समाचार प्रकाशित करें</p>
-
-</div>
-
-<div class="card">
-
-<i class="fas fa-images fa-2x"></i>
-
-<h4>Gallery</h4>
-
-<p>फोटो एवं वीडियो अपलोड</p>
+<p>समाचार प्रकाशित एवं संपादित करें</p>
 
 </div>
 
 <div class="card">
 
-<i class="fas fa-calendar-alt fa-2x"></i>
+<i class="fas fa-images fa-3x"></i>
 
-<h4>Events</h4>
+<h3>Gallery</h3>
 
-<p>कार्यक्रम जोड़ें</p>
+<p>फोटो एवं वीडियो अपलोड करें</p>
 
 </div>
 
 <div class="card">
 
-<i class="fas fa-chart-line fa-2x"></i>
+<i class="fas fa-calendar-days fa-3x"></i>
 
-<h4>Reports</h4>
+<h3>Events</h3>
 
-<p>Analytics एवं Reports</p>
+<p>कार्यक्रम जोड़ें और अपडेट करें</p>
+
+</div>
+
+<div class="card">
+
+<i class="fas fa-hand-holding-heart fa-3x"></i>
+
+<h3>Donations</h3>
+
+<p>दान रिकॉर्ड और भुगतान देखें</p>
+
+</div>
+
+<div class="card">
+
+<i class="fas fa-download fa-3x"></i>
+
+<h3>Downloads</h3>
+
+<p>दस्तावेज़ अपलोड एवं प्रबंधन</p>
+
+</div>
+
+<div class="card">
+
+<i class="fas fa-gear fa-3x"></i>
+
+<h3>Settings</h3>
+
+<p>वेबसाइट एवं सिस्टम सेटिंग्स</p>
 
 </div>
 
 </div>
 
 </div>
+
+</section>
 
 <!-- ==========================
-     LOGIN HELP
+     HELP & SUPPORT
 ========================== -->
 
-<div class="login-help">
+<section class="login-help">
+
+<div class="container">
+
+<h2>
+
+<i class="fas fa-headset"></i>
+
+सहायता एवं संपर्क
+
+</h2>
 
 <p>
 
 <i class="fas fa-envelope"></i>
 
-तकनीकी सहायता:
+Email :
 
 <strong>info.bjkp.org.in@gmail.com</strong>
 
@@ -311,19 +343,25 @@ Admin Dashboard में उपलब्ध सुविधाएँ
 
 <i class="fas fa-phone"></i>
 
-Helpline:
+Helpline :
 
 <strong>+91 7317384231</strong>
 
 </p>
 
+<p>
+
+<i class="fas fa-clock"></i>
+
+Support Time :
+
+<strong>09:00 AM - 06:00 PM</strong>
+
+</p>
+
 </div>
 
-<!-- ==========================
-     LOGIN STATUS
-========================== -->
-
-<div id="loginMessage" class="login-message"></div>
+</section>
 
 <!-- ==========================
      FOOTER
@@ -350,73 +388,72 @@ Official Admin Panel | All Rights Reserved
 </footer>
 
 <!-- ==========================
-     LOGIN SCRIPT
+     PAGE JAVASCRIPT
 ========================== -->
 
 <script>
 
-const loginForm = document.getElementById("adminLoginForm");
+// Current Year
 
-const loginMessage = document.getElementById("loginMessage");
+document.getElementById("year").textContent =
+new Date().getFullYear();
+
+// Show / Hide Password
 
 const passwordInput = document.getElementById("password");
 
-const usernameInput = document.getElementById("username");
+const togglePassword = document.getElementById("togglePassword");
 
-const securityInput = document.getElementById("security");
+if(togglePassword){
 
-loginForm.addEventListener("submit", function(e){
+togglePassword.addEventListener("click",function(){
 
-e.preventDefault();
+const type =
+passwordInput.getAttribute("type")==="password"
+? "text"
+: "password";
 
-const username = usernameInput.value.trim();
+passwordInput.setAttribute("type",type);
 
-const password = passwordInput.value.trim();
-
-const security = securityInput.value.trim();
-
-/* Temporary Login
-   Change these values later or connect Firebase */
-
-if(
-
-username==="admin" &&
-
-password==="bjkp@2026" &&
-
-security==="BJKP"
-
-){
-
-loginMessage.innerHTML="✅ Login Successful...";
-
-loginMessage.style.color="green";
-
-setTimeout(function(){
-
-window.location.href="admin-dashboard.html";
-
-},1200);
-
-}
-
-else{
-
-loginMessage.innerHTML="❌ Invalid Username, Password or Security Code";
-
-loginMessage.style.color="red";
-
-}
+this.innerHTML =
+type==="password"
+? '<i class="fas fa-eye"></i>'
+: '<i class="fas fa-eye-slash"></i>';
 
 });
 
-document.getElementById("year").textContent=new Date().getFullYear();
+}
+
+// Forgot Password (Demo)
+
+const forgotPassword =
+document.getElementById("forgotPassword");
+
+if(forgotPassword){
+
+forgotPassword.addEventListener("click",function(e){
+
+e.preventDefault();
+
+alert("Forgot Password feature will be connected with Firebase Authentication.");
+
+});
+
+}
 
 </script>
 
 <!-- Main Script -->
 
 <script src="js/script.js"></script>
+
+<!-- Firebase Config -->
+
+<script type="module" src="js/firebase-config.js"></script>
+
+<!-- Firebase Authentication -->
+
+<script type="module" src="js/auth.js"></script>
 
 </body>
 
