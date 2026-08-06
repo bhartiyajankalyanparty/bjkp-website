@@ -260,4 +260,336 @@ font-size:16px;
 display:none;
 }
 
+/*==========================================
+        PROFESSIONAL HERO SECTION
+==========================================*/
+
+.hero{
+position:relative;
+min-height:100vh;
+display:flex;
+align-items:center;
+overflow:hidden;
+background:
+linear-gradient(rgba(107,15,26,.78),rgba(107,15,26,.82)),
+url("../images/banner1.jpg") center center/cover no-repeat;
 }
+
+.hero::before{
+content:"";
+position:absolute;
+inset:0;
+background:linear-gradient(90deg,
+rgba(0,0,0,.15),
+rgba(0,0,0,.05));
+z-index:1;
+}
+
+.hero-content{
+position:relative;
+z-index:2;
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:70px;
+}
+
+.hero-left{
+flex:1;
+animation:slideLeft 1s ease;
+}
+
+.hero-right{
+flex:1;
+display:flex;
+justify-content:center;
+animation:slideRight 1s ease;
+}
+
+.hero h1{
+font-size:64px;
+font-weight:800;
+line-height:1.15;
+color:#fff;
+margin-bottom:20px;
+}
+
+.hero h3{
+font-size:32px;
+font-weight:600;
+color:#ffd54f;
+margin-bottom:20px;
+}
+
+.hero p{
+font-size:18px;
+line-height:1.9;
+color:#f3f3f3;
+margin-bottom:35px;
+max-width:650px;
+}
+
+.tag{
+display:inline-block;
+padding:10px 22px;
+background:rgba(255,255,255,.18);
+backdrop-filter:blur(8px);
+border:1px solid rgba(255,255,255,.25);
+color:#fff;
+border-radius:40px;
+margin-bottom:25px;
+font-weight:700;
+}
+
+.hero-buttons{
+display:flex;
+gap:18px;
+flex-wrap:wrap;
+}
+
+.btn-primary{
+transition:.35s;
+}
+
+.btn-primary:hover{
+transform:translateY(-4px);
+box-shadow:0 12px 25px rgba(0,0,0,.25);
+}
+
+.btn-secondary{
+transition:.35s;
+}
+
+.btn-secondary:hover{
+transform:translateY(-4px);
+}
+
+.president-card{
+background:#fff;
+padding:30px;
+border-radius:25px;
+box-shadow:0 15px 35px rgba(0,0,0,.20);
+transition:.35s;
+}
+
+.president-card:hover{
+transform:translateY(-10px);
+}
+
+.president-card img{
+width:230px;
+height:230px;
+border-radius:50%;
+border:6px solid var(--secondary);
+object-fit:cover;
+margin:auto;
+}
+
+.president-card h2{
+margin-top:20px;
+color:var(--primary);
+}
+
+.president-card p{
+margin-top:8px;
+color:#666;
+}
+
+@keyframes slideLeft{
+from{
+opacity:0;
+transform:translateX(-60px);
+}
+to{
+opacity:1;
+transform:translateX(0);
+}
+}
+
+@keyframes slideRight{
+from{
+opacity:0;
+transform:translateX(60px);
+}
+to{
+opacity:1;
+transform:translateX(0);
+}
+}
+
+/*==========================================
+      PROFESSIONAL CARDS & SECTIONS
+==========================================*/
+
+.about-card,
+.card,
+.counter-box,
+.contact-grid div,
+.join-grid div{
+transition:all .35s ease;
+}
+
+.about-card:hover,
+.card:hover,
+.contact-grid div:hover,
+.counter-box:hover{
+transform:translateY(-12px);
+box-shadow:0 20px 40px rgba(0,0,0,.18);
+}
+
+.section-title h2{
+position:relative;
+display:inline-block;
+padding-bottom:12px;
+}
+
+.section-title h2::after{
+content:"";
+position:absolute;
+left:50%;
+bottom:0;
+transform:translateX(-50%);
+width:80px;
+height:4px;
+background:var(--secondary);
+border-radius:20px;
+}
+
+/*==========================================
+      PREMIUM GALLERY
+==========================================*/
+
+.gallery-grid img{
+transition:all .4s ease;
+}
+
+.gallery-grid img:hover{
+transform:scale(1.06);
+box-shadow:0 15px 35px rgba(0,0,0,.25);
+}
+
+/*==========================================
+      BUTTON EFFECTS
+==========================================*/
+
+.btn-primary,
+.btn-secondary,
+.join-btn{
+transition:all .35s ease;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover,
+.join-btn:hover{
+transform:translateY(-4px);
+}
+
+/*==========================================
+      FOOTER
+==========================================*/
+
+footer{
+background:linear-gradient(135deg,#2a0910,#4d0913);
+}
+
+.footer-grid{
+align-items:flex-start;
+}
+
+.footer-grid a{
+transition:.3s;
+}
+
+.footer-grid a:hover{
+color:var(--secondary);
+}
+
+/*==========================================
+      SMOOTH ANIMATIONS
+==========================================*/
+
+.fade-up{
+opacity:0;
+transform:translateY(40px);
+transition:.8s ease;
+}
+
+.fade-up.show{
+opacity:1;
+transform:translateY(0);
+}
+
+/*==========================================
+      SELECTION COLOR
+==========================================*/
+
+::selection{
+background:var(--primary);
+color:#fff;
+}
+
+/*==========================================
+      IMAGE FIX
+==========================================*/
+
+img{
+max-width:100%;
+height:auto;
+}
+
+/*==========================================
+      FINAL RESPONSIVE FIX
+==========================================*/
+
+@media(max-width:992px){
+
+.cards,
+.about-grid,
+.gallery-grid,
+.contact-grid,
+.counter-section .container,
+.join-grid,
+.footer-grid,
+.manifesto-home .cards,
+.latest-news .cards{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+@media(max-width:768px){
+
+.cards,
+.about-grid,
+.gallery-grid,
+.contact-grid,
+.counter-section .container,
+.join-grid,
+.footer-grid,
+.manifesto-home .cards,
+.latest-news .cards{
+
+grid-template-columns:1fr;
+
+}
+
+.section-title h2{
+font-size:30px;
+}
+
+.counter-box h2{
+font-size:38px;
+}
+
+.membership-banner h2,
+.join-party h2{
+font-size:30px;
+}
+
+}
+
+/*==========================================
+      END OF PROFESSIONAL CSS
+==========================================*/
