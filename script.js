@@ -146,3 +146,88 @@ cards.forEach(card => {
 // Hero Image Animation
 // ==============================
 
+const heroImage=document.querySelector(".hero-right img");
+
+    if(heroImage){
+
+        heroImage.addEventListener("mouseenter",()=>{
+
+            heroImage.style.transform="scale(1.05) rotate(2deg)";
+
+            heroImage.style.transition=".4s";
+
+        });
+
+        heroImage.addEventListener("mouseleave",()=>{
+
+            heroImage.style.transform="scale(1) rotate(0deg)";
+
+        });
+
+    }
+
+
+
+
+
+    /* ==========================
+       Counter Animation
+    ========================== */
+
+    const counters=document.querySelectorAll(".counter");
+
+    counters.forEach(counter=>{
+
+        const update=()=>{
+
+            const target=+counter.getAttribute("data-target");
+
+            const count=+counter.innerText;
+
+            const speed=target/100;
+
+            if(count<target){
+
+                counter.innerText=Math.ceil(count+speed);
+
+                setTimeout(update,20);
+
+            }else{
+
+                counter.innerText=target;
+
+            }
+
+        };
+
+        update();
+
+    });
+
+
+
+
+
+    /* ==========================
+       Loading Screen
+    ========================== */
+
+const loader=document.querySelector(".loader");
+
+    if(loader){
+
+        window.addEventListener("load",()=>{
+
+            loader.style.opacity="0";
+
+            setTimeout(()=>{
+
+                loader.style.display="none";
+
+            },500);
+
+        });
+
+    }
+
+});
