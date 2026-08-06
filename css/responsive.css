@@ -1,0 +1,356 @@
+/*=========================================
+        BJKP Responsive CSS
+        Version 1.0
+==========================================*/
+
+/* Large Laptop */
+
+@media (max-width:1400px){
+
+.container{
+width:95%;
+margin:auto;
+}
+
+.hero h1{
+font-size:52px;
+}
+
+}
+
+
+/* Laptop */
+
+@media (max-width:1200px){
+
+.top-bar{
+display:none;
+}
+
+header .container{
+padding:15px 20px;
+}
+
+.logo h2{
+font-size:24px;
+}
+
+nav ul li{
+margin-left:18px;
+}
+
+.hero{
+padding:90px 20px;
+}
+
+.hero-content{
+display:flex;
+align-items:center;
+gap:40px;
+}
+
+.hero-left h1{
+font-size:46px;
+}
+
+.hero-left h3{
+font-size:28px;
+}
+
+.hero-right img{
+width:330px;
+}
+
+}
+
+
+
+/* Tablet */
+
+@media (max-width:992px){
+
+#menu-btn{
+display:block;
+font-size:30px;
+cursor:pointer;
+color:#fff;
+}
+
+#navbar{
+
+position:absolute;
+
+top:100%;
+
+left:-100%;
+
+width:100%;
+
+background:#5b0f1d;
+
+transition:.4s;
+
+}
+
+#navbar.active{
+left:0;
+}
+
+#navbar ul{
+
+display:flex;
+
+flex-direction:column;
+
+}
+
+#navbar ul li{
+
+margin:15px;
+
+text-align:center;
+
+}
+
+.hero-content{
+
+flex-direction:column-reverse;
+
+text-align:center;
+
+}
+
+.hero-left{
+
+width:100%;
+
+}
+
+.hero-right{
+
+width:100%;
+
+}
+
+.hero-right img{
+
+width:280px;
+
+}
+
+.hero-buttons{
+
+justify-content:center;
+
+}
+
+.cards{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+.counter-section .container{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+.footer-grid{
+
+grid-template-columns:1fr 1fr;
+
+}
+
+}
+
+
+
+
+/* Mobile */
+
+@media (max-width:768px){
+
+.logo img{
+
+width:60px;
+
+}
+
+.logo h2{
+
+font-size:18px;
+
+}
+
+.logo p{
+
+font-size:12px;
+
+}
+
+.hero{
+
+padding:70px 15px;
+
+}
+
+.hero-left h1{
+
+font-size:34px;
+
+line-height:45px;
+
+}
+
+.hero-left h3{
+
+font-size:22px;
+
+}
+
+.hero-left p{
+
+font-size:16px;
+
+}
+
+.hero-buttons{
+
+flex-direction:column;
+
+gap:15px;
+
+}
+
+.btn-primary,
+
+.btn-secondary{
+
+width:100%;
+
+text-align:center;
+
+}
+
+.hero-right img{
+
+width:220px;
+
+height:220px;
+
+}
+
+.cards{
+
+grid-template-columns:1fr;
+
+}
+
+.gallery-grid{
+
+grid-template-columns:1fr 1fr;
+
+}
+
+.counter-section .container{
+
+grid-template-columns:1fr;
+
+}
+
+.contact-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.footer-grid{
+
+grid-template-columns:1fr;
+
+text-align:center;
+
+}
+
+.whatsapp{
+
+width:55px;
+
+height:55px;
+
+font-size:24px;
+
+}
+
+}
+
+
+
+
+/* Small Mobile */
+
+@media (max-width:480px){
+
+.hero h1{
+
+font-size:28px;
+
+}
+
+.hero h3{
+
+font-size:18px;
+
+}
+
+.hero p{
+
+font-size:15px;
+
+}
+
+.section-title h2{
+
+font-size:28px;
+
+}
+
+.section-title p{
+
+font-size:15px;
+
+}
+
+.gallery-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.join-btn{
+
+display:none;
+
+}
+
+#lang-btn{
+
+display:none;
+
+}
+
+footer h2{
+
+font-size:22px;
+
+}
+
+footer p{
+
+font-size:14px;
+
+}
+
+}
+
