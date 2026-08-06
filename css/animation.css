@@ -1,0 +1,1519 @@
+/*==========================================
+    BJKP Official Website
+    Professional Animation CSS
+    PART 1
+==========================================*/
+
+/* ==========================
+   Loader Animation
+========================== */
+
+.loader{
+animation:loaderFade 1s ease forwards;
+}
+
+.spinner{
+animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+
+0%{
+transform:rotate(0deg);
+}
+
+100%{
+transform:rotate(360deg);
+}
+
+}
+
+@keyframes loaderFade{
+
+0%{
+opacity:1;
+}
+
+100%{
+opacity:1;
+}
+
+}
+
+/* ==========================
+   Fade Up
+========================== */
+
+.fade-up{
+
+opacity:0;
+transform:translateY(50px);
+animation:fadeUp .9s ease forwards;
+
+}
+
+@keyframes fadeUp{
+
+0%{
+
+opacity:0;
+transform:translateY(50px);
+
+}
+
+100%{
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+}
+
+/* ==========================
+   Fade Down
+========================== */
+
+.fade-down{
+
+opacity:0;
+transform:translateY(-50px);
+animation:fadeDown .9s ease forwards;
+
+}
+
+@keyframes fadeDown{
+
+0%{
+
+opacity:0;
+transform:translateY(-50px);
+
+}
+
+100%{
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+}
+
+/* ==========================
+   Fade Left
+========================== */
+
+.fade-left{
+
+opacity:0;
+transform:translateX(-60px);
+animation:fadeLeft .9s ease forwards;
+
+}
+
+@keyframes fadeLeft{
+
+0%{
+
+opacity:0;
+transform:translateX(-60px);
+
+}
+
+100%{
+
+opacity:1;
+transform:translateX(0);
+
+}
+
+}
+
+/* ==========================
+   Fade Right
+========================== */
+
+.fade-right{
+
+opacity:0;
+transform:translateX(60px);
+animation:fadeRight .9s ease forwards;
+
+}
+
+@keyframes fadeRight{
+
+0%{
+
+opacity:0;
+transform:translateX(60px);
+
+}
+
+100%{
+
+opacity:1;
+transform:translateX(0);
+
+}
+
+}
+
+/* ==========================
+   Zoom In
+========================== */
+
+.zoom-in{
+
+opacity:0;
+transform:scale(.8);
+animation:zoomIn .8s ease forwards;
+
+}
+
+@keyframes zoomIn{
+
+0%{
+
+opacity:0;
+transform:scale(.8);
+
+}
+
+100%{
+
+opacity:1;
+transform:scale(1);
+
+}
+
+}
+
+/* ==========================
+   Hero Animation
+========================== */
+
+.hero-left{
+
+animation:heroLeft 1.2s ease;
+
+}
+
+.hero-right{
+
+animation:heroRight 1.2s ease;
+
+}
+
+@keyframes heroLeft{
+
+from{
+
+opacity:0;
+transform:translateX(-80px);
+
+}
+
+to{
+
+opacity:1;
+transform:translateX(0);
+
+}
+
+}
+
+@keyframes heroRight{
+
+from{
+
+opacity:0;
+transform:translateX(80px);
+
+}
+
+to{
+
+opacity:1;
+transform:translateX(0);
+
+}
+
+}
+
+/*==========================================
+    BJKP Official Website
+    Professional Animation CSS
+    PART 2
+==========================================*/
+
+
+/* ==========================
+   Premium Card Hover
+========================== */
+
+.card,
+.about-card,
+.counter-box,
+.president-card{
+
+transition:.4s ease;
+
+}
+
+.card:hover,
+.about-card:hover,
+.counter-box:hover,
+.president-card:hover{
+
+transform:translateY(-12px);
+box-shadow:0 20px 45px rgba(0,0,0,.18);
+
+}
+
+
+/* ==========================
+   Button Animation
+========================== */
+
+.btn-primary,
+.btn-secondary,
+.join-btn{
+
+position:relative;
+overflow:hidden;
+transition:.35s ease;
+
+}
+
+.btn-primary:hover,
+.btn-secondary:hover,
+.join-btn:hover{
+
+transform:translateY(-4px) scale(1.03);
+
+}
+
+.btn-primary::before,
+.btn-secondary::before,
+.join-btn::before{
+
+content:"";
+position:absolute;
+top:0;
+left:-100%;
+width:100%;
+height:100%;
+background:rgba(255,255,255,.25);
+transition:.6s;
+
+}
+
+.btn-primary:hover::before,
+.btn-secondary:hover::before,
+.join-btn:hover::before{
+
+left:100%;
+
+}
+
+
+/* ==========================
+   Navigation Animation
+========================== */
+
+nav ul li{
+
+transition:.3s;
+
+}
+
+nav ul li:hover{
+
+transform:translateY(-3px);
+
+}
+
+nav ul li a{
+
+transition:.3s;
+
+}
+
+nav ul li a:hover{
+
+letter-spacing:.5px;
+
+}
+
+
+/* ==========================
+   Logo Animation
+========================== */
+
+.logo img{
+
+transition:.5s ease;
+
+}
+
+.logo img:hover{
+
+transform:rotate(8deg) scale(1.08);
+
+}
+
+
+/* ==========================
+   Image Hover
+========================== */
+
+.gallery-grid img,
+.latest-news img,
+.message-left img,
+.president-card img{
+
+transition:.45s ease;
+
+}
+
+.gallery-grid img:hover,
+.latest-news img:hover{
+
+transform:scale(1.08);
+
+}
+
+.message-left img:hover,
+.president-card img:hover{
+
+transform:scale(1.05);
+
+}
+
+
+/* ==========================
+   Icon Hover
+========================== */
+
+.card i,
+.about-card i,
+.join-grid i,
+.contact-grid i,
+.footer-grid i{
+
+transition:.35s ease;
+
+}
+
+.card:hover i,
+.about-card:hover i,
+.join-grid:hover i{
+
+transform:scale(1.2) rotate(8deg);
+
+color:var(--primary);
+
+}
+
+
+/* ==========================
+   Social Icons
+========================== */
+
+.top-bar a,
+.footer-grid a{
+
+transition:.3s ease;
+
+}
+
+.top-bar a:hover,
+.footer-grid a:hover{
+
+transform:translateY(-4px) scale(1.15);
+
+}
+
+
+/* ==========================
+   Section Title
+========================== */
+
+.section-title h2{
+
+animation:titleFade 1s ease;
+
+}
+
+@keyframes titleFade{
+
+from{
+
+opacity:0;
+transform:translateY(30px);
+
+}
+
+to{
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+}
+
+/*==========================================
+    BJKP Official Website
+    Professional Animation CSS
+    PART 3
+==========================================*/
+
+
+/* ==========================
+   Floating Animation
+========================== */
+
+.floating{
+
+animation:floating 4s ease-in-out infinite;
+
+}
+
+@keyframes floating{
+
+0%,100%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-15px);
+
+}
+
+}
+
+
+/* ==========================
+   Pulse Animation
+========================== */
+
+.pulse{
+
+animation:pulse 2s infinite;
+
+}
+
+@keyframes pulse{
+
+0%{
+
+transform:scale(1);
+
+box-shadow:0 0 0 0 rgba(200,155,60,.7);
+
+}
+
+70%{
+
+transform:scale(1.05);
+
+box-shadow:0 0 0 18px rgba(200,155,60,0);
+
+}
+
+100%{
+
+transform:scale(1);
+
+box-shadow:0 0 0 0 rgba(200,155,60,0);
+
+}
+
+}
+
+
+/* ==========================
+   Hero Background Zoom
+========================== */
+
+.hero{
+
+animation:heroZoom 18s ease-in-out infinite alternate;
+
+}
+
+@keyframes heroZoom{
+
+from{
+
+background-size:100%;
+
+}
+
+to{
+
+background-size:110%;
+
+}
+
+}
+
+
+/* ==========================
+   Counter Glow
+========================== */
+
+.counter-box{
+
+transition:.4s ease;
+
+}
+
+.counter-box:hover{
+
+box-shadow:0 0 30px rgba(200,155,60,.5);
+
+transform:translateY(-10px);
+
+}
+
+
+/* ==========================
+   WhatsApp Floating
+========================== */
+
+.whatsapp{
+
+animation:whatsappFloat 2.5s ease-in-out infinite;
+
+}
+
+@keyframes whatsappFloat{
+
+0%,100%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-10px);
+
+}
+
+}
+
+
+/* ==========================
+   Back To Top Button
+========================== */
+
+#topBtn{
+
+transition:.35s ease;
+
+animation:topPulse 2s infinite;
+
+}
+
+#topBtn:hover{
+
+transform:scale(1.1);
+
+}
+
+@keyframes topPulse{
+
+0%,100%{
+
+box-shadow:0 0 0 0 rgba(107,15,26,.4);
+
+}
+
+70%{
+
+box-shadow:0 0 0 15px rgba(107,15,26,0);
+
+}
+
+}
+
+
+/* ==========================
+   Image Shine Effect
+========================== */
+
+.gallery-grid img{
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+.gallery-grid img:hover{
+
+filter:brightness(1.08);
+
+}
+
+
+/* ==========================
+   Smooth Hover
+========================== */
+
+.card,
+.about-card,
+.join-grid div,
+.contact-grid div,
+.latest-news .card{
+
+transition:all .35s ease;
+
+}
+
+.card:hover,
+.about-card:hover,
+.join-grid div:hover,
+.contact-grid div:hover,
+.latest-news .card:hover{
+
+transform:translateY(-10px);
+
+}
+
+
+/* ==========================
+   Fade Delay Classes
+========================== */
+
+.delay-1{
+
+animation-delay:.2s;
+
+}
+
+.delay-2{
+
+animation-delay:.4s;
+
+}
+
+.delay-3{
+
+animation-delay:.6s;
+
+}
+
+.delay-4{
+
+animation-delay:.8s;
+
+}
+
+/*==========================================
+    BJKP Official Website
+    Professional Animation CSS
+    PART 4
+==========================================*/
+
+
+/* ==========================
+   Scroll Reveal Animation
+========================== */
+
+.reveal{
+
+opacity:0;
+transform:translateY(70px);
+transition:all .9s ease;
+
+}
+
+.reveal.active{
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+
+/* ==========================
+   Stagger Animation
+========================== */
+
+.stagger>*{
+
+opacity:0;
+transform:translateY(40px);
+animation:staggerUp .8s forwards;
+
+}
+
+.stagger>*:nth-child(1){animation-delay:.1s;}
+.stagger>*:nth-child(2){animation-delay:.2s;}
+.stagger>*:nth-child(3){animation-delay:.3s;}
+.stagger>*:nth-child(4){animation-delay:.4s;}
+.stagger>*:nth-child(5){animation-delay:.5s;}
+.stagger>*:nth-child(6){animation-delay:.6s;}
+
+@keyframes staggerUp{
+
+from{
+
+opacity:0;
+transform:translateY(40px);
+
+}
+
+to{
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+}
+
+
+/* ==========================
+   Text Reveal
+========================== */
+
+.text-reveal{
+
+overflow:hidden;
+
+}
+
+.text-reveal span{
+
+display:inline-block;
+animation:textReveal .9s ease forwards;
+
+}
+
+@keyframes textReveal{
+
+0%{
+
+opacity:0;
+transform:translateY(100%);
+
+}
+
+100%{
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+}
+
+
+/* ==========================
+   Navbar Slide Down
+========================== */
+
+header{
+
+animation:headerSlide .8s ease;
+
+}
+
+@keyframes headerSlide{
+
+from{
+
+opacity:0;
+transform:translateY(-70px);
+
+}
+
+to{
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+}
+
+
+/* ==========================
+   Loader Exit
+========================== */
+
+.loader.hide{
+
+animation:loaderHide .8s ease forwards;
+
+}
+
+@keyframes loaderHide{
+
+to{
+
+opacity:0;
+visibility:hidden;
+
+}
+
+}
+
+
+/* ==========================
+   Glass Morphism Cards
+========================== */
+
+.glass{
+
+background:rgba(255,255,255,.15);
+
+backdrop-filter:blur(12px);
+
+-webkit-backdrop-filter:blur(12px);
+
+border:1px solid rgba(255,255,255,.25);
+
+border-radius:20px;
+
+transition:.35s;
+
+}
+
+.glass:hover{
+
+transform:translateY(-8px);
+
+box-shadow:0 20px 40px rgba(0,0,0,.18);
+
+}
+
+
+/* ==========================
+   Premium Image Hover
+========================== */
+
+.gallery-grid img,
+.latest-news img{
+
+transition:.45s ease;
+
+}
+
+.gallery-grid img:hover,
+.latest-news img:hover{
+
+transform:scale(1.08) rotate(.5deg);
+
+filter:brightness(1.08);
+
+}
+
+
+/* ==========================
+   Button Glow
+========================== */
+
+.btn-primary:hover,
+.join-btn:hover{
+
+box-shadow:0 0 25px rgba(200,155,60,.6);
+
+}
+
+.btn-secondary:hover{
+
+box-shadow:0 0 20px rgba(255,255,255,.45);
+
+}
+
+
+/* ==========================
+   Soft Bounce
+========================== */
+
+.bounce{
+
+animation:bounceSoft 2s infinite;
+
+}
+
+@keyframes bounceSoft{
+
+0%,100%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-8px);
+
+}
+
+}
+
+/*==========================================
+    BJKP Official Website
+    Professional Animation CSS
+    PART 5
+==========================================*/
+
+
+/* ==========================
+   Premium Ripple Button
+========================== */
+
+.btn-primary,
+.btn-secondary,
+.join-btn{
+
+position:relative;
+overflow:hidden;
+
+}
+
+.btn-primary::after,
+.btn-secondary::after,
+.join-btn::after{
+
+content:"";
+position:absolute;
+top:50%;
+left:50%;
+width:0;
+height:0;
+border-radius:50%;
+background:rgba(255,255,255,.35);
+transform:translate(-50%,-50%);
+transition:.6s;
+
+}
+
+.btn-primary:hover::after,
+.btn-secondary:hover::after,
+.join-btn:hover::after{
+
+width:350px;
+height:350px;
+
+}
+
+
+/* ==========================
+   Shine Effect
+========================== */
+
+.shine{
+
+position:relative;
+overflow:hidden;
+
+}
+
+.shine::before{
+
+content:"";
+position:absolute;
+top:0;
+left:-120%;
+width:60%;
+height:100%;
+background:linear-gradient(
+90deg,
+transparent,
+rgba(255,255,255,.45),
+transparent
+);
+
+transform:skewX(-25deg);
+
+}
+
+.shine:hover::before{
+
+animation:shineMove 1s;
+
+}
+
+@keyframes shineMove{
+
+100%{
+
+left:150%;
+
+}
+
+}
+
+
+/* ==========================
+   Rotating Icons
+========================== */
+
+.rotate-icon:hover i{
+
+animation:rotateIcon .8s ease;
+
+}
+
+@keyframes rotateIcon{
+
+0%{
+
+transform:rotate(0deg);
+
+}
+
+50%{
+
+transform:rotate(180deg) scale(1.2);
+
+}
+
+100%{
+
+transform:rotate(360deg);
+
+}
+
+}
+
+
+/* ==========================
+   Gradient Background
+========================== */
+
+.gradient-bg{
+
+background:linear-gradient(
+-45deg,
+#6b0f1a,
+#8b1321,
+#c89b3c,
+#6b0f1a
+);
+
+background-size:400% 400%;
+
+animation:gradientMove 10s ease infinite;
+
+}
+
+@keyframes gradientMove{
+
+0%{
+
+background-position:0% 50%;
+
+}
+
+50%{
+
+background-position:100% 50%;
+
+}
+
+100%{
+
+background-position:0% 50%;
+
+}
+
+}
+
+
+/* ==========================
+   News Card Hover
+========================== */
+
+.latest-news .card{
+
+transition:.45s;
+
+}
+
+.latest-news .card:hover{
+
+transform:translateY(-12px);
+
+box-shadow:0 18px 45px rgba(0,0,0,.18);
+
+}
+
+
+/* ==========================
+   Social Icons Glow
+========================== */
+
+.footer-grid a:hover i,
+.top-bar a:hover i{
+
+color:var(--secondary);
+
+text-shadow:0 0 12px rgba(200,155,60,.8);
+
+transform:scale(1.2);
+
+}
+
+
+/* ==========================
+   Floating Background
+========================== */
+
+.float-bg{
+
+animation:floatBackground 8s ease-in-out infinite;
+
+}
+
+@keyframes floatBackground{
+
+0%,100%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-20px);
+
+}
+
+}
+
+
+/* ==========================
+   Image Zoom Smooth
+========================== */
+
+img{
+
+transition:transform .4s ease;
+
+}
+
+img:hover{
+
+transform:scale(1.02);
+
+}
+
+
+/* ==========================
+   Soft Shadow Hover
+========================== */
+
+.card:hover,
+.about-card:hover,
+.contact-grid div:hover{
+
+box-shadow:0 20px 40px rgba(0,0,0,.18);
+
+}
+
+/*==========================================
+    BJKP Official Website
+    Professional Animation CSS
+    PART 6 (FINAL)
+==========================================*/
+
+/* ==========================
+   Scroll Progress Bar
+========================== */
+
+.progress-bar{
+position:fixed;
+top:0;
+left:0;
+width:0%;
+height:4px;
+background:linear-gradient(90deg,#6b0f1a,#c89b3c);
+z-index:99999;
+transition:width .2s linear;
+}
+
+
+/* ==========================
+   Mouse Click Effect
+========================== */
+
+.click-effect{
+position:absolute;
+width:18px;
+height:18px;
+border:2px solid var(--secondary);
+border-radius:50%;
+pointer-events:none;
+animation:clickRipple .6s ease-out forwards;
+}
+
+@keyframes clickRipple{
+
+0%{
+opacity:1;
+transform:scale(.4);
+}
+
+100%{
+opacity:0;
+transform:scale(4);
+}
+
+}
+
+
+/* ==========================
+   Loading Dots
+========================== */
+
+.loading-dots span{
+
+display:inline-block;
+animation:loadingDots 1.4s infinite;
+
+}
+
+.loading-dots span:nth-child(2){
+
+animation-delay:.2s;
+
+}
+
+.loading-dots span:nth-child(3){
+
+animation-delay:.4s;
+
+}
+
+@keyframes loadingDots{
+
+0%,100%{
+
+opacity:.3;
+
+}
+
+50%{
+
+opacity:1;
+
+}
+
+}
+
+
+/* ==========================
+   Fade Scale
+========================== */
+
+.fade-scale{
+
+opacity:0;
+transform:scale(.92);
+animation:fadeScale .8s ease forwards;
+
+}
+
+@keyframes fadeScale{
+
+from{
+
+opacity:0;
+transform:scale(.92);
+
+}
+
+to{
+
+opacity:1;
+transform:scale(1);
+
+}
+
+}
+
+
+/* ==========================
+   Continuous Pulse
+========================== */
+
+.live{
+
+animation:livePulse 2s infinite;
+
+}
+
+@keyframes livePulse{
+
+0%{
+
+transform:scale(1);
+
+}
+
+50%{
+
+transform:scale(1.08);
+
+}
+
+100%{
+
+transform:scale(1);
+
+}
+
+}
+
+
+/* ==========================
+   Floating Icons
+========================== */
+
+.float-icon{
+
+animation:iconFloat 3s ease-in-out infinite;
+
+}
+
+@keyframes iconFloat{
+
+0%,100%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-8px);
+
+}
+
+}
+
+
+/* ==========================
+   Card Shine
+========================== */
+
+.card,
+.about-card,
+.latest-news .card{
+
+overflow:hidden;
+position:relative;
+
+}
+
+.card::before,
+.about-card::before,
+.latest-news .card::before{
+
+content:"";
+position:absolute;
+top:0;
+left:-120%;
+width:60%;
+height:100%;
+
+background:linear-gradient(
+90deg,
+transparent,
+rgba(255,255,255,.25),
+transparent
+);
+
+transition:.8s;
+
+}
+
+.card:hover::before,
+.about-card:hover::before,
+.latest-news .card:hover::before{
+
+left:150%;
+
+}
+
+
+/* ==========================
+   Performance
+========================== */
+
+*{
+
+backface-visibility:hidden;
+-webkit-font-smoothing:antialiased;
+-moz-osx-font-smoothing:grayscale;
+
+}
+
+
+/* ==========================
+   Reduced Motion Support
+========================== */
+
+@media (prefers-reduced-motion:reduce){
+
+*{
+
+animation:none !important;
+transition:none !important;
+scroll-behavior:auto !important;
+
+}
+
+}
+
+
+/*==========================================
+        END OF animation.css
+==========================================*/
+
+html{
+
+scroll-behavior:smooth;
+
+}
+
+body{
+
+overflow-x:hidden;
+
+}
+
+img{
+
+user-select:none;
+-webkit-user-drag:none;
+
+}
+
+::selection{
+
+background:#c89b3c;
+color:#fff;
+
+}
+
+::-moz-selection{
+
+background:#c89b3c;
+color:#fff;
+
+}
