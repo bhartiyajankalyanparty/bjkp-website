@@ -1,1 +1,455 @@
+/*==========================================
+    Bharatiya Jan Kalyan Party (BJKP)
+    Official Website CSS - Part 1
+==========================================*/
 
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* Reset */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+scroll-behavior:smooth;
+}
+
+/* Root Colors */
+
+:root{
+
+--primary:#6b0f1a;
+--secondary:#c89b3c;
+--dark:#1f1f1f;
+--white:#ffffff;
+--light:#f8f8f8;
+--gray:#666;
+--shadow:0 10px 30px rgba(0,0,0,.15);
+
+}
+
+body{
+
+background:var(--light);
+color:var(--dark);
+overflow-x:hidden;
+
+}
+
+img{
+
+max-width:100%;
+display:block;
+
+}
+
+a{
+
+text-decoration:none;
+transition:.3s;
+
+}
+
+ul{
+
+list-style:none;
+
+}
+
+.container{
+
+width:90%;
+max-width:1300px;
+margin:auto;
+
+}
+
+/* Loader */
+
+.loader{
+
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#fff;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:99999;
+
+}
+
+.spinner{
+
+width:70px;
+height:70px;
+border:6px solid #ddd;
+border-top:6px solid var(--primary);
+border-radius:50%;
+animation:spin 1s linear infinite;
+
+}
+
+.loader h2{
+
+margin-top:20px;
+color:var(--primary);
+
+}
+
+@keyframes spin{
+
+100%{
+transform:rotate(360deg);
+}
+
+}
+
+/* Top Bar */
+
+.top-bar{
+
+background:var(--primary);
+color:#fff;
+padding:10px 0;
+font-size:14px;
+
+}
+
+.top-bar .container{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+}
+
+.top-bar i{
+
+color:var(--secondary);
+margin-right:6px;
+
+}
+
+.top-bar a{
+
+color:#fff;
+margin-left:15px;
+font-size:18px;
+
+}
+
+.top-bar a:hover{
+
+color:var(--secondary);
+
+}
+
+/* Header */
+
+header{
+
+position:sticky;
+top:0;
+background:#fff;
+box-shadow:var(--shadow);
+z-index:999;
+
+}
+
+header .container{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 0;
+
+}
+
+/* Logo */
+
+.logo{
+
+display:flex;
+align-items:center;
+gap:15px;
+
+}
+
+.logo img{
+
+width:75px;
+
+}
+
+.logo h2{
+
+font-size:24px;
+color:var(--primary);
+
+}
+
+.logo p{
+
+font-size:13px;
+color:var(--gray);
+
+}
+
+/* Navigation */
+
+nav ul{
+
+display:flex;
+align-items:center;
+
+}
+
+nav ul li{
+
+margin-left:25px;
+
+}
+
+nav ul li a{
+
+color:var(--dark);
+font-weight:600;
+position:relative;
+
+}
+
+nav ul li a:hover,
+nav ul li a.active{
+
+color:var(--primary);
+
+}
+
+nav ul li a::after{
+
+content:"";
+position:absolute;
+left:0;
+bottom:-6px;
+width:0;
+height:3px;
+background:var(--secondary);
+transition:.4s;
+
+}
+
+nav ul li a:hover::after{
+
+width:100%;
+
+}
+
+/* Right Side */
+
+.header-right{
+
+display:flex;
+align-items:center;
+gap:15px;
+
+}
+
+#lang-btn{
+
+border:none;
+padding:10px 16px;
+border-radius:30px;
+background:#eee;
+cursor:pointer;
+font-weight:600;
+
+}
+
+.join-btn{
+
+background:var(--primary);
+color:#fff;
+padding:12px 28px;
+border-radius:40px;
+font-weight:600;
+
+}
+
+.join-btn:hover{
+
+background:var(--secondary);
+color:#000;
+
+}
+
+#menu-btn{
+
+display:none;
+font-size:28px;
+cursor:pointer;
+
+}
+
+/* Breaking News */
+
+.news-ticker{
+
+background:var(--secondary);
+padding:10px 0;
+color:#000;
+font-weight:600;
+
+}
+
+/* Hero */
+
+.hero{
+
+position:relative;
+min-height:90vh;
+display:flex;
+align-items:center;
+background:linear-gradient(rgba(107,15,26,.80),rgba(107,15,26,.80)),
+url("../image/banner1.jpg") center/cover;
+
+}
+
+.overlay{
+
+position:absolute;
+inset:0;
+
+}
+
+.hero-content{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:60px;
+position:relative;
+z-index:2;
+
+}
+
+.hero-left{
+
+flex:1;
+
+}
+
+.tag{
+
+display:inline-block;
+background:var(--secondary);
+padding:8px 18px;
+border-radius:30px;
+font-weight:700;
+margin-bottom:20px;
+
+}
+
+.hero h1{
+
+font-size:60px;
+color:#fff;
+margin-bottom:20px;
+
+}
+
+.hero h3{
+
+font-size:32px;
+color:#ffd87b;
+margin-bottom:20px;
+
+}
+
+.hero p{
+
+font-size:18px;
+color:#eee;
+line-height:1.8;
+margin-bottom:35px;
+
+}
+
+.hero-buttons{
+
+display:flex;
+gap:20px;
+
+}
+
+/* Buttons */
+
+.btn-primary{
+
+background:var(--secondary);
+color:#000;
+padding:15px 35px;
+border-radius:50px;
+font-weight:700;
+display:inline-block;
+
+}
+
+.btn-primary:hover{
+
+background:#fff;
+
+}
+
+.btn-secondary{
+
+background:transparent;
+border:2px solid #fff;
+color:#fff;
+padding:15px 35px;
+border-radius:50px;
+font-weight:700;
+
+}
+
+.btn-secondary:hover{
+
+background:#fff;
+color:var(--primary);
+
+}
+
+/* President Card */
+
+.president-card{
+
+background:#fff;
+padding:25px;
+border-radius:20px;
+box-shadow:var(--shadow);
+text-align:center;
+max-width:340px;
+
+}
+
+.president-card img{
+
+width:230px;
+height:230px;
+border-radius:50%;
+object-fit:cover;
+border:6px solid var(--secondary);
+margin:auto;
+
+}
+
+.president-card p{
+
+color:var(--gray);
+
+}
