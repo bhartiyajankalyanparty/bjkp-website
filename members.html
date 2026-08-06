@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Members Management | BJKP Admin</title>
+
+<link rel="icon" href="images/logo.png">
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/animation.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- Sidebar -->
+
+<aside class="admin-sidebar">
+
+<div class="admin-logo">
+
+<img src="images/logo.png" alt="Logo">
+
+<h2>BJKP Admin</h2>
+
+</div>
+
+<ul>
+
+<li><a href="admin-dashboard.html">
+
+<i class="fas fa-gauge"></i>
+
+Dashboard
+
+</a></li>
+
+<li><a class="active" href="members.html">
+
+<i class="fas fa-users"></i>
+
+Members
+
+</a></li>
+
+<li><a href="volunteers.html">
+
+<i class="fas fa-user-friends"></i>
+
+Volunteers
+
+</a></li>
+
+<li><a href="news-manager.html">
+
+<i class="fas fa-newspaper"></i>
+
+News
+
+</a></li>
+
+<li><a href="gallery-manager.html">
+
+<i class="fas fa-images"></i>
+
+Gallery
+
+</a></li>
+
+<li><a href="events-manager.html">
+
+<i class="fas fa-calendar-days"></i>
+
+Events
+
+</a></li>
+
+<li><a href="settings.html">
+
+<i class="fas fa-gear"></i>
+
+Settings
+
+</a></li>
+
+<li><a href="admin-login.html">
+
+<i class="fas fa-right-from-bracket"></i>
+
+Logout
+
+</a></li>
+
+</ul>
+
+</aside>
+
+<!-- Main -->
+
+<div class="admin-main">
+
+<header class="admin-header">
+
+<h1>
+
+<i class="fas fa-users"></i>
+
+Members Management
+
+</h1>
+
+<p>
+
+सभी पार्टी सदस्यों का प्रबंधन
+
+</p>
+
+</header>
+
+<!-- Top Buttons -->
+
+<section class="admin-section">
+
+<div class="admin-toolbar">
+
+<input
+type="text"
+id="memberSearch"
+placeholder="🔍 सदस्य खोजें...">
+
+<button class="btn-primary">
+
+<i class="fas fa-user-plus"></i>
+
+Add Member
+
+</button>
+
+<button class="btn-primary">
+
+<i class="fas fa-file-excel"></i>
+
+Export Excel
+
+</button>
+
+<button class="btn-primary">
+
+<i class="fas fa-file-pdf"></i>
+
+Export PDF
+
+</button>
+
+<button class="btn-primary">
+
+<i class="fas fa-print"></i>
+
+Print
+
+</button>
+
+</div>
+
+</section>
+
+<!-- Statistics -->
+
+<section class="admin-cards">
+
+<div class="card">
+
+<h2 id="totalMembers">0</h2>
+
+<p>Total Members</p>
+
+</div>
+
+<div class="card">
+
+<h2 id="activeMembers">0</h2>
+
+<p>Active Members</p>
+
+</div>
+
+<div class="card">
+
+<h2 id="newMembers">0</h2>
+
+<p>New This Month</p>
+
+</div>
+
+<div class="card">
+
+<h2 id="districts">0</h2>
+
+<p>Districts Covered</p>
+
+</div>
+
+</section>
+
+<!-- ==========================
+     MEMBERS TABLE
+========================== -->
+
+<section class="admin-section">
+
+<h2>
+
+<i class="fas fa-table"></i>
+
+सदस्यों की सूची
+
+</h2>
+
+<div class="table-responsive">
+
+<table class="admin-table" id="membersTable">
+
+<thead>
+
+<tr>
+
+<th>ID</th>
+
+<th>फोटो</th>
+
+<th>नाम</th>
+
+<th>मोबाइल</th>
+
+<th>जिला</th>
+
+<th>राज्य</th>
+
+<th>सदस्य आईडी</th>
+
+<th>स्थिति</th>
+
+<th>कार्य</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>1</td>
+
+<td>
+<img src="images/member.png"
+width="45"
+height="45"
+style="border-radius:50%;">
+</td>
+
+<td>अजीत कुमार</td>
+
+<td>7317384231</td>
+
+<td>बस्ती</td>
+
+<td>उत्तर प्रदेश</td>
+
+<td>BJKP0001</td>
+
+<td>
+<span class="badge success">Active</span>
+</td>
+
+<td>
+
+<button class="btn-primary">
+
+<i class="fas fa-eye"></i>
+
+</button>
+
+<button class="btn-primary">
+
+<i class="fas fa-pen"></i>
+
+</button>
+
+<button class="btn-danger">
+
+<i class="fas fa-trash"></i>
+
+</button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>2</td>
+
+<td>
+<img src="images/member.png"
+width="45"
+height="45"
+style="border-radius:50%;">
+</td>
+
+<td>राम कुमार</td>
+
+<td>9876543210</td>
+
+<td>लखनऊ</td>
+
+<td>उत्तर प्रदेश</td>
+
+<td>BJKP0002</td>
+
+<td>
+<span class="badge success">Active</span>
+</td>
+
+<td>
+
+<button class="btn-primary">
+
+<i class="fas fa-eye"></i>
+
+</button>
+
+<button class="btn-primary">
+
+<i class="fas fa-pen"></i>
+
+</button>
+
+<button class="btn-danger">
+
+<i class="fas fa-trash"></i>
+
+</button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>3</td>
+
+<td>
+<img src="images/member.png"
+width="45"
+height="45"
+style="border-radius:50%;">
+</td>
+
+<td>सीमा देवी</td>
+
+<td>9123456789</td>
+
+<td>गोरखपुर</td>
+
+<td>उत्तर प्रदेश</td>
+
+<td>BJKP0003</td>
+
+<td>
+<span class="badge warning">Pending</span>
+</td>
+
+<td>
+
+<button class="btn-primary">
+
+<i class="fas fa-eye"></i>
+
+</button>
+
+<button class="btn-primary">
+
+<i class="fas fa-pen"></i>
+
+</button>
+
+<button class="btn-danger">
+
+<i class="fas fa-trash"></i>
+
+</button>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+<!-- ==========================
+     PAGINATION
+========================== -->
+
+<section class="admin-section">
+
+<div class="pagination">
+
+<button class="btn-primary">
+
+<i class="fas fa-angle-left"></i>
+
+Previous
+
+</button>
+
+<span style="padding:10px 20px;">
+
+Page 1 of 1
+
+</span>
+
+<button class="btn-primary">
+
+Next
+
+<i class="fas fa-angle-right"></i>
+
+</button>
+
+</div>
+
+</section>
+
+<!-- ==========================
+     MEMBER SUMMARY
+========================== -->
+
+<section class="admin-cards">
+
+<div class="card">
+
+<h3>पुरुष सदस्य</h3>
+
+<h2>80</h2>
+
+</div>
+
+<div class="card">
+
+<h3>महिला सदस्य</h3>
+
+<h2>45</h2>
+
+</div>
+
+<div class="card">
+
+<h3>सक्रिय सदस्य</h3>
+
+<h2>110</h2>
+
+</div>
+
+<div class="card">
+
+<h3>लंबित आवेदन</h3>
+
+<h2>15</h2>
+
+</div>
+
+</section>
+
+<!-- ==========================
+     ADD MEMBER MODAL
+========================== -->
+
+<div id="addMemberModal" class="modal">
+
+<div class="modal-content">
+
+<span class="close">&times;</span>
+
+<h2>नया सदस्य जोड़ें</h2>
+
+<form>
+
+<input type="text" placeholder="पूरा नाम" required>
+
+<input type="tel" placeholder="मोबाइल नंबर" required>
+
+<input type="text" placeholder="जिला" required>
+
+<input type="text" placeholder="राज्य" required>
+
+<input type="email" placeholder="ईमेल">
+
+<select>
+
+<option>Active</option>
+
+<option>Pending</option>
+
+<option>Inactive</option>
+
+</select>
+
+<button type="submit" class="btn-primary">
+
+<i class="fas fa-save"></i>
+
+Save Member
+
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+<!-- ==========================
+     FOOTER
+========================== -->
+
+<footer class="admin-footer">
+
+<div class="container">
+
+<p>
+
+© <span id="year"></span>
+
+<strong>भारतीय जन कल्याण पार्टी (BJKP)</strong>
+
+<br>
+
+Members Management Panel
+
+</p>
+
+</div>
+
+</footer>
+
+<!-- ==========================
+     JAVASCRIPT
+========================== -->
+
+<script>
+
+// Current Year
+
+document.getElementById("year").textContent =
+new Date().getFullYear();
+
+// Demo Statistics
+
+document.getElementById("totalMembers").innerHTML="125";
+
+document.getElementById("activeMembers").innerHTML="110";
+
+document.getElementById("newMembers").innerHTML="18";
+
+document.getElementById("districts").innerHTML="27";
+
+// Search Function
+
+const searchInput=document.getElementById("memberSearch");
+
+searchInput.addEventListener("keyup",function(){
+
+let filter=searchInput.value.toUpperCase();
+
+let table=document.getElementById("membersTable");
+
+let tr=table.getElementsByTagName("tr");
+
+for(let i=1;i<tr.length;i++){
+
+let td=tr[i].getElementsByTagName("td")[2];
+
+if(td){
+
+let txt=td.textContent||td.innerText;
+
+tr[i].style.display=
+txt.toUpperCase().indexOf(filter)>-1?"":"none";
+
+}
+
+}
+
+});
+
+// Modal
+
+const modal=document.getElementById("addMemberModal");
+
+const addBtn=document.querySelector(".admin-toolbar .btn-primary");
+
+const close=document.querySelector(".close");
+
+addBtn.onclick=function(){
+
+modal.style.display="block";
+
+}
+
+close.onclick=function(){
+
+modal.style.display="none";
+
+}
+
+window.onclick=function(event){
+
+if(event.target==modal){
+
+modal.style.display="none";
+
+}
+
+}
+
+// Demo Buttons
+
+document.querySelectorAll(".fa-trash").forEach(btn=>{
+
+btn.parentElement.onclick=function(){
+
+if(confirm("क्या आप इस सदस्य को हटाना चाहते हैं?")){
+
+alert("Member Deleted (Demo)");
+
+}
+
+};
+
+});
+
+</script>
+
+<!-- Main Script -->
+
+<script src="js/script.js"></script>
+
+</div>
+
+</body>
+
+</html>
